@@ -1,0 +1,21 @@
+{
+  "extends": [
+    "react-app",
+    "airbnb"
+  ],
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "rules": {
+    "semi": "off",
+    "no-console": "error",
+    "max-len": ["error", 90, {"ignoreUrls":  true}],
+    "no-tabs": "off",
+    "arrow-parens": "off",
+    "quotes": ["error", "single"],
+    "object-curly-spacing": "off",
+    "jsx-quotes": ["error", "prefer-single"],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+  }
+}

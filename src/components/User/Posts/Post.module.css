@@ -1,0 +1,48 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 90px;
+}
+
+.post {
+    display: flex;
+    flex-wrap: wrap;
+
+    width: 360px;
+
+    margin-top: 21px;
+}
+
+.post__header,
+.post__footer {
+    width: 100%;
+    display: flex;
+}
+
+.post__footer {
+    padding: 9px 0 0 72px;
+    justify-content: space-between;
+}
+
+.avatar {
+    width: 45px;
+    height: 45px;
+
+    margin-right: 21px;
+}
+
+.avatar img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.text {
+    width: 270px;
+    background-color: rgba(196, 203, 189, 0.12);
+    border-radius: 9px;
+    padding: 9px 12px;
+
+    color: #000000;
+    font-weight: 600;
+    font-style: italic;
+}

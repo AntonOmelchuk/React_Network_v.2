@@ -1,0 +1,47 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+}
+
+.user {
+    display: flex;
+}
+
+.user__avatar {
+    width: 270px;
+}
+
+.user__avatar img {
+    width: 100%;
+    border-radius: 3px;
+}
+
+.user__info {
+    width: 100%;
+    padding-left: 12px;
+}
+
+.status:hover {
+    cursor: pointer;
+    opacity: .8;
+}
+
+.status__input {
+    display: inline-block;
+    background-color: transparent;
+    color: antiquewhite;
+    font-size: 21px;
+}
+
+.info__field {
+    font-size: 21px;
+    color: antiquewhite;
+}
+
+.info__field span {
+    font-weight: 600;
+    color: #958775;
+    display: inline-block;
+    width: 54px;
+    margin-right: 90px;
+}
