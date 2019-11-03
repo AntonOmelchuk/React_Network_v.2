@@ -16,7 +16,7 @@ function App() {
         <Content>
           <Switch>
             <Route exact path='/' component={User} />
-            <Route exact path="/dialogs" component={Dialogs} />
+            <Route exact path='/dialogs' component={Dialogs} />
           </Switch>
         </Content>
       </div>
