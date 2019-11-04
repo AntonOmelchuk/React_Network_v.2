@@ -1,14 +1,21 @@
-import React from 'react';
-import Profile from "./Profile/Profile";
-import Posts from "./Posts/Posts";
+import React from 'react'
+import {connect} from 'react-redux';
+import Profile from './Profile/Profile'
+import Posts from './Posts/Posts'
+import {addPost, toggleLiked} from '../../actions/profileActions';
 
-const User = () => {
-    return (
-        <div>
-            <Profile />
-            <Posts />
-        </div>
-    );
-};
+const User = ({posts, addPost, toggleLiked}) => (
+    <div>
+        <Profile />
+        <Posts posts={posts} addPost={addPost} toggleLiked={toggleLiked} />
+    </div>
+);
 
-export default User;
+const mapDispatchProps = state => ({
+    posts: state.profile.posts
+});
+
+export default connect(mapDispatchProps, {
+    addPost,
+    toggleLiked
+})(User);

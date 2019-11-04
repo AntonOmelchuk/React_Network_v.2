@@ -1,51 +1,43 @@
-import React from 'react';
+import React, {useState} from 'react';
+import uuid from 'uuid'
+import ava1 from '../../../assets/avatars/ava1.jpg'
 import style from './Post.module.css';
-import ava from '../../../assets/avatars/ava1.jpg'
+import PostItem from './PostItem';
 
-const Posts = () => {
+const Posts = ({posts, addPost, toggleLiked}) => {
+
+    const [postText, setPostText] = useState('');
+
+    const handleChange = e => {
+        setPostText(e.target.value)
+    };
+
+    const handleKeyDown = e => {
+        if(e.key === 'Enter') onAddPost ()
+    };
+
+    const onAddPost = () => {
+        const post = {
+            id: uuid.v4(),
+            ava: ava1,
+            text: postText,
+            likes: 0,
+            liked: false,
+            date: new Date()
+        };
+        addPost(post);
+        setPostText('')
+    };
+
     return (
         <div className={style.wrapper}>
-
-            <div className={style.post}>
-                <div className={style.post__header}>
-                    <div className={style.avatar}>
-                        <img src={ava} alt='author avatar'/>
-                    </div>
-                    <div className={style.text}>Some text</div>
-                </div>
-                <div className={style.post__footer}>
-                    <div>Likes: 12</div>
-                    <div>Date</div>
-                </div>
+            <div className={style.add__form}>
+                <input type='text' value={postText} onChange={handleChange} onKeyDown={handleKeyDown} />
+                <button type='button' onClick={onAddPost}>Add</button>
             </div>
-
-            <div className={style.post}>
-                <div className={style.post__header}>
-                    <div className={style.avatar}>
-                        <img src={ava} alt='author avatar'/>
-                    </div>
-                    <div className={style.text}>Some text</div>
-                </div>
-                <div className={style.post__footer}>
-                    <div>Likes: 12</div>
-                    <div>Date</div>
-                </div>
-            </div>
-
-            <div className={style.post}>
-                <div className={style.post__header}>
-                    <div className={style.avatar}>
-                        <img src={ava} alt='author avatar'/>
-                    </div>
-                    <div className={style.text}>Some text</div>
-                </div>
-                <div className={style.post__footer}>
-                    <div>Likes: 12</div>
-                    <div>Date</div>
-                </div>
-            </div>
+            {posts.map(post => <PostItem key={post.id} post={post} toggleLiked={toggleLiked} />)}
         </div>
-    );
+    )
 };
 
 export default Posts;
