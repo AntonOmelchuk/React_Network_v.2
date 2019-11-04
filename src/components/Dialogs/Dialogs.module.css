@@ -72,25 +72,23 @@
 /* === Current Dialog === */
 
 .current__dialog {
-    width: 450px;
+    width: 540px;
     padding: 21px 18px;
-    background-color: #232b2b;
     border-radius: 3px;
-    font-size: 18px;
+
+    font-size: 15px;
+    color: #958775;
+    font-family: 'Poppins', sans-serif;
 }
 
 .message,
 .profile__message {
-    width: 400px;
+    width: 531px;
     height: 21px;
     padding: 9px 12px;
 
     display: flex;
     align-items: center;
-
-    color: aliceblue;
-    /*border: 1px solid rgba(255, 255, 255, 0.24);*/
-    /*border-radius: 12px;*/
 }
 
 .profile__message {
@@ -110,10 +108,34 @@
     border-radius: 50%;
 }
 
-.profile__message {
+.add__message {
+    width: 540px;
+    margin-top: 90px;
+    display: flex;
 
+    border-radius: 3px;
+    border: 2px solid #2c5364;
+    background-color: rgba(196, 203, 189, 0.12);
 }
 
-.current__message {
+.add__message input {
+    display: block;
+    width: 75%;
+    height: 21px;
+    padding: 3px 9px;
 
+    background-color: rgba(25, 26, 24, 0.5);
+
+    font-size: 15px;
+    color: #958775;
+    font-family: 'Poppins', sans-serif;
+}
+
+.add__message button {
+    width: 25%;
+    background-color: rgba(41, 44, 38, 0.12);
+
+    font-weight: 600;
+    color: #958775;
+    text-transform: uppercase;
 }
