@@ -2,6 +2,7 @@ import React from 'react'
 import DialogItem from './DialogItem'
 import {connect} from 'react-redux'
 import style from './Dialogs.module.css'
+import {setCurrentDialog} from '../../actions/dialogsActions';
 
 const Dialogs = (props) => {
 
@@ -12,7 +13,8 @@ const Dialogs = (props) => {
     return (
         <div className={style.wrapper}>
             {props.dialogs.map(dialog => (
-                <DialogItem key={dialog.id} dialog={dialog} chooseDialog={chooseDialog} />))}
+                <DialogItem key={dialog.id} dialog={dialog} chooseDialog={chooseDialog}
+                    setCurrentDialog={props.setCurrentDialog}/>))}
         </div>
     )
 };
@@ -21,4 +23,4 @@ const mapStateToProps = state => ({
     dialogs: state.dialogs.dialogs
 });
 
-export default connect(mapStateToProps, null)(Dialogs);
+export default connect(mapStateToProps, {setCurrentDialog})(Dialogs);

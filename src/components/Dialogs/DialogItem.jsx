@@ -2,11 +2,12 @@ import React from 'react';
 import ava from '../../assets/avatars/eliot.jpg'
 import style from './Dialogs.module.css'
 
-const DialogItem = ({dialog, chooseDialog}) => {
+const DialogItem = ({dialog, chooseDialog, setCurrentDialog}) => {
 
     const {id, user, lastMessage, isRead, yourLast} = dialog;
 
     const handleClick = () => {
+        setCurrentDialog(dialog);
         chooseDialog(id)
     }
 
