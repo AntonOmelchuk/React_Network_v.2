@@ -20,6 +20,10 @@
     color: antiquewhite;
 }
 
+.dialog:hover {
+    cursor: pointer;
+}
+
 .avatar {
     width: 54px;
     height: 54px;

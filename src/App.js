@@ -6,6 +6,7 @@ import Nav from './components/Nav/Nav';
 import Content from './components/Content/Content';
 import User from './components/User/User';
 import Dialogs from './components/Dialogs/Dialogs';
+import CurrentDialog from './components/Dialogs/CurrentDialog';
 
 const App = () => (
     <>
@@ -16,10 +17,11 @@ const App = () => (
                 <Switch>
                     <Route exact path='/' component={User} />
                     <Route exact path='/dialogs' component={Dialogs} />
+                    <Route exact path='/dialogs/:id' component={CurrentDialog} />
                 </Switch>
             </Content>
         </div>
     </>
-)
+);
 
 export default App;

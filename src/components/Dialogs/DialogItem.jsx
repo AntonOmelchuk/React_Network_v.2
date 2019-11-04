@@ -2,12 +2,16 @@ import React from 'react';
 import ava from '../../assets/avatars/eliot.jpg'
 import style from './Dialogs.module.css'
 
-const DialogItem = ({dialog}) => {
+const DialogItem = ({dialog, chooseDialog}) => {
 
-    const {user, lastMessage, isRead, yourLast} = dialog;
+    const {id, user, lastMessage, isRead, yourLast} = dialog;
+
+    const handleClick = () => {
+        chooseDialog(id)
+    }
 
     return (
-        <div className={style.dialog}>
+        <div className={style.dialog} onClick={handleClick}>
             <div className={style.avatar}>
                 <img src={user} alt='user avatar' />
             </div>
