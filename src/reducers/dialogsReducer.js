@@ -48,7 +48,6 @@ export const dialogsReducer = (state = initialState, action) => {
                 current: action.payload
             };
         case SEND_MESSAGE:
-            debugger
             return {
                 ...state,
                 current: {...state.current, messages: [...state.current.messages, action.payload]}

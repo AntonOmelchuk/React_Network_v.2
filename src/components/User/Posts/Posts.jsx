@@ -4,7 +4,7 @@ import ava1 from '../../../assets/avatars/ava1.jpg'
 import style from './Post.module.css';
 import PostItem from './PostItem';
 
-const Posts = ({posts, addPost, toggleLiked}) => {
+const Posts = ({posts, addPost, deletePost, toggleLiked}) => {
 
     const [postText, setPostText] = useState('');
 
@@ -35,7 +35,8 @@ const Posts = ({posts, addPost, toggleLiked}) => {
                 <input type='text' value={postText} onChange={handleChange} onKeyDown={handleKeyDown} />
                 <button type='button' onClick={onAddPost}>Add</button>
             </div>
-            {posts.map(post => <PostItem key={post.id} post={post} toggleLiked={toggleLiked} />)}
+            {posts.map(post => <PostItem key={post.id} post={post} toggleLiked={toggleLiked}
+                deletePost={deletePost}/>)}
         </div>
     )
 };

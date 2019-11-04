@@ -2,13 +2,15 @@ import React from 'react';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import style from './Post.module.css';
 
-const PostItem = ({post, toggleLiked}) => {
+const PostItem = ({post, deletePost, toggleLiked}) => {
 
     const {id, ava, text, likes, date, liked} = post;
 
     const handleToggle = () => {
         toggleLiked(id)
     };
+
+    const handleDelete = () => deletePost(id);
 
     return (
         <div className={style.post}>
@@ -28,6 +30,7 @@ const PostItem = ({post, toggleLiked}) => {
                 </div>
                 <div>{formatDistanceToNow(new Date(date), { addSuffix: true })}</div>
             </div>
+            <span className={style.delete__icon} onClick={handleDelete}>&times;</span>
         </div>
     )
 };

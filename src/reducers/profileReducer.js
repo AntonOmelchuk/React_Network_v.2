@@ -2,7 +2,7 @@ import ava1 from '../assets/avatars/ava1.jpg'
 import ava2 from '../assets/avatars/ava2.jpg'
 import ava3 from '../assets/avatars/ava3.jpg'
 import ava4 from '../assets/avatars/ava4.jpg'
-import {ADD_POST, TOGGLE_LIKED} from '../actions/types';
+import {ADD_POST, DELETE_POST, TOGGLE_LIKED} from '../actions/types';
 
 const initialState = {
     posts: [
@@ -19,6 +19,11 @@ export const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 posts: [...state.posts, action.payload]
+            };
+        case DELETE_POST:
+            return {
+                ...state,
+                posts: state.posts.filter(post => post.id !== action.payload)
             };
         case TOGGLE_LIKED:
             return {
