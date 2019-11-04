@@ -8,18 +8,18 @@ import User from './components/User/User';
 import Dialogs from './components/Dialogs/Dialogs';
 
 const App = () => (
-  <>
-    <Navbar />
-    <div className={style.page}>
-      <Nav />
-      <Content>
-        <Switch>
-          <Route exact path='/' component={User} />
-          <Route exact path='/dialogs' component={Dialogs} />
-        </Switch>
-      </Content>
-    </div>
-  </>
+    <>
+        <Navbar />
+        <div className={style.page}>
+            <Nav />
+            <Content>
+                <Switch>
+                    <Route exact path='/' component={User} />
+                    <Route exact path='/dialogs' component={Dialogs} />
+                </Switch>
+            </Content>
+        </div>
+    </>
 )
 
 export default App;
