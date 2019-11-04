@@ -1,8 +1,9 @@
 import React from 'react';
+import commonAvatar from '../../assets/avatars/common.jpg'
 import style from './Users.module.css';
 
 const UserItem = ({user, toggleFollowing}) => {
-    const {id, avatar, name, follow} = user;
+    const {id, photos, name, status, followed} = user;
 
     const handleToggleFollowing = () => toggleFollowing(id);
 
@@ -10,12 +11,15 @@ const UserItem = ({user, toggleFollowing}) => {
         <div className={style.user}>
             <div className={style.info}>
                 <div className={style.avatar}>
-                    <img src={avatar} alt='user avatar' />
+                    <img src={photos.large || commonAvatar} alt='user avatar' />
                 </div>
-                <div className={style.name}>{name}</div>
+                <div>
+                    <div className={style.status}>{status || 'Incubator student'}</div>
+                    <div className={style.name}>{name}</div>
+                </div>
             </div>
             <div className={style.follow} onClick={handleToggleFollowing}>
-                <span>{follow ? 'unfollow' : 'follow'}</span>
+                <span>{followed ? 'unfollow' : 'follow'}</span>
             </div>
         </div>
     );

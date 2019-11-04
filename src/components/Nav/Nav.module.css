@@ -1,6 +1,6 @@
 .wrapper {
     width: 30%;
-    max-width: 180px;
+    max-width: 150px;
     height: 100vh;
 
     margin-top: 70px;
@@ -14,8 +14,17 @@
     position: fixed;
 }
 
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}
+
 .link {
-    display: block;
+    display: inline-block;
     color: antiquewhite;
     font-size: 21px;
     margin-top: 18px;

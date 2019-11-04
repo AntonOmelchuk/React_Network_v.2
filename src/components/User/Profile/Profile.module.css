@@ -1,10 +1,7 @@
-.wrapper {
-    width: 100%;
-    display: flex;
-}
-
 .user {
     display: flex;
+    background-color: rgba(15, 32, 39, 0.93);
+    background-attachment: scroll;
 }
 
 .user__avatar {
