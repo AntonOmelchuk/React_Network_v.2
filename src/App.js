@@ -15,10 +15,11 @@ const App = () => (
         <div className={style.content}>
             <div>
                 <Switch>
-                    <Route exact path='/' component={User} />
+                    <Route path='/profile/:id' component={User} />
                     <Route exact path='/dialogs' component={Dialogs} />
                     <Route exact path='/dialogs/:id' component={CurrentDialog} />
                     <Route exact path='/users' component={Users} />
+                    <Route path='*' component={User} />
                 </Switch>
             </div>
         </div>

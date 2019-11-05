@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
-import style from './Profile.module.css';
-import ava from '../../../assets/avatars/eliot.jpg';
+import React, {useState} from 'react'
+import style from './Profile.module.css'
+import ava from '../../../assets/avatars/eliot.jpg'
+import defaultAvatar from '../../../assets/avatars/common.jpg'
 
-const Profile = () => {
+const defaultProfile = {
+    fullName: 'Eliot',
+    photos: {
+        large: ava
+    }
+};
+
+const Profile = ({profile}) => {
     const [status, setStatus] = useState('');
     const [editMode, setEditMode] = useState(false);
 
@@ -14,11 +22,15 @@ const Profile = () => {
 
     const toggleEditMode = () => setEditMode(false);
 
+    if(!profile) profile = defaultProfile;
+
+    const {photos, fullName} = profile;
+
     return (
         <>
             <div className={style.user}>
                 <div className={style.user__avatar}>
-                    <img src={ava} alt='user avatar' />
+                    <img src={photos.large || defaultAvatar} alt='user avatar' />
                 </div>
                 <div className={style.user__info}>
                     <div className={style.info__field}>
@@ -43,7 +55,7 @@ const Profile = () => {
                         )}
                     </div>
                     <div className={style.info__field}>
-                        <span>Name: </span>Eliot
+                        <span>Name: </span>{fullName}
                     </div>
                     <div className={style.info__field}>
                         <span>Specialization: </span>React Developer

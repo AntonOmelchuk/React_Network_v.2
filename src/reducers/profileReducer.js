@@ -2,9 +2,10 @@ import ava1 from '../assets/avatars/ava1.jpg'
 import ava2 from '../assets/avatars/ava2.jpg'
 import ava3 from '../assets/avatars/ava3.jpg'
 import ava4 from '../assets/avatars/ava4.jpg'
-import {ADD_POST, DELETE_POST, TOGGLE_LIKED} from '../actions/types';
+import {ADD_POST, DELETE_POST, SET_PROFILE, TOGGLE_LIKED} from '../actions/types';
 
 const initialState = {
+    profile: null,
     posts: [
         {id: 1, ava: ava1, text: `React or Angular?`, likes: 12, date: 'Mon Nov 04 2019 11:42:46', liked: false},
         {id: 2, ava: ava2, text: `Like, if you use Node.js`, likes: 1, date: 'Mon Nov 04 2019 11:42:46', liked: false},
@@ -15,6 +16,11 @@ const initialState = {
 
 export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
+        case SET_PROFILE:
+            return {
+                ...state,
+                profile: action.payload
+            };
         case ADD_POST:
             return {
                 ...state,

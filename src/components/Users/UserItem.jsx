@@ -1,6 +1,7 @@
 import React from 'react';
 import commonAvatar from '../../assets/avatars/common.jpg'
 import style from './Users.module.css';
+import {NavLink} from "react-router-dom";
 
 const UserItem = ({user, toggleFollowing}) => {
     const {id, photos, name, status, followed} = user;
@@ -11,7 +12,9 @@ const UserItem = ({user, toggleFollowing}) => {
         <div className={style.user}>
             <div className={style.info}>
                 <div className={style.avatar}>
-                    <img src={photos.large || commonAvatar} alt='user avatar' />
+                    <NavLink to={`/profile/${id}`}>
+                        <img src={photos.large || commonAvatar} alt='user avatar' />
+                    </NavLink>
                 </div>
                 <div>
                     <div className={style.status}>{status || 'Incubator student'}</div>
