@@ -1,9 +1,9 @@
 import {ADD_POST, DELETE_POST, SET_PROFILE, TOGGLE_LIKED} from './types';
-import axios from 'axios';
+import {profileAPI} from '../api/api';
 
 export const setProfile = id => async dispatch => {
     try {
-        const response = await axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${id}`);
+        const response = await profileAPI.serProfile(id);
 
         dispatch({type: SET_PROFILE, payload: response.data})
     } catch(err) {
