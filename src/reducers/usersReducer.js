@@ -1,11 +1,12 @@
-import {GET_USERS, SET_CURRENT_PAGE, TOGGLE_FETCHING, TOGGLE_FOLLOWING} from '../actions/types';
+import {DISABLE_BUTTON, GET_USERS, SET_CURRENT_PAGE, TOGGLE_FETCHING, TOGGLE_FOLLOWING} from '../actions/types';
 
 const initialState = {
     users: [],
     totalCount: null,
     currentPage: 1,
     pageSize: 10,
-    isFetching: false
+    isFetching: false,
+    disabledButton: []
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -37,6 +38,13 @@ export const usersReducer = (state = initialState, action) => {
                         return user
                     }
                 })
+            };
+        case DISABLE_BUTTON:
+            return {
+                ...state,
+                disabledButton: action.payload.status
+                    ? [...state.disabledButton, action.payload.id]
+                    : [state.disabledButton.filter(id => id !== action.payload.id)]
             };
         default:
             return state

@@ -41,13 +41,22 @@
 }
 
 .follow {
+    display: inline-block;
+    width: 90px;
     margin-top: 9px;
-    padding-left: 21px;
+    padding: 3px 9px;
+
+    background: transparent;
+    border: 1px solid #2c5364;
+    border-radius: 3px;
+
     color: antiquewhite;
+    font-size: 12px;
+    text-transform: uppercase;
 }
 
-.follow:hover {
-    cursor: pointer;
+.follow:disabled {
+    opacity: .5;
 }
 
 .pagination {

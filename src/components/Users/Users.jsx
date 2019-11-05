@@ -13,12 +13,12 @@ import {
 import Spinner from '../common/Spinner'
 
 const Users = ({users, totalCount, pageSize, getUsers, currentPage, setCurrentPage, toggleFetching,
-    isFetching, followUser, unFollowUser}) => {
+    isFetching, followUser, unFollowUser, disabledButton}) => {
 
     useEffect(() => {
         toggleFetching();
         getUsers(currentPage);
-    }, [currentPage, getUsers]);
+    }, [currentPage, getUsers, toggleFetching]);
 
     const pagesCount = Math.ceil(totalCount / pageSize);
     const pages = [];
@@ -48,7 +48,8 @@ const Users = ({users, totalCount, pageSize, getUsers, currentPage, setCurrentPa
             </div>
             {isFetching ? <Spinner /> :
                 (users.map(user => (
-                    <UserItem key={user.id} user={user} followUser={followUser} unFollowUser={unFollowUser} />)))
+                    <UserItem key={user.id} user={user} followUser={followUser} unFollowUser={unFollowUser}
+                        disabledButton={disabledButton} />)))
             }
         </div>
     )
@@ -60,7 +61,8 @@ const mapStateToProps = state => ({
     totalCount: state.users.totalCount,
     pageSize: state.users.pageSize,
     currentPage: state.users.currentPage,
-    isFetching: state.users.isFetching
+    isFetching: state.users.isFetching,
+    disabledButton: state.users.disabledButton
 });
 
 export default connect(mapStateToProps, {

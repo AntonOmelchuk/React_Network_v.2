@@ -1,9 +1,11 @@
-import React from 'react';
+import React from 'react'
 import commonAvatar from '../../assets/avatars/common.jpg'
-import style from './Users.module.css';
-import {NavLink} from 'react-router-dom';
+import style from './Users.module.css'
+import {NavLink} from 'react-router-dom'
 
-const UserItem = ({user, followUser, unFollowUser}) => {
+const UserItem = ({user, followUser, unFollowUser, disabledButton}) => {
+    console.log(disabledButton)
+
     const {id, photos, name, status, followed} = user;
 
     const handleFollow = () => followUser(id);
@@ -23,13 +25,11 @@ const UserItem = ({user, followUser, unFollowUser}) => {
                     <div className={style.name}>{name}</div>
                 </div>
             </div>
-            {followed ?
-                <div className={style.follow} onClick={handleUnfollow}>
-                    <span>unfollow</span>
-                </div> :
-                <div className={style.follow} onClick={handleFollow}>
-                    <span>follow</span>
-                </div>
+            {followed
+                ? <button className={style.follow} disabled={disabledButton.some(i => i === id)}
+                    onClick={handleUnfollow}>unfollow</button>
+                : <button className={style.follow} disabled={disabledButton.some(i => i === id)}
+                    onClick={handleFollow}>follow</button>
             }
         </div>
     );

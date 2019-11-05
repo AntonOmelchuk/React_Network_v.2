@@ -12,7 +12,7 @@ export const profileAPI = {
     serProfile(id) {
         return instance.get(`profile/${id}`)
     }
-}
+};
 
 export const usersAPI = {
     getUser(page) {
@@ -30,4 +30,4 @@ export const authAPI = {
     setAuth() {
         return instance.get('auth/me')
     }
-}
+};
