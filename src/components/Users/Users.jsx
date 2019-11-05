@@ -3,11 +3,17 @@ import style from './Users.module.css'
 import {connect} from 'react-redux'
 import UserItem from './UserItem'
 import ReactPaginate from 'react-paginate'
-import {getUsers, setCurrentPage, toggleFetching, toggleFollowing} from '../../actions/usersActions'
+import {
+    followUser,
+    getUsers,
+    setCurrentPage,
+    toggleFetching,
+    unFollowUser
+} from '../../actions/usersActions'
 import Spinner from '../common/Spinner'
 
-const Users = ({users, totalCount, pageSize, getUsers, toggleFollowing, currentPage, setCurrentPage, toggleFetching,
-    isFetching}) => {
+const Users = ({users, totalCount, pageSize, getUsers, currentPage, setCurrentPage, toggleFetching,
+    isFetching, followUser, unFollowUser}) => {
 
     useEffect(() => {
         toggleFetching();
@@ -42,7 +48,7 @@ const Users = ({users, totalCount, pageSize, getUsers, toggleFollowing, currentP
             </div>
             {isFetching ? <Spinner /> :
                 (users.map(user => (
-                    <UserItem key={user.id} user={user} toggleFollowing={toggleFollowing} />)))
+                    <UserItem key={user.id} user={user} followUser={followUser} unFollowUser={unFollowUser} />)))
             }
         </div>
     )
@@ -58,8 +64,9 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {
-    toggleFollowing,
     getUsers,
     setCurrentPage,
-    toggleFetching
+    toggleFetching,
+    followUser,
+    unFollowUser
 })(Users);

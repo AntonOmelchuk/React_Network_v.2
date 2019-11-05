@@ -14,7 +14,7 @@ const User = ({posts, profile, addPost, toggleLiked, deletePost, setProfile, ...
     return (
         <div>
             <Profile profile={profile} />
-            <Posts posts={posts} addPost={addPost} toggleLiked={toggleLiked} deletePost={deletePost}/>
+            <Posts posts={posts} addPost={addPost} toggleLiked={toggleLiked} deletePost={deletePost} />
         </div>
     )
 

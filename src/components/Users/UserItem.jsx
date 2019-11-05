@@ -1,12 +1,14 @@
 import React from 'react';
 import commonAvatar from '../../assets/avatars/common.jpg'
 import style from './Users.module.css';
-import {NavLink} from "react-router-dom";
+import {NavLink} from 'react-router-dom';
 
-const UserItem = ({user, toggleFollowing}) => {
+const UserItem = ({user, followUser, unFollowUser}) => {
     const {id, photos, name, status, followed} = user;
 
-    const handleToggleFollowing = () => toggleFollowing(id);
+    const handleFollow = () => followUser(id);
+
+    const handleUnfollow = () => unFollowUser(id);
 
     return (
         <div className={style.user}>
@@ -21,9 +23,14 @@ const UserItem = ({user, toggleFollowing}) => {
                     <div className={style.name}>{name}</div>
                 </div>
             </div>
-            <div className={style.follow} onClick={handleToggleFollowing}>
-                <span>{followed ? 'unfollow' : 'follow'}</span>
-            </div>
+            {followed ?
+                <div className={style.follow} onClick={handleUnfollow}>
+                    <span>unfollow</span>
+                </div> :
+                <div className={style.follow} onClick={handleFollow}>
+                    <span>follow</span>
+                </div>
+            }
         </div>
     );
 };

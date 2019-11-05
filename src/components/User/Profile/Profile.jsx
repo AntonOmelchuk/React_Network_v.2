@@ -1,14 +1,7 @@
 import React, {useState} from 'react'
 import style from './Profile.module.css'
-import ava from '../../../assets/avatars/eliot.jpg'
-import defaultAvatar from '../../../assets/avatars/common.jpg'
-
-const defaultProfile = {
-    fullName: 'Eliot',
-    photos: {
-        large: ava
-    }
-};
+import defaultAvatar from '../../../assets/avatars/anonymous.jpg'
+import Spinner from '../../common/Spinner';
 
 const Profile = ({profile}) => {
     const [status, setStatus] = useState('');
@@ -22,7 +15,7 @@ const Profile = ({profile}) => {
 
     const toggleEditMode = () => setEditMode(false);
 
-    if(!profile) profile = defaultProfile;
+    if(!profile)  return <Spinner />;
 
     const {photos, fullName} = profile;
 
