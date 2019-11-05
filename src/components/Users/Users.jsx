@@ -2,13 +2,16 @@ import React, {useEffect} from 'react'
 import style from './Users.module.css'
 import {connect} from 'react-redux'
 import UserItem from './UserItem'
-import ReactPaginate from 'react-paginate';
-import {getUsers, setCurrentPage, toggleFollowing} from '../../actions/usersActions';
+import ReactPaginate from 'react-paginate'
+import {getUsers, setCurrentPage, toggleFetching, toggleFollowing} from '../../actions/usersActions'
+import Spinner from '../common/Spinner'
 
-const Users = ({users, totalCount, pageSize, getUsers, toggleFollowing, currentPage, setCurrentPage}) => {
+const Users = ({users, totalCount, pageSize, getUsers, toggleFollowing, currentPage, setCurrentPage, toggleFetching,
+    isFetching}) => {
 
     useEffect(() => {
-        getUsers(currentPage)
+        toggleFetching();
+        getUsers(currentPage);
     }, [currentPage, getUsers]);
 
     const pagesCount = Math.ceil(totalCount / pageSize);
@@ -18,38 +21,31 @@ const Users = ({users, totalCount, pageSize, getUsers, toggleFollowing, currentP
         pages.push(i)
     }
 
-    const handleCurrentPage = e => {
-        console.log(e.selected + 1)
-        setCurrentPage(e.selected + 1)
-    };
+    const handleCurrentPage = e => setCurrentPage(e.selected + 1);
 
-    if(users.length) {
-        return (
-            <div className={style.wrapper}>
-                <div>
-                    <ReactPaginate
-                        previousLabel={'<'}
-                        nextLabel={'>'}
-                        breakLabel={'...'}
-                        breakClassName={'break-me'}
-                        pageCount={pagesCount}
-                        marginPagesDisplayed={1}
-                        pageRangeDisplayed={10}
-                        onPageChange={(e) => handleCurrentPage(e)}
-                        containerClassName={style.pagination}
-                        subContainerClassName={style.pages__pagination}
-                        activeClassName={style.current}
-                    />
-                </div>
-                {users.map(user => (
-                    <UserItem key={user.id} user={user} toggleFollowing={toggleFollowing} />))}
+    return (
+        <div className={style.wrapper}>
+            <div>
+                <ReactPaginate
+                    previousLabel={'<'}
+                    nextLabel={'>'}
+                    breakLabel={'...'}
+                    breakClassName={'break-me'}
+                    pageCount={pagesCount}
+                    marginPagesDisplayed={1}
+                    pageRangeDisplayed={10}
+                    onPageChange={(e) => handleCurrentPage(e)}
+                    containerClassName={style.pagination}
+                    subContainerClassName={style.pages__pagination}
+                    activeClassName={style.current}
+                />
             </div>
-        )
-    } else {
-        return <h3>No users</h3>
-    }
-
-
+            {isFetching ? <Spinner /> :
+                (users.map(user => (
+                    <UserItem key={user.id} user={user} toggleFollowing={toggleFollowing} />)))
+            }
+        </div>
+    )
 
 };
 
@@ -57,11 +53,13 @@ const mapStateToProps = state => ({
     users: state.users.users,
     totalCount: state.users.totalCount,
     pageSize: state.users.pageSize,
-    currentPage: state.users.currentPage
+    currentPage: state.users.currentPage,
+    isFetching: state.users.isFetching
 });
 
 export default connect(mapStateToProps, {
     toggleFollowing,
     getUsers,
-    setCurrentPage
+    setCurrentPage,
+    toggleFetching
 })(Users);

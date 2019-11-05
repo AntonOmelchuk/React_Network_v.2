@@ -6,3 +6,4 @@ export const SEND_MESSAGE = 'SEND_MESSAGE';
 export const GET_USERS = 'GET_USERS';
 export const TOGGLE_FOLLOWING = 'TOGGLE_FOLLOWING';
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+export const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
