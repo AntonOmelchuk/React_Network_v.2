@@ -49,3 +49,30 @@
 .follow:hover {
     cursor: pointer;
 }
+
+.pagination {
+    width: 300px;
+    display: flex;
+    color: antiquewhite;
+    margin-bottom: 12px;
+}
+
+.pages__pagination {
+    margin: 0 12px;
+}
+
+li {
+    line-height: 21px;
+    font-size: 15px;
+    margin: 0 3px;
+}
+
+li:hover {
+    cursor: pointer;
+}
+
+.current {
+    line-height: 21px;
+    font-weight: 600;
+    font-size: 21px;
+}

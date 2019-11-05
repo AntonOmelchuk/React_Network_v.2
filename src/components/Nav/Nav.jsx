@@ -4,7 +4,7 @@ import style from './Nav.module.css'
 
 const Nav = () => (
     <div className={style.wrapper}>
-        <ul>
+        <ul className={style.links__list}>
             <li><NavLink className={style.link} to='/'>Profile</NavLink></li>
             <li><NavLink className={style.link} to='/dialogs'>Dialogs</NavLink></li>
             <li><NavLink className={style.link} to='/dialogs'>Job Openings</NavLink></li>

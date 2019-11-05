@@ -14,7 +14,8 @@
     position: fixed;
 }
 
-ul {
+.links__list {
+    display: inline-block;
     padding: 0;
     margin: 0;
 }
