@@ -6,7 +6,7 @@ import {setAuth} from '../../actions/authActions';
 const Navbar = ({setAuth, auth, login}) => {
     useEffect(() => {
         setAuth()
-    }, []);
+    }, [login, auth]);
 
     return (
         <div className={style.navbar}>

@@ -4,12 +4,11 @@ import Profile from './Profile/Profile'
 import Posts from './Posts/Posts'
 import {addPost, deletePost, setProfile, toggleLiked} from '../../actions/profileActions';
 
-const User = ({posts, profile, addPost, toggleLiked, deletePost, setProfile, ...props}) => {
+const User = ({id, posts, profile, addPost, toggleLiked, deletePost, setProfile}) => {
 
     useEffect(() => {
-        const id = props.match.params.id || 1571;
-        setProfile(id);
-    });
+        setProfile(id || 1571);
+    }, [id]);
 
     return (
         <div>

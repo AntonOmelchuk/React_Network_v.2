@@ -9,11 +9,11 @@
 
 .dialog {
     width: 90%;
-    height: 54px;
+    display: flex;
+    align-items: center;
+
     margin-top: 12px;
     padding: 9px 12px;
-
-    display: flex;
 
     background-color: rgba(0, 0, 0, 0.91);
     border-radius: 3px;
@@ -23,6 +23,10 @@
 
 .dialog:hover {
     cursor: pointer;
+}
+
+.dialog__inner {
+    width: 100%;
 }
 
 .avatar {

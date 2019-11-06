@@ -1,7 +1,7 @@
 import {SET_AUTH} from '../actions/types';
 
 const initialState = {
-    userId: null,
+    id: null,
     email: null,
     login: null,
     isAuth: false
