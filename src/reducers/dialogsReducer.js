@@ -15,7 +15,7 @@ const initialState = {
             ]
         },
         {
-            id: 2, user: ava2, lastMessage: 'see you later', yourLast: true, isRead: true, messages: [
+            id: 2, user: ava2, lastMessage: 'see you later', yourLast: true, isRead: false, messages: [
                 {isYour: false, text: 'so, what do you think about that?'},
                 {isYour: true, text: 'I can do it'},
                 {isYour: true, text: 'see you later'},

@@ -1,10 +1,20 @@
 .login__form {
-    position: absolute;
-    top: 180px;
-    left: 45vw;
-
     padding: 90px;
 
     background: linear-gradient(to right, #757f9a, #d7dde8);
     border-radius: 3px;
+}
+
+.login__input {
+    margin-top: 12px;
+    padding: 9px 12px;
+}
+
+.title {
+    font-size: 36px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #958775;
+
+    margin-bottom: 18px;
 }

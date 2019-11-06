@@ -1,44 +1,47 @@
-import React, {useState} from 'react';
+import React from 'react';
 import uuid from 'uuid'
 import ava1 from '../../../assets/avatars/ava1.jpg'
 import style from './Post.module.css';
 import PostItem from './PostItem';
+import {Field, reduxForm} from 'redux-form';
 
 const Posts = ({posts, addPost, deletePost, toggleLiked}) => {
-
-    const [postText, setPostText] = useState('');
-
-    const handleChange = e => {
-        setPostText(e.target.value)
-    };
 
     const handleKeyDown = e => {
         if(e.key === 'Enter') onAddPost ()
     };
 
-    const onAddPost = () => {
+    const onAddPost = data => {
         const post = {
             id: uuid.v4(),
             ava: ava1,
-            text: postText,
+            text: data.message,
             likes: 0,
             liked: false,
             date: new Date()
         };
         addPost(post);
-        setPostText('')
     };
 
     return (
         <div className={style.wrapper}>
-            <div className={style.add__form}>
-                <input type='text' value={postText} onChange={handleChange} onKeyDown={handleKeyDown} />
-                <button type='button' onClick={onAddPost}>Add</button>
-            </div>
+            <AddPost onAddPost={onAddPost} handleKeyDown={handleKeyDown} />
             {posts.map(post => <PostItem key={post.id} post={post} toggleLiked={toggleLiked}
                 deletePost={deletePost}/>)}
         </div>
     )
 };
+
+const AddPostForm = ({handleSubmit, handleKeyDown}) =>  (
+    <form className={style.add__form} onSubmit={handleSubmit}>
+        <Field type='text' name='message' component='input' onChange={handleKeyDown} />
+        <button>Add</button>
+    </form>
+);
+
+const ReduxAddPostForm = reduxForm({form: 'addPost'})(AddPostForm);
+
+const AddPost = ({onAddPost, handleKeyDown}) =>  <ReduxAddPostForm onSubmit={onAddPost} handleKeyDown={handleKeyDown} />;
+
 
 export default Posts;

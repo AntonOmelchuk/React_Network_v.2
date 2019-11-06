@@ -1,3 +1,7 @@
+a:hover {
+    color: #5b5041;
+}
+
 .wrapper {
     width: 750px;
     height: 100vh;
@@ -53,6 +57,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    padding: 9px 12px;
+
+    color: black;
+    font-size: 17px;
 }
 
 .unread {
@@ -91,6 +100,7 @@
     width: 531px;
     height: 21px;
     padding: 9px 12px;
+    margin-top: 12px;
 
     display: flex;
     align-items: center;

@@ -45,7 +45,7 @@ const CurrentDialog = ({dialog, sendMessage}) => {
                             <img src={message.isYour ? avatar : user} alt='avatar' />
                         </div>
                         <div>
-                            <p>{message.text}</p>
+                            {message.text}
                         </div>
                     </div>
                 ))}

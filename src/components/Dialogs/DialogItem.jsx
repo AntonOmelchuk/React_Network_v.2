@@ -18,7 +18,7 @@ const DialogItem = ({dialog, setCurrentDialog}) => {
             </div>
             <div className={isRead ? style.lastMessage__wrapper : style.lastMessage__wrapper + ' ' + style.unread}>
                 <div className={style.lastMessage}>
-                    <p>{lastMessage}</p>
+                    {lastMessage}
                     <div className={style.profile__avatar}>
                         <img src={yourLast ? ava : user} alt='user avatar' />
                     </div>
