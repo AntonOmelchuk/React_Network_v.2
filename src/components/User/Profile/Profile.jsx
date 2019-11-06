@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import style from './Profile.module.css'
 import defaultAvatar from '../../../assets/avatars/anonymous.jpg'
 import Spinner from '../../common/Spinner';
@@ -7,6 +7,11 @@ const Profile = ({profile, status, isFetching, updateStatus}) => {
 
     const [currentStatus, setStatus] = useState(status);
     const [editMode, setEditMode] = useState(false);
+
+    useEffect(() => {
+        setStatus(status)
+    }, [editMode]);
+
 
     const onKeyPressToggleEditMode = e => {
         if (e.key === 'Enter') {
@@ -49,7 +54,7 @@ const Profile = ({profile, status, isFetching, updateStatus}) => {
                                 onChange={e => setStatus(e.target.value)}
                             />
                         ) :
-                            status
+                            status || 'Incubator student'
                         }
                     </div>
                     <div className={style.info__field}>
