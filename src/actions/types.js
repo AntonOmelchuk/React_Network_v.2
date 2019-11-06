@@ -4,6 +4,7 @@ export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const TOGGLE_LIKED = 'TOGGLE_LIKED';
 export const GET_STATUS = 'GET_STATUS';
+export const UPDATE_STATUS = 'UPDATE_STATUS';
 export const TOGGLE_PROFILE_FETCHING = 'TOGGLE_PROFILE_FETCHING';
 
 // Dialogs types

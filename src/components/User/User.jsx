@@ -2,17 +2,19 @@ import React, {useEffect} from 'react'
 import {connect} from 'react-redux';
 import Profile from './Profile/Profile'
 import Posts from './Posts/Posts'
-import {addPost, deletePost, setProfile, toggleLiked} from '../../actions/profileActions';
+import {addPost, deletePost, getStatus, setProfile, toggleLiked, updateStatus} from '../../actions/profileActions';
 
-const User = ({id, posts, profile, addPost, toggleLiked, deletePost, setProfile, status, isFetching}) => {
+const User = ({id, posts, profile, addPost, toggleLiked, deletePost, setProfile, status, isFetching,
+    updateStatus, getStatus}) => {
 
     useEffect(() => {
         setProfile(id || 1571);
-    }, [id, setProfile, status]);
+        getStatus(id || 1571)
+    }, [id]);
 
     return (
         <div>
-            <Profile profile={profile} status={status} isFetching={isFetching} />
+            <Profile profile={profile} status={status} isFetching={isFetching} updateStatus={updateStatus} />
             <Posts posts={posts} addPost={addPost} toggleLiked={toggleLiked} deletePost={deletePost} />
         </div>
     )
@@ -30,5 +32,7 @@ export default connect(mapDispatchProps, {
     addPost,
     deletePost,
     toggleLiked,
-    setProfile
+    setProfile,
+    updateStatus,
+    getStatus
 })(User);

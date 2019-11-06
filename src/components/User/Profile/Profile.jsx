@@ -3,18 +3,22 @@ import style from './Profile.module.css'
 import defaultAvatar from '../../../assets/avatars/anonymous.jpg'
 import Spinner from '../../common/Spinner';
 
-const Profile = ({profile, status, isFetching}) => {
+const Profile = ({profile, status, isFetching, updateStatus}) => {
 
     const [currentStatus, setStatus] = useState(status);
     const [editMode, setEditMode] = useState(false);
 
     const onKeyPressToggleEditMode = e => {
         if (e.key === 'Enter') {
-            setEditMode(false);
+            updateStatus(currentStatus);
+            setEditMode(false)
         }
     };
 
-    const toggleEditMode = () => setEditMode(false);
+    const handleUpdateStatus = () => {
+        updateStatus(currentStatus);
+        setEditMode(false)
+    };
 
     if(!profile || isFetching)  return <Spinner />;
 
@@ -40,7 +44,7 @@ const Profile = ({profile, status, isFetching}) => {
                                 className={style.status__input}
                                 value={currentStatus}
                                 autoFocus={true}
-                                onBlur={toggleEditMode}
+                                onBlur={handleUpdateStatus}
                                 onKeyPress={onKeyPressToggleEditMode}
                                 onChange={e => setStatus(e.target.value)}
                             />

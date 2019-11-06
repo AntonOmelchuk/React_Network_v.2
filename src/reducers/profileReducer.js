@@ -8,6 +8,7 @@ import {
     SET_PROFILE,
     TOGGLE_LIKED,
     GET_STATUS,
+    UPDATE_STATUS,
     TOGGLE_PROFILE_FETCHING
 } from '../actions/types';
 
@@ -31,6 +32,11 @@ export const profileReducer = (state = initialState, action) => {
                 profile: action.payload
             };
         case GET_STATUS:
+            return {
+                ...state,
+                status: action.payload
+            };
+        case UPDATE_STATUS:
             return {
                 ...state,
                 status: action.payload
