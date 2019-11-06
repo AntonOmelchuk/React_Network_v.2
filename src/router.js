@@ -11,6 +11,7 @@ const Routes = {
     '/dialogs': () => <Dialogs />,
     '/dialogs/:id': ({id}) => <CurrentDialog id={id} />,
     '/users': () => <Users />,
-    '/login': () => <Login />,
+    '/login': () => <Login/>
 };
+
 export default Routes;

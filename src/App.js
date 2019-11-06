@@ -1,5 +1,6 @@
 import React from 'react';
 import {useRoutes} from 'hookrouter'
+import 'antd/dist/antd.css'
 import style from './index.module.css';
 import Navbar from './components/Navbar/Navbar';
 import Nav from './components/Nav/Nav';

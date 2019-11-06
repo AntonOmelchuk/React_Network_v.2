@@ -11,6 +11,7 @@ const Nav = () => (
             <li><A className={style.link} href={'/news'}>News</A></li>
             <li><A className={style.link} href={'friends'}>Friends</A></li>
             <li><A className={style.link} href={'/users'}>Users</A></li>
+            <li><A className={style.link} href={'/login'}>Login Test</A></li>
         </ul>
     </div>
 );

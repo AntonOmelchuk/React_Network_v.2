@@ -57,8 +57,3 @@ export const unFollowUser = id => async dispatch => {
 
     }
 };
-
-
-
-
-

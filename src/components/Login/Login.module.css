@@ -1,0 +1,10 @@
+.login__form {
+    position: absolute;
+    top: 180px;
+    left: 45vw;
+
+    padding: 90px;
+
+    background: linear-gradient(to right, #757f9a, #d7dde8);
+    border-radius: 3px;
+}

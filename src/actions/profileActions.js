@@ -45,4 +45,3 @@ export const deletePost = id => ({type: DELETE_POST, payload: id});
 export const toggleLiked = id => ({type: TOGGLE_LIKED, payload: id});
 
 export const toggleFetching = () => ({type: TOGGLE_PROFILE_FETCHING});
-
