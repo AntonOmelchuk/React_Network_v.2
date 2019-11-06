@@ -1,5 +1,5 @@
 import React from 'react'
-import {A} from "hookrouter";
+import {A} from 'hookrouter';
 import commonAvatar from '../../assets/avatars/common.jpg'
 import style from './Users.module.css'
 
@@ -15,7 +15,7 @@ const UserItem = ({user, followUser, unFollowUser, disabledButton}) => {
         <div className={style.user}>
             <div className={style.info}>
                 <div className={style.avatar}>
-                    <A to={`/profile/${id}`}>
+                    <A href={`/profile/${id}`}>
                         <img src={photos.large || commonAvatar} alt='user avatar' />
                     </A>
                 </div>

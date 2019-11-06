@@ -1,0 +1,41 @@
+.isAuth {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    width: 100%;
+
+    text-align: center;
+    font-size: 45px;
+    text-transform: uppercase;
+    color: aliceblue;
+}
+
+.link {
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.link a {
+    display: inline-block;
+    padding: 10px 39px;
+    border: 4px solid #347189;
+    border-radius: 3px;
+
+    font-size: 30px;
+    color: #b8b7ad;
+
+    transition: all .2s linear;
+}
+
+.link a:hover {
+    border: 4px solid #30526b;
+    color: #f2f1e7;
+}

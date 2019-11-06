@@ -1,7 +1,7 @@
 import {DISABLE_BUTTON, GET_USERS, SET_CURRENT_PAGE, TOGGLE_FETCHING, TOGGLE_FOLLOWING} from './types';
 import {usersAPI} from '../api/api';
 
-export const getUsers = (page) => async dispatch => {
+export const getUsers = page => async dispatch => {
     try {
         const response = await usersAPI.getUser(page);
 

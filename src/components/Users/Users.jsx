@@ -15,12 +15,12 @@ import Spinner from '../common/Spinner'
 const Users = (props) => {
 
     const {users, totalCount, pageSize, getUsers, currentPage, setCurrentPage, toggleFetching,
-        isFetching, followUser, unFollowUser, disabledButton, isAuth} = props;
+        isFetching, followUser, unFollowUser, disabledButton} = props;
 
     useEffect(() => {
         toggleFetching();
         getUsers(currentPage);
-    }, [currentPage, getUsers, isAuth, toggleFetching]);
+    }, [currentPage, getUsers, toggleFetching]);
 
     const pagesCount = Math.ceil(totalCount / pageSize);
     const pages = [];
