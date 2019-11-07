@@ -14,13 +14,19 @@ const FieldControl = ({input, meta, ...props}) => {
     )
 };
 
-export const Email = (props) => {
+export const Email = props => {
     const {input, meta, ...restProps} = props;
 
     return <FieldControl {...props}><input {...input} {...restProps} /></FieldControl>
 };
 
-export const Password = (props) => {
+export const Password = props => {
+    const {input, meta, ...restProps} = props;
+
+    return <FieldControl {...props}><input {...input} {...restProps} /></FieldControl>
+};
+
+export const PostInput = props => {
     const {input, meta, ...restProps} = props;
 
     return <FieldControl {...props}><input {...input} {...restProps} /></FieldControl>

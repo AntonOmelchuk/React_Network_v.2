@@ -29,11 +29,12 @@ const initialState = {
             ]
         },
         {
-            id: 4, user: ava4, lastMessage: 'not bad)', yourLast: false, isRead: false, messages: [
+            id: 4, user: ava4, lastMessage: 'good for you', yourLast: true, isRead: false, messages: [
                 {isYour: true, text: 'Hi)'},
                 {isYour: true, text: `what's new?`},
                 {isYour: false, text: 'you can congratulate me)))'},
-                {isYour: false, text: 'I found a job'}
+                {isYour: false, text: 'I found a job'},
+                {isYour: true, text: 'good for you!)'}
             ]
         }
     ],
@@ -55,4 +56,4 @@ export const dialogsReducer = (state = initialState, action) => {
         default:
             return state
     }
-}
+};

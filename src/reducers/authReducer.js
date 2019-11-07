@@ -1,4 +1,4 @@
-import {SET_AUTH} from '../actions/types';
+import {SET_AUTH, LOGOUT} from '../actions/types';
 
 const initialState = {
     id: null,
@@ -14,6 +14,14 @@ export const authReducer = (state = initialState, action) => {
                 ...state,
                 ...action.payload,
                 isAuth: true
+            };
+        case LOGOUT:
+            return {
+                ...state,
+                id: null,
+                email: null,
+                login: null,
+                isAuth: false
             };
         default:
             return state

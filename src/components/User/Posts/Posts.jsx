@@ -32,16 +32,26 @@ const Posts = ({posts, addPost, deletePost, toggleLiked}) => {
     )
 };
 
-const AddPostForm = ({handleSubmit, handleKeyDown}) =>  (
-    <form className={style.add__form} onSubmit={handleSubmit}>
-        <Field type='text' name='message' component='input' onChange={handleKeyDown} />
-        <button>Add</button>
-    </form>
-);
+const AddPostForm = ({handleSubmit, handleKeyDown, reset}) => {
+
+    const onSubmit = e => {
+        e.preventDefault();
+        handleSubmit();
+        reset()
+    };
+
+    return (
+        <form className={style.add__form} onSubmit={onSubmit}>
+            <Field type='text' name='message' component='input' onChange={handleKeyDown} maxLength='45'/>
+            <button>Add</button>
+        </form>
+    )
+};
 
 const ReduxAddPostForm = reduxForm({form: 'addPost'})(AddPostForm);
 
-const AddPost = ({onAddPost, handleKeyDown}) =>  <ReduxAddPostForm onSubmit={onAddPost} handleKeyDown={handleKeyDown} />;
-
+const AddPost = ({onAddPost, handleKeyDown}) =>  (
+    <ReduxAddPostForm onSubmit={onAddPost} handleKeyDown={handleKeyDown} />
+);
 
 export default Posts;

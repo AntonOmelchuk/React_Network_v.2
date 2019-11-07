@@ -3,15 +3,11 @@ import DialogItem from './DialogItem'
 import {connect} from 'react-redux'
 import style from './Dialogs.module.css'
 import {setCurrentDialog} from '../../actions/dialogsActions';
-import IsAuth from '../common/IsAuth';
+import Login from '../Login/Login';
 
 const Dialogs = ({dialogs, setCurrentDialog, isAuth}) => {
 
-    if(!isAuth) {
-        return (
-            <IsAuth />
-        )
-    }
+    if(!isAuth) return <Login />;
 
     return (
         <div className={style.wrapper}>

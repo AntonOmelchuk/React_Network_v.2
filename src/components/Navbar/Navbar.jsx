@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import style from './Navbar.module.css';
 import {connect} from 'react-redux';
-import {setAuth} from '../../actions/authActions';
+import {logout, setAuth} from '../../actions/authActions';
 
-const Navbar = ({setAuth, auth, login}) => {
+const Navbar = ({setAuth, auth, login, logout}) => {
     useEffect(() => {
         setAuth()
     }, [login, auth]);
@@ -14,7 +14,11 @@ const Navbar = ({setAuth, auth, login}) => {
                 <h3 className={style.title}>Developers Network</h3>
             </div>
             <div className={style.login}>
-                <div>{auth ? login : 'Login'}</div>
+                <div>{auth && <span>
+                    {login}{' '}
+                    <i className='fas fa-sign-out-alt' onClick={() => logout()} />
+                </span>}
+                </div>
             </div>
         </div>
     )
@@ -25,4 +29,4 @@ const mapStateToProps = state => ({
     login: state.auth.login
 });
 
-export default connect(mapStateToProps, {setAuth})(Navbar);
+export default connect(mapStateToProps, {setAuth, logout})(Navbar);
