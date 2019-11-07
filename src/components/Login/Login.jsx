@@ -1,15 +1,23 @@
 import React from 'react'
 import style from './Login.module.css'
 import {Field, reduxForm} from 'redux-form'
+import {maxLength, required} from '../../utils/validators/validators';
+import {Email, Password} from '../common/FormControl';
 
+const requiredEmail = required('Email');
+const requiredPassword = required('password');
+const passwordMaxLength = maxLength(18);
+const emailMaxLength = maxLength(30);
 
 const LoginForm = ({handleSubmit}) => (
     <form onSubmit={handleSubmit} className={style.login__form}>
         <div>
-            <Field className={style.form__input} placeholder='Email' type='text' component='input' name='email' />
+            <Field className={style.form__input} placeholder='Email' type='email' component={Email} name='email'
+                validate={[requiredEmail, emailMaxLength]} maxLength={'30'} value='' />
         </div>
-        <div><Field className={style.form__input} placeholder='Password' component='input' name='password'
-            type={'password'} />
+        <div>
+            <Field className={style.form__input} placeholder='Password' component={Password} name='password'
+                type={'password'} validate={[requiredPassword, passwordMaxLength]} minLength='6' maxLength='18'  />
         </div>
         <div className={style.footer}>
             <div className={style.checkbox}>
@@ -18,18 +26,16 @@ const LoginForm = ({handleSubmit}) => (
                     <span className={style.checkmark} />
                 </label>
             </div>
-            <button className='formBtn'>Log in</button>
+            <button>Log in</button>
         </div>
     </form>
 );
 
 const LoginFormRedux = reduxForm({form: 'login'})(LoginForm);
 
-const Login = (props) => {
+const Login = () => {
 
-    const onSubmit = (formData) => {
-        console.log(formData);
-    };
+    const onSubmit = formData => {};
 
     return (
         <div className={style.wrapper}>

@@ -1,0 +1,11 @@
+.input {
+    position: relative;
+}
+
+.error {
+    position: absolute;
+    top: 58px;
+    color: #932a1c;
+    font-family: Arial, sans-serif;
+    font-size: 21px;
+}
