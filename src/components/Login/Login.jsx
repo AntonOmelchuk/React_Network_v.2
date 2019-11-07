@@ -1,19 +1,25 @@
 import React from 'react'
+import style from './Login.module.css'
 import {Field, reduxForm} from 'redux-form'
 
 
 const LoginForm = ({handleSubmit}) => (
-    <form onSubmit={handleSubmit}>
-        <div><Field className='formInput' placeholder='Email' component='input' name='email' /></div>
-        <div><Field className='formInput' placeholder='Password' component='input' name='password'
+    <form onSubmit={handleSubmit} className={style.login__form}>
+        <div>
+            <Field className={style.form__input} placeholder='Email' type='text' component='input' name='email' />
+        </div>
+        <div><Field className={style.form__input} placeholder='Password' component='input' name='password'
             type={'password'} />
         </div>
-        <div className='rememberMe'>
-            <Field id='checkbox' type='checkbox' component='input'
-                name='rememberMe' />
-            <label id='label'  htmlFor='checkbox'>remember me</label>
+        <div className={style.footer}>
+            <div className={style.checkbox}>
+                <label className={style.container} htmlFor='checkbox'>remember me
+                    <Field id='checkbox' type='checkbox' component='input' name='rememberMe' />
+                    <span className={style.checkmark} />
+                </label>
+            </div>
+            <button className='formBtn'>Log in</button>
         </div>
-        <button className='formBtn'>Sign in</button>
     </form>
 );
 
@@ -26,8 +32,8 @@ const Login = (props) => {
     };
 
     return (
-        <div className='loginForm'>
-            <h3>Login</h3>
+        <div className={style.wrapper}>
+            <div className={style.title}>Login</div>
             <LoginFormRedux onSubmit={onSubmit} />
         </div>
     )
