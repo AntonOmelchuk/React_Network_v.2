@@ -21,3 +21,6 @@ export const DISABLE_BUTTON = 'DISABLE_BUTTON';
 // Auth types
 export const SET_AUTH = 'SET_AUTH';
 export const LOGOUT = 'LOGOUT';
+
+// App types
+export const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
