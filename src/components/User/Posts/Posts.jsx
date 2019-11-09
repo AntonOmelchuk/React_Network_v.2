@@ -5,7 +5,7 @@ import style from './Post.module.css';
 import PostItem from './PostItem';
 import {Field, reduxForm} from 'redux-form';
 
-const Posts = ({posts, addPost, deletePost, toggleLiked}) => {
+const Posts = React.memo(({posts, addPost, deletePost, toggleLiked}) => {
 
     const handleKeyDown = e => {
         if(e.key === 'Enter') onAddPost ()
@@ -30,7 +30,7 @@ const Posts = ({posts, addPost, deletePost, toggleLiked}) => {
                 deletePost={deletePost}/>)}
         </div>
     )
-};
+});
 
 const AddPostForm = ({handleSubmit, handleKeyDown, reset}) => {
 

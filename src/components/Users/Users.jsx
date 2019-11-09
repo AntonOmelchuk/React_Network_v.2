@@ -20,6 +20,7 @@ const Users = (props) => {
     useEffect(() => {
         toggleFetching();
         getUsers(currentPage);
+        return () => setCurrentPage(1)
     }, [currentPage, getUsers, toggleFetching]);
 
     const pagesCount = Math.ceil(totalCount / pageSize);
