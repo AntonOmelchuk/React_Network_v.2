@@ -27,7 +27,8 @@ const Profile = ({profile, status, isFetching, updateStatus, updatePhoto}) => {
 
     if(!profile || isFetching)  return <Spinner />;
 
-    const {photos, fullName} = profile;
+    const {photos, fullName, lookingForAJob} = profile;
+    const {github, facebook, instagram, vk} = profile.contacts;
 
     const uploadPhoto = (e) => {
         if(e.target.files.length) updatePhoto(e.target.files[0])
@@ -76,6 +77,26 @@ const Profile = ({profile, status, isFetching, updateStatus, updatePhoto}) => {
                     </div>
                     <div className={style.info__field}>
                         <span>Experience: </span>5 years
+                    </div>
+                    <div className={style.info__field}>
+                        <span>Hired: </span>{lookingForAJob ? 'Yes' : 'No'}
+                    </div>
+                    <div className={style.info__field}>
+                        <span>Contacts: </span>
+                        {github && <>
+                            <a className={style.link} href={github} target='_blank'>
+                                <i className='fab fa-github' />
+                            </a>
+                            <a className={style.link} href={facebook} target='_blank'>
+                                <i className='fab fa-facebook-f' />
+                            </a>
+                            <a className={style.link} href={instagram} target='_blank'>
+                                <i className='fab fa-instagram' />
+                            </a>
+                            <a className={style.link} href={vk} target='_blank'>
+                                <i className='fab fa-vk' />
+                            </a>
+                        </>}
                     </div>
                 </div>
             </div>
