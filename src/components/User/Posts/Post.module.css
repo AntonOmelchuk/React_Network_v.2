@@ -94,4 +94,5 @@
 
 .delete__icon:hover {
     cursor: pointer;
+    font-weight: 600;
 }

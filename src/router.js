@@ -1,16 +1,22 @@
 import React from 'react';
 import User from './components/User/User';
-import Dialogs from './components/Dialogs/Dialogs';
 import CurrentDialog from './components/Dialogs/CurrentDialog';
-import Users from './components/Users/Users';
 import Login from './components/Login/Login';
+import Loading from './components/common/Loading';
+
+const Users = React.lazy(() => import ('./components/Users/Users'));
+const Dialogs = React.lazy(() => import ('./components/Dialogs/Dialogs'));
 
 const Routes = {
     '/': () => <User />,
     '/profile/:id?': ({id}) => <User id={id} />,
-    '/dialogs': () => <Dialogs />,
+    '/dialogs': () => <React.Suspense fallback={<Loading />}>
+        <Dialogs />
+    </React.Suspense>,
     '/dialogs/:id': ({id}) => <CurrentDialog id={id} />,
-    '/users': () => <Users />,
+    '/users': () => <React.Suspense fallback={<Loading />}>
+        <Users />
+    </React.Suspense>,
     '/login': () => <Login/>
 };
 

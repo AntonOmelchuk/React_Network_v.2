@@ -9,7 +9,7 @@ import {
     TOGGLE_LIKED,
     GET_STATUS,
     UPDATE_STATUS,
-    TOGGLE_PROFILE_FETCHING
+    TOGGLE_PROFILE_FETCHING, SET_PHOTO
 } from '../actions/types';
 
 const initialState = {
@@ -71,6 +71,12 @@ export const profileReducer = (state = initialState, action) => {
                 ...state,
                 isFetching: !state.isFetching
             };
+        case SET_PHOTO: {
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.payload}
+            }
+        }
         default:
             return state
     }

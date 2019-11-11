@@ -1,7 +1,7 @@
 import {
     ADD_POST,
     DELETE_POST,
-    GET_STATUS,
+    GET_STATUS, SET_PHOTO,
     SET_PROFILE,
     TOGGLE_LIKED,
     TOGGLE_PROFILE_FETCHING,
@@ -45,3 +45,17 @@ export const deletePost = id => ({type: DELETE_POST, payload: id});
 export const toggleLiked = id => ({type: TOGGLE_LIKED, payload: id});
 
 export const toggleFetching = () => ({type: TOGGLE_PROFILE_FETCHING});
+
+export const setPhoto = photo => ({type: SET_PHOTO, payload: photo});
+
+export const updatePhoto = photo => async dispatch => {
+    try {
+        const response = await profileAPI.updatePhoto(photo);
+
+        if(response.data.resultCode === 0) {
+            dispatch(setPhoto(response.data.data.photos))
+        }
+    } catch(err) {
+
+    }
+};

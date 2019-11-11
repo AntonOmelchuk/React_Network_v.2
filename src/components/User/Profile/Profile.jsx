@@ -3,14 +3,14 @@ import style from './Profile.module.css'
 import defaultAvatar from '../../../assets/avatars/anonymous.jpg'
 import Spinner from '../../common/Spinner';
 
-const Profile = ({profile, status, isFetching, updateStatus}) => {
+const Profile = ({profile, status, isFetching, updateStatus, updatePhoto}) => {
 
     const [currentStatus, setStatus] = useState(status);
     const [editMode, setEditMode] = useState(false);
 
     useEffect(() => {
         setStatus(status)
-    }, [editMode]);
+    }, [editMode, status]);
 
 
     const onKeyPressToggleEditMode = e => {
@@ -29,11 +29,22 @@ const Profile = ({profile, status, isFetching, updateStatus}) => {
 
     const {photos, fullName} = profile;
 
+    const uploadPhoto = (e) => {
+        if(e.target.files.length) updatePhoto(e.target.files[0])
+    };
+
     return (
         <>
             <div className={style.user}>
                 <div className={style.user__avatar}>
                     <img src={photos.large || defaultAvatar} alt='user avatar' />
+                    <div>
+                        <label className={style.avatarLabel} htmlFor='avatar'>
+                            <i className='fas fa-camera' />{' '}
+                            Update photo</label>
+                        <input className={style.loadAvatarInput} name='avatar' id='avatar' type='file'
+                            onChange={uploadPhoto} />
+                    </div>
                 </div>
                 <div className={style.user__info}>
                     <div className={style.info__field}>

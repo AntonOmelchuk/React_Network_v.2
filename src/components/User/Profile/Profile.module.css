@@ -42,3 +42,28 @@
     width: 54px;
     margin-right: 90px;
 }
+
+/* === Input file ===*/
+
+.loadAvatarInput {
+    width: .1px;
+    height: .1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.avatarLabel {
+    font-size: 14px;
+    font-weight: 600;
+    color: #a8b2b2;
+
+    opacity: .5;
+    transition: all .2s ease;
+}
+
+.avatarLabel:hover {
+    opacity: 1;
+    cursor: pointer;
+}

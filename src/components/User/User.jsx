@@ -2,23 +2,32 @@ import React, {useEffect} from 'react'
 import {connect} from 'react-redux';
 import Profile from './Profile/Profile'
 import Posts from './Posts/Posts'
-import {addPost, deletePost, getStatus, setProfile, toggleLiked, updateStatus} from '../../actions/profileActions';
+import {
+    addPost,
+    deletePost,
+    getStatus,
+    setProfile,
+    toggleLiked,
+    updatePhoto,
+    updateStatus
+} from '../../actions/profileActions';
 import Login from '../Login/Login';
-import {getAuth, getIsFetching, getPosts, getProfile, getStateStatus} from '../../selectors/profileSelectors';
+import {getAuth, getId, getIsFetching, getPosts, getProfile, getStateStatus} from '../../selectors/profileSelectors';
 
 const User = ({id, posts, profile, addPost, toggleLiked, deletePost, setProfile, status, isFetching,
-    updateStatus, getStatus, auth}) => {
+    updateStatus, getStatus, auth, authId, updatePhoto}) => {
 
     useEffect(() => {
-        setProfile(id || 1571);
-        getStatus(id || 1571)
-    }, [id]);
+        setProfile(id || authId);
+        getStatus(id || authId)
+    }, [authId, getStatus, id, setProfile]);
 
     if(!auth) return <Login />;
 
     return (
         <div>
-            <Profile profile={profile} status={status} isFetching={isFetching} updateStatus={updateStatus} />
+            <Profile profile={profile} status={status} isFetching={isFetching} updateStatus={updateStatus}
+                updatePhoto={updatePhoto} />
             <Posts posts={posts} addPost={addPost} toggleLiked={toggleLiked} deletePost={deletePost} />
         </div>
     )
@@ -30,7 +39,8 @@ const mapDispatchProps = state => ({
     profile: getProfile(state),
     isFetching: getIsFetching(state),
     status: getStateStatus(state),
-    auth: getAuth(state)
+    auth: getAuth(state),
+    authId: getId(state)
 });
 
 export default connect(mapDispatchProps, {
@@ -39,5 +49,6 @@ export default connect(mapDispatchProps, {
     toggleLiked,
     setProfile,
     updateStatus,
-    getStatus
+    getStatus,
+    updatePhoto
 })(User);

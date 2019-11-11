@@ -50,7 +50,8 @@ const CurrentDialog = ({dialog, sendMessage}) => {
                     </div>
                 ))}
                 <div className={style.add__message}>
-                    <input type='text' value={message} onChange={handleChange} onKeyDown={handleKeyDown} />
+                    <input type='text' value={message} onChange={handleChange} autoFocus='true'
+                        onKeyDown={handleKeyDown} />
                     <button type='button' onClick={onSendMessage}>Send</button>
                 </div>
             </div>

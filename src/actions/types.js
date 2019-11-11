@@ -6,6 +6,7 @@ export const TOGGLE_LIKED = 'TOGGLE_LIKED';
 export const GET_STATUS = 'GET_STATUS';
 export const UPDATE_STATUS = 'UPDATE_STATUS';
 export const TOGGLE_PROFILE_FETCHING = 'TOGGLE_PROFILE_FETCHING';
+export const SET_PHOTO = 'SET_PHOTO';
 
 // Dialogs types
 export const SET_CURRENT_DIALOG = 'SET_CURRENT_DIALOG';
