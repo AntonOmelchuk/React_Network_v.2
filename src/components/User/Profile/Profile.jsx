@@ -79,7 +79,7 @@ const Profile = ({profile, status, isFetching, updateStatus, updatePhoto}) => {
                         <span>Experience: </span>5 years
                     </div>
                     <div className={style.info__field}>
-                        <span>Hired: </span>{lookingForAJob ? 'Yes' : 'No'}
+                        <span>Hireable: </span>{lookingForAJob ? 'Yes' : 'No'}
                     </div>
                     <div className={style.info__field}>
                         <span>Contacts: </span>
