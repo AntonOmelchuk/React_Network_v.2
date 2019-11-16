@@ -5,9 +5,11 @@ import Navbar from './components/Navbar/Navbar';
 import Nav from './components/Nav/Nav';
 import User from './components/User/User';
 import Routes from './router';
-import {connect} from 'react-redux';
+import {connect, Provider} from 'react-redux';
 import {initializeApp} from './actions/appActions';
 import Spinner from './components/common/Spinner';
+import {HashRouter} from 'react-router-dom';
+import {store} from './store/store';
 
 const App = ({initialized, initializeApp}) => {
 
@@ -37,4 +39,15 @@ const mapStateToProps = state => ({
     initialized: state.app.isInitialized
 });
 
-export default connect(mapStateToProps, {initializeApp})(App);
+const AppContainer =  connect(mapStateToProps, {initializeApp})(App);
+
+export const AppMain = () => (
+    <HashRouter>
+        <Provider store={store}>
+            <AppContainer/>
+        </Provider>
+    </HashRouter>
+);
+
+
+

@@ -20,8 +20,13 @@ const Users = (props) => {
     useEffect(() => {
         toggleFetching();
         getUsers(currentPage);
-        return () => setCurrentPage(1)
-    }, [currentPage, getUsers, toggleFetching]);
+    },[currentPage, toggleFetching]);
+
+    useEffect(() => {
+        return () => {
+            setCurrentPage(1)
+        }
+    },[]);
 
     const pagesCount = Math.ceil(totalCount / pageSize);
     const pages = [];
@@ -30,7 +35,9 @@ const Users = (props) => {
         pages.push(i)
     }
 
-    const handleCurrentPage = e => setCurrentPage(e.selected + 1);
+    const handleCurrentPage = e => {
+        setCurrentPage(e.selected + 1)
+    };
 
     return (
         <div className={style.wrapper}>
