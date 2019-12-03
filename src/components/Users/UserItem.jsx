@@ -1,11 +1,10 @@
-import React from 'react'
-import {A} from 'hookrouter';
-import commonAvatar from '../../assets/avatars/common.jpg'
-import style from './Users.module.css'
+import React from 'react';
+import { A } from 'hookrouter';
+import commonAvatar from '../../assets/avatars/common.jpg';
+import style from './Users.module.css';
 
-const UserItem = ({user, followUser, unFollowUser, disabledButton}) => {
-
-    const {id, photos, name, status, followed} = user;
+const UserItem = ({ user, followUser, unFollowUser, disabledButton }) => {
+    const { id, photos, name, status, followed } = user;
 
     const handleFollow = () => followUser(id);
 
@@ -24,12 +23,23 @@ const UserItem = ({user, followUser, unFollowUser, disabledButton}) => {
                     <div className={style.name}>{name}</div>
                 </div>
             </div>
-            {followed
-                ? <button className={style.follow} disabled={disabledButton.some(i => i === id)}
-                    onClick={handleUnfollow}>unfollow</button>
-                : <button className={style.follow} disabled={disabledButton.some(i => i === id)}
-                    onClick={handleFollow}>follow</button>
-            }
+            {followed ? (
+                <button
+                    className={style.follow}
+                    disabled={disabledButton.some(i => i === id)}
+                    onClick={handleUnfollow}
+                >
+          unfollow
+                </button>
+            ) : (
+                <button
+                    className={style.follow}
+                    disabled={disabledButton.some(i => i === id)}
+                    onClick={handleFollow}
+                >
+          follow
+                </button>
+            )}
         </div>
     );
 };

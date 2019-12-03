@@ -1,42 +1,53 @@
-import React, {useEffect} from 'react'
-import style from './Users.module.css'
-import {connect} from 'react-redux'
-import UserItem from './UserItem'
-import ReactPaginate from 'react-paginate'
+import React, { useEffect } from 'react';
+import style from './Users.module.css';
+import { connect } from 'react-redux';
+import UserItem from './UserItem';
+import ReactPaginate from 'react-paginate';
 import {
     followUser,
     getUsers,
     setCurrentPage,
     toggleFetching,
     unFollowUser
-} from '../../actions/usersActions'
-import Spinner from '../common/Spinner'
+} from '../../actions/usersActions';
+import Spinner from '../common/Spinner';
 
-const Users = (props) => {
-
-    const {users, totalCount, pageSize, getUsers, currentPage, setCurrentPage, toggleFetching,
-        isFetching, followUser, unFollowUser, disabledButton} = props;
+const Users = props => {
+    const {
+        users,
+        totalCount,
+        pageSize,
+        getUsers,
+        currentPage,
+        setCurrentPage,
+        toggleFetching,
+        isFetching,
+        followUser,
+        unFollowUser,
+        disabledButton
+    } = props;
 
     useEffect(() => {
         toggleFetching();
         getUsers(currentPage);
-    },[currentPage, toggleFetching]);
+    }, [currentPage, getUsers, toggleFetching]);
 
-    useEffect(() => {
-        return () => {
-            setCurrentPage(1)
-        }
-    },[]);
+    useEffect(
+        () => () => {
+            setCurrentPage(1);
+        },
+        [setCurrentPage]
+    );
 
     const pagesCount = Math.ceil(totalCount / pageSize);
     const pages = [];
 
-    for(let i = 1; i <= pagesCount; i++) {
-        pages.push(i)
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i);
     }
 
     const handleCurrentPage = e => {
-        setCurrentPage(e.selected + 1)
+        setCurrentPage(e.selected + 1);
     };
 
     return (
@@ -50,20 +61,27 @@ const Users = (props) => {
                     pageCount={pagesCount}
                     marginPagesDisplayed={1}
                     pageRangeDisplayed={10}
-                    onPageChange={(e) => handleCurrentPage(e)}
+                    onPageChange={e => handleCurrentPage(e)}
                     containerClassName={style.pagination}
                     subContainerClassName={style.pages__pagination}
                     activeClassName={style.current}
                 />
             </div>
-            {isFetching ? <Spinner /> :
-                (users.map(user => (
-                    <UserItem key={user.id} user={user} followUser={followUser} unFollowUser={unFollowUser}
-                        disabledButton={disabledButton} />)))
-            }
+            {isFetching ? (
+                <Spinner />
+            ) : (
+                users.map(user => (
+                    <UserItem
+                        key={user.id}
+                        user={user}
+                        followUser={followUser}
+                        unFollowUser={unFollowUser}
+                        disabledButton={disabledButton}
+                    />
+                ))
+            )}
         </div>
-    )
-
+    );
 };
 
 const mapStateToProps = state => ({

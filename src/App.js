@@ -39,15 +39,13 @@ const mapStateToProps = state => ({
     initialized: state.app.isInitialized
 });
 
-const AppContainer =  connect(mapStateToProps, {initializeApp})(App);
+const AppContainer = connect(mapStateToProps, {initializeApp})(App);
 
-export const AppMain = () => (
-    <HashRouter>
-        <Provider store={store}>
-            <AppContainer/>
-        </Provider>
-    </HashRouter>
-);
+export const AppMain = () => <HashRouter>
+    <Provider store={store}>
+        <AppContainer/>
+    </Provider>
+</HashRouter>;
 
 
 
