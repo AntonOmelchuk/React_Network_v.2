@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/AntonOmelchuk/React_Network_v2/static/css/main.64a0d519.chunk.css",
-    "main.js": "/AntonOmelchuk/React_Network_v2/static/js/main.eebea919.chunk.js",
-    "main.js.map": "/AntonOmelchuk/React_Network_v2/static/js/main.eebea919.chunk.js.map",
-    "runtime-main.js": "/AntonOmelchuk/React_Network_v2/static/js/runtime-main.847007c7.js",
-    "runtime-main.js.map": "/AntonOmelchuk/React_Network_v2/static/js/runtime-main.847007c7.js.map",
-    "static/js/2.4108b27e.chunk.js": "/AntonOmelchuk/React_Network_v2/static/js/2.4108b27e.chunk.js",
-    "static/js/2.4108b27e.chunk.js.map": "/AntonOmelchuk/React_Network_v2/static/js/2.4108b27e.chunk.js.map",
+    "main.js": "/AntonOmelchuk/React_Network_v2/static/js/main.de9b49ad.chunk.js",
+    "main.js.map": "/AntonOmelchuk/React_Network_v2/static/js/main.de9b49ad.chunk.js.map",
+    "runtime-main.js": "/AntonOmelchuk/React_Network_v2/static/js/runtime-main.81371fff.js",
+    "runtime-main.js.map": "/AntonOmelchuk/React_Network_v2/static/js/runtime-main.81371fff.js.map",
+    "static/js/2.4d7f32da.chunk.js": "/AntonOmelchuk/React_Network_v2/static/js/2.4d7f32da.chunk.js",
+    "static/js/2.4d7f32da.chunk.js.map": "/AntonOmelchuk/React_Network_v2/static/js/2.4d7f32da.chunk.js.map",
     "static/css/3.9975db49.chunk.css": "/AntonOmelchuk/React_Network_v2/static/css/3.9975db49.chunk.css",
-    "static/js/3.b2ec8a81.chunk.js": "/AntonOmelchuk/React_Network_v2/static/js/3.b2ec8a81.chunk.js",
-    "static/js/3.b2ec8a81.chunk.js.map": "/AntonOmelchuk/React_Network_v2/static/js/3.b2ec8a81.chunk.js.map",
-    "static/js/4.af438399.chunk.js": "/AntonOmelchuk/React_Network_v2/static/js/4.af438399.chunk.js",
-    "static/js/4.af438399.chunk.js.map": "/AntonOmelchuk/React_Network_v2/static/js/4.af438399.chunk.js.map",
+    "static/js/3.fb48a566.chunk.js": "/AntonOmelchuk/React_Network_v2/static/js/3.fb48a566.chunk.js",
+    "static/js/3.fb48a566.chunk.js.map": "/AntonOmelchuk/React_Network_v2/static/js/3.fb48a566.chunk.js.map",
+    "static/js/4.1bcaf9a5.chunk.js": "/AntonOmelchuk/React_Network_v2/static/js/4.1bcaf9a5.chunk.js",
+    "static/js/4.1bcaf9a5.chunk.js.map": "/AntonOmelchuk/React_Network_v2/static/js/4.1bcaf9a5.chunk.js.map",
     "index.html": "/AntonOmelchuk/React_Network_v2/index.html",
-    "precache-manifest.e33fd60b0e6d8730c1dae01b1f32b015.js": "/AntonOmelchuk/React_Network_v2/precache-manifest.e33fd60b0e6d8730c1dae01b1f32b015.js",
+    "precache-manifest.b0a419de5dc7fbe35cc37efd1e8ee3c2.js": "/AntonOmelchuk/React_Network_v2/precache-manifest.b0a419de5dc7fbe35cc37efd1e8ee3c2.js",
     "service-worker.js": "/AntonOmelchuk/React_Network_v2/service-worker.js",
     "static/css/3.9975db49.chunk.css.map": "/AntonOmelchuk/React_Network_v2/static/css/3.9975db49.chunk.css.map",
     "static/css/main.64a0d519.chunk.css.map": "/AntonOmelchuk/React_Network_v2/static/css/main.64a0d519.chunk.css.map",
@@ -21,9 +21,9 @@
     "static/media/spinner.svg": "/AntonOmelchuk/React_Network_v2/static/media/spinner.36083b48.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.847007c7.js",
-    "static/js/2.4108b27e.chunk.js",
+    "static/js/runtime-main.81371fff.js",
+    "static/js/2.4d7f32da.chunk.js",
     "static/css/main.64a0d519.chunk.css",
-    "static/js/main.eebea919.chunk.js"
+    "static/js/main.de9b49ad.chunk.js"
   ]
 }
