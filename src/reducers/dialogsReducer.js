@@ -1,3 +1,5 @@
+import uuid from 'uuid'
+
 import ava1 from '../assets/avatars/ava1.jpg'
 import ava2 from '../assets/avatars/ava2.jpg'
 import ava3 from '../assets/avatars/ava3.jpg'
@@ -8,33 +10,33 @@ const initialState = {
     dialogs: [
         {
             id: 1, user: ava1, lastMessage: 'okay', yourLast: false, isRead: false, messages: [
-                {isYour: false, text: `what's happen?`},
-                {isYour: true, text: 'I have some problem'},
-                {isYour: true, text: 'can you help me?'},
-                {isYour: false, text: 'okay'}
+                {id: uuid(), isYour: false, text: `what's happen?`},
+                {id: uuid(), isYour: true, text: 'I have some problem'},
+                {id: uuid(), isYour: true, text: 'can you help me?'},
+                {id: uuid(), isYour: false, text: 'okay'}
             ]
         },
         {
             id: 2, user: ava2, lastMessage: 'see you later', yourLast: true, isRead: false, messages: [
-                {isYour: false, text: 'so, what do you think about that?'},
-                {isYour: true, text: 'I can do it'},
-                {isYour: true, text: 'see you later'},
+                {id: uuid(), isYour: false, text: 'so, what do you think about that?'},
+                {id: uuid(), isYour: true, text: 'I can do it'},
+                {id: uuid(), isYour: true, text: 'see you later'},
             ]
         },
         {
             id: 3, user: ava3, lastMessage: 'great)', yourLast: true, isRead: true, messages: [
-                {isYour: true, text: `How are you feeling?)`},
-                {isYour: false, text: 'I did it)'},
-                {isYour: true, text: 'great'}
+                {id: uuid(), isYour: true, text: `How are you feeling?)`},
+                {id: uuid(), isYour: false, text: 'I did it)'},
+                {id: uuid(), isYour: true, text: 'great'}
             ]
         },
         {
             id: 4, user: ava4, lastMessage: 'good for you', yourLast: true, isRead: false, messages: [
-                {isYour: true, text: 'Hi)'},
-                {isYour: true, text: `what's new?`},
-                {isYour: false, text: 'you can congratulate me)))'},
-                {isYour: false, text: 'I found a job'},
-                {isYour: true, text: 'good for you!)'}
+                {id: uuid(), isYour: true, text: 'Hi)'},
+                {id: uuid(), isYour: true, text: `what's new?`},
+                {id: uuid(), isYour: false, text: 'you can congratulate me)))'},
+                {id: uuid(), isYour: false, text: 'I found a job'},
+                {id: uuid(), isYour: true, text: 'good for you!)'}
             ]
         }
     ],

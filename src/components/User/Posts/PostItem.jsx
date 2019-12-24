@@ -21,7 +21,7 @@ const PostItem = ({post, deletePost, toggleLiked}) => {
                 <div className={style.text}>{text}</div>
             </div>
             <div className={style.post__footer}>
-                <div className={liked && style.liked}>
+                <div className={liked ?  style.liked : null}>
                     <span>Likes: {likes}</span>
                     <span>
                         {' '}

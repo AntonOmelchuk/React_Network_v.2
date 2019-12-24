@@ -39,7 +39,7 @@ const CurrentDialog = ({ dialog, sendMessage }) => {
         return (
             <div className={style.current__dialog}>
                 {messages.map(message => (
-                    <div
+                    <div key={message.id}
                         className={message.isYour ? style.profile__message : style.message}
                     >
                         <div className={style.current__avatar}>
@@ -53,7 +53,7 @@ const CurrentDialog = ({ dialog, sendMessage }) => {
                         type='text'
                         value={message}
                         onChange={handleChange}
-                        autoFocus='true'
+                        autoFocus={true}
                         onKeyDown={handleKeyDown}
                     />
                     <button type='button' onClick={onSendMessage}>

@@ -32,7 +32,7 @@ const Profile = ({
     if (!profile) return <Spinner />;
 
     const { photos, fullName, lookingForAJob } = profile;
-    const { github, facebook, instagram, vk } = profile.contacts;
+    const { github, instagram, vk } = profile.contacts;
 
     const uploadPhoto = e => {
         if (e.target.files.length) updatePhoto(e.target.files[0]);
@@ -96,16 +96,21 @@ const Profile = ({
                         <span>Contacts: </span>
                         {github && (
                             <>
-                                <a className={style.link} href={github} target='_blank'>
+                                <a className={style.link} href={github} target='_blank' rel='noopener noreferrer'>
                                     <i className='fab fa-github' />
                                 </a>
-                                <a className={style.link} href={facebook} target='_blank'>
+                                <a
+                                    className={style.link}
+                                    href='https://www.facebook.com/profile.php?id=100008345618380&ref=bookmarks'
+                                    target='_blank'
+                                    rel='noopener noreferrer'
+                                >
                                     <i className='fab fa-facebook-f' />
                                 </a>
-                                <a className={style.link} href={instagram} target='_blank'>
+                                <a className={style.link} href={instagram} target='_blank' rel='noopener noreferrer'> 
                                     <i className='fab fa-instagram' />
                                 </a>
-                                <a className={style.link} href={vk} target='_blank'>
+                                <a className={style.link} href={vk} target='_blank' rel='noopener noreferrer'>
                                     <i className='fab fa-vk' />
                                 </a>
                             </>
