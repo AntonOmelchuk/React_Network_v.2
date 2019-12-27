@@ -5,7 +5,7 @@ import style from './Dialogs.module.css';
 import { setCurrentDialog } from '../../actions/dialogsActions';
 import Login from '../Login/Login';
 
-const Dialogs = ({ dialogs, setCurrentDialog, isAuth }) => {
+export const Dialogs = ({ dialogs, setCurrentDialog, isAuth }) => {
     if (!isAuth) return <Login />;
 
     return (

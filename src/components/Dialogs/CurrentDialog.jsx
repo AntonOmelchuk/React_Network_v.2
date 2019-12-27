@@ -4,7 +4,7 @@ import avatar from '../../assets/avatars/eliot.jpg';
 import { connect } from 'react-redux';
 import { sendMessage } from '../../actions/dialogsActions';
 
-const CurrentDialog = ({ dialog, sendMessage }) => {
+export const CurrentDialog = ({ dialog, sendMessage }) => {
     const [message, setMessage] = useState('');
 
     if (dialog === null) {
@@ -45,7 +45,7 @@ const CurrentDialog = ({ dialog, sendMessage }) => {
                         <div className={style.current__avatar}>
                             <img src={message.isYour ? avatar : user} alt='avatar' />
                         </div>
-                        <div>{message.text}</div>
+                        <p className={style.current__dialog__message}>{message.text}</p>
                     </div>
                 ))}
                 <div className={style.add__message}>
@@ -55,6 +55,7 @@ const CurrentDialog = ({ dialog, sendMessage }) => {
                         onChange={handleChange}
                         autoFocus={true}
                         onKeyDown={handleKeyDown}
+                        maxLength={45}
                     />
                     <button type='button' onClick={onSendMessage}>
             Send
