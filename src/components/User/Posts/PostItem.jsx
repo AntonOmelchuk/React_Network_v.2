@@ -2,7 +2,7 @@ import React from 'react';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import style from './Post.module.css';
 
-const PostItem = ({post, deletePost, toggleLiked}) => {
+export const PostItem = ({post, deletePost, toggleLiked}) => {
 
     const {id, ava, text, likes, date, liked} = post;
 

@@ -3,7 +3,7 @@ import { A } from 'hookrouter';
 import commonAvatar from '../../assets/avatars/common.jpg';
 import style from './Users.module.css';
 
-const UserItem = ({ user, followUser, unFollowUser, disabledButton }) => {
+export const UserItem = ({ user, followUser, unFollowUser, disabledButton }) => {
     const { id, photos, name, status, followed } = user;
 
     const handleFollow = () => followUser(id);

@@ -18,13 +18,13 @@
     "max-len": ["error", 120, { "ignoreUrls": true }],
     "no-tabs": "off",
     "arrow-parens": "off",
-    "quotes": ["error", "single", { "allowTemplateLiterals": true }],
-    "object-curly-spacing": "off",
+    "quotes": ["error", "single", {"allowTemplateLiterals": true}],
+    "object-curly-spacing": ["error", "never"],
     "object-curly-newline": "off",
     "comma-dangle": "off",
     "jsx-quotes": ["error", "prefer-single"],
     "react/jsx-no-target-blank": "off",
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": [1, {"extensions": [".js", ".jsx"]}],
     "arrow-body-style": ["error", "as-needed"],
     "import/prefer-default-export": "off"
   }
