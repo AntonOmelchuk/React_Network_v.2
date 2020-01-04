@@ -1,34 +1,43 @@
 import React, {useEffect, useState} from 'react';
-import style from './Dialogs.module.css';
-
 import {connect} from 'react-redux';
+
+import style from './Dialogs.module.css';
+import defaultAvatar from '../../assets/avatars/common.jpg';
+
 import {sendMessage, getDialogs, getMessages} from '../../actions/dialogsServerActions';
 import Spinner from '../common/Spinner';
 
 const DialogsWithServer = ({dialogs, messages, sendMessage, getDialogs, isLoading, getMessages}) => {
-    useEffect(() => {
-        getDialogs();
-        getMessages(2);
-    }, [getDialogs, getMessages]);
-
+    const [currentDialog, setCurrentDialog] = useState(0);
     const [message, setMessage] = useState('');
 
+    console.log(messages);
+
+    useEffect(() => {
+        getDialogs();
+        getMessages(currentDialog);
+    }, [currentDialog]);
+
     const onSendMessage = () => {
-        sendMessage(11, message);
+        sendMessage(currentDialog, message);
     };
     
     const users = dialogs.map(d => (
-        <div className={style.user} key={d.id}>
-            <img src={d.photos.small} alt='user avatar' />
+        <div className={style.user} key={d.id} onClick={() => setCurrentDialog(d.id)}>
+            <img src={d.photos.small || defaultAvatar} alt='user avatar' />
             <div>{d.userName}</div>
         </div>
     ));
 
-    const currentDilaogMessages = messages ? messages.map(m => (
-        <div key={m.id}>{m.body}</div>
+    const currentDialogMessages = messages ? messages.map(m => (
+        <div key={m.id}>
+            <div className={style.senderInfo}>
+                <div className={style.sender}>{m.senderName}</div>
+                <div className={style.time}>{m.addedAt.slice(11, 16)}</div>
+            </div>
+            <div>{m.body}</div>
+        </div>
     )) : <h3>No messages</h3>;
-
-    console.log(dialogs);
 
     if(isLoading) {
         return (
@@ -42,7 +51,7 @@ const DialogsWithServer = ({dialogs, messages, sendMessage, getDialogs, isLoadin
             <div className={style.container}>
                 <div className={style.users}>{users}</div>
                 <div>
-                    <div>{currentDilaogMessages}</div>
+                    <div>{currentDialogMessages}</div>
                     <input type='text' onChange={e => setMessage(e.target.value)} value={message} />
                     <button onClick={onSendMessage}>Send</button>
                 </div>

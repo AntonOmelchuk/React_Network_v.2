@@ -1,5 +1,5 @@
 .container {
-    width: 70%;
+    width: 450px;
     display: grid;
     grid-template-columns: 3fr 9fr;
 
@@ -13,13 +13,34 @@
 
 .user {
     margin-right: auto;
+    margin-top: 9px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
 }
 
 .user img {
     width: 54px;
     height: 54px;
     border-radius: 50%;
+}
+
+.user:hover {
+    cursor: pointer;
+}
+
+.senderInfo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sender {
+    font-weight: 700;
+}
+
+.time {
+    font-weight: 400;
+    font-style: italic;
+    margin-left: 9px;
+    color: rgba(98, 98, 98, 0.84);
 }

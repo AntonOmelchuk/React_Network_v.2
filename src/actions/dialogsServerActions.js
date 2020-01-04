@@ -38,6 +38,6 @@ export const getMessages = userId => async dispatch => {
     }
 };
 
-export const sendMessage = (userId = 300, message) => async dispatch => {
+export const sendMessage = (userId, message) => async dispatch => {
     const response = await dialogsAPI.sendMessage(userId, message);
 };

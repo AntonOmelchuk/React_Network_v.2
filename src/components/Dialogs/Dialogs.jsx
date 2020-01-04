@@ -1,11 +1,11 @@
 import React from 'react';
 import DialogItem from './DialogItem';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import style from './Dialogs.module.css';
-import { setCurrentDialog } from '../../actions/dialogsActions';
+import {setCurrentDialog} from '../../actions/dialogsActions';
 import Login from '../Login/Login';
 
-export const Dialogs = ({ dialogs, setCurrentDialog, isAuth }) => {
+export const Dialogs = ({dialogs, setCurrentDialog, isAuth}) => {
     if (!isAuth) return <Login />;
 
     return (
@@ -26,4 +26,4 @@ const mapStateToProps = state => ({
     isAuth: state.auth.isAuth
 });
 
-export default connect(mapStateToProps, { setCurrentDialog })(Dialogs);
+export default connect(mapStateToProps, {setCurrentDialog})(Dialogs);
