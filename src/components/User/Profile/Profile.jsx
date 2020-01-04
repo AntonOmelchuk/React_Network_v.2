@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import style from './Profile.module.css';
 import defaultAvatar from '../../../assets/avatars/anonymous.jpg';
 import Spinner from '../../common/Spinner';
@@ -31,8 +31,8 @@ const Profile = ({
 
     if (!profile) return <Spinner />;
 
-    const { photos, fullName, lookingForAJob } = profile;
-    const { github, instagram, vk } = profile.contacts;
+    const {photos, fullName, lookingForAJob} = profile;
+    const {github, instagram, vk} = profile.contacts;
 
     const uploadPhoto = e => {
         if (e.target.files.length) updatePhoto(e.target.files[0]);
@@ -80,13 +80,10 @@ const Profile = ({
                     </div>
                     <div className={style.info__field}>
                         <span>Name: </span>
-                        {fullName}
+                        {fullName === 'Pirate Roberts' ? 'Anton Omelchuk' : fullName}
                     </div>
                     <div className={style.info__field}>
                         <span>Specialization: </span>React Developer
-                    </div>
-                    <div className={style.info__field}>
-                        <span>Experience: </span>5 years
                     </div>
                     <div className={style.info__field}>
                         <span>Hireable: </span>

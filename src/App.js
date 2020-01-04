@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useRoutes} from 'hookrouter'
+import {useRoutes} from 'hookrouter';
 import style from './index.module.css';
 import Navbar from './components/Navbar/Navbar';
 import Nav from './components/Nav/Nav';
@@ -14,7 +14,7 @@ import {store} from './store/store';
 const App = ({initialized, initializeApp}) => {
 
     useEffect(() => {
-        initializeApp()
+        initializeApp();
     }, [initializeApp]);
 
     const routeResult = useRoutes(Routes);
@@ -31,7 +31,7 @@ const App = ({initialized, initializeApp}) => {
                 </div>
             </div>
         </div>
-    )
+    );
 
 };
 

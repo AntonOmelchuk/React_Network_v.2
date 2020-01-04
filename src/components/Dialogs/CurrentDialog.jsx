@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import style from './Dialogs.module.css';
 import avatar from '../../assets/avatars/eliot.jpg';
-import { connect } from 'react-redux';
-import { sendMessage } from '../../actions/dialogsActions';
+import {connect} from 'react-redux';
+import {sendMessage} from '../../actions/dialogsActions';
 
-export const CurrentDialog = ({ dialog, sendMessage }) => {
+export const CurrentDialog = ({dialog, sendMessage}) => {
     const [message, setMessage] = useState('');
 
     if (dialog === null) {
         return <h3>No messages</h3>;
     } else {
-        const { messages, user } = dialog;
+        const {messages, user} = dialog;
 
         const handleChange = e => {
             setMessage(e.target.value);
@@ -70,4 +70,4 @@ const mapStateToProps = state => ({
     dialog: state.dialogs.current
 });
 
-export default connect(mapStateToProps, { sendMessage })(CurrentDialog);
+export default connect(mapStateToProps, {sendMessage})(CurrentDialog);

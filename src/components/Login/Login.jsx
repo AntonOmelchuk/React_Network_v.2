@@ -1,17 +1,17 @@
 import React from 'react';
 import style from './Login.module.css';
-import { Field, reduxForm } from 'redux-form';
-import { maxLength, required } from '../../utils/validators/validators';
-import { Email, Password } from '../common/FormControl';
-import { connect } from 'react-redux';
-import { login } from '../../actions/authActions';
+import {Field, reduxForm} from 'redux-form';
+import {maxLength, required} from '../../utils/validators/validators';
+import {Email, Password} from '../common/FormControl';
+import {connect} from 'react-redux';
+import {login} from '../../actions/authActions';
 
 const requiredEmail = required('Email');
 const requiredPassword = required('password');
 const passwordMaxLength = maxLength(18);
 const emailMaxLength = maxLength(30);
 
-const LoginForm = ({ handleSubmit, reset }) => {
+const LoginForm = ({handleSubmit, reset}) => {
     const onSubmit = e => {
         e.preventDefault();
         handleSubmit();
@@ -39,7 +39,7 @@ const LoginForm = ({ handleSubmit, reset }) => {
                     name='password'
                     type={'password'}
                     validate={[requiredPassword, passwordMaxLength]}
-                    minLength='6'
+                    minLength='4'
                     maxLength='18'
                     autoComplete='on'
                 />
@@ -63,11 +63,11 @@ const LoginForm = ({ handleSubmit, reset }) => {
     );
 };
 
-const LoginFormRedux = reduxForm({ form: 'login' })(LoginForm);
+const LoginFormRedux = reduxForm({form: 'login'})(LoginForm);
 
-const Login = ({ login }) => {
+const Login = ({login}) => {
     const onSubmit = formData => {
-        const { email, password, rememberMe } = formData;
+        const {email, password, rememberMe} = formData;
 
         login(email, password, rememberMe);
     };
@@ -83,4 +83,4 @@ const Login = ({ login }) => {
     );
 };
 
-export default connect(null, { login })(Login);
+export default connect(null, {login})(Login);

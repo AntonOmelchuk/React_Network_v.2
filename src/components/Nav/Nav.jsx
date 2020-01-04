@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { A } from 'hookrouter';
+import React, {useState} from 'react';
+import {A} from 'hookrouter';
 import style from './Nav.module.css';
 
 const Nav = () => {
@@ -9,37 +9,20 @@ const Nav = () => {
         <div className={style.wrapper}>
             <ul className={style.links__list}>
                 <li>
-                    <A
-                        className={
-                            active === 1 ? style.link + ' ' + style.active : style.link
-                        }
-                        onClick={() => setActive(1)}
-                        href={`/profile`}
-                    >
-            Profile
-                    </A>
+                    <A className={active === 1 ? style.link + ' ' + style.active : style.link}
+                        onClick={() => setActive(1)} href={`/profile`}>Profile</A>
                 </li>
                 <li>
-                    <A
-                        className={
-                            active === 2 ? style.link + ' ' + style.active : style.link
-                        }
-                        onClick={() => setActive(2)}
-                        href={'/dialogs'}
-                    >
-            Dialogs
-                    </A>
+                    <A className={active === 2 ? style.link + ' ' + style.active : style.link}
+                        onClick={() => setActive(2)} href={'/dialogs'}>Dialogs</A>
                 </li>
                 <li>
-                    <A
-                        className={
-                            active === 6 ? style.link + ' ' + style.active : style.link
-                        }
-                        onClick={() => setActive(6)}
-                        href={'/users'}
-                    >
-            Users
-                    </A>
+                    <A className={active === 3 ? style.link + ' ' + style.active : style.link}
+                        onClick={() => setActive(3)} href={'/dialogsServer'}>DialogsServer</A>
+                </li>
+                <li>
+                    <A className={active === 6 ? style.link + ' ' + style.active : style.link}
+                        onClick={() => setActive(6)} href={'/users'}>Users</A>
                 </li>
             </ul>
         </div>

@@ -11,6 +11,9 @@ export const SET_PHOTO = 'SET_PHOTO';
 // Dialogs types
 export const SET_CURRENT_DIALOG = 'SET_CURRENT_DIALOG';
 export const SEND_MESSAGE = 'SEND_MESSAGE';
+export const SEND_MESSAGE_SERVER = 'SEND_MESSAGE_SERVER';
+export const GET_DIALOGS_SUCCESS = 'GET_DIALOGS_SUCCESS';
+export const TOGGLE_IS_LOADING = 'TOGGLE_IS_LOADING';
 
 // Users types
 export const GET_USERS = 'GET_USERS';

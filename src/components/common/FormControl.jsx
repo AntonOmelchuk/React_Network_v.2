@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './FormControl.module.css';
 
-const FieldControl = ({ input, meta, ...props }) => {
+const FieldControl = ({input, meta, ...props}) => {
     const error = meta.touched && meta.error;
 
     return (
@@ -17,7 +17,7 @@ const FieldControl = ({ input, meta, ...props }) => {
 };
 
 export const Email = props => {
-    const { input, meta, ...restProps } = props;
+    const {input, meta, ...restProps} = props;
 
     return (
         <FieldControl {...props}>
@@ -27,7 +27,7 @@ export const Email = props => {
 };
 
 export const Password = props => {
-    const { input, meta, ...restProps } = props;
+    const {input, meta, ...restProps} = props;
 
     return (
         <FieldControl {...props}>
@@ -37,7 +37,7 @@ export const Password = props => {
 };
 
 export const PostInput = props => {
-    const { input, meta, ...restProps } = props;
+    const {input, meta, ...restProps} = props;
 
     return (
         <FieldControl {...props}>
