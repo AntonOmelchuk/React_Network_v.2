@@ -9,7 +9,7 @@ export const setAuth = () => async dispatch => {
             dispatch({
                 type: SET_AUTH,
                 payload: response.data.data
-            })
+            });
         }
     } catch(err) {
 
@@ -20,7 +20,7 @@ export const login = (email, password, rememberMe) => async dispatch => {
     try {
         await authAPI.login(email, password, rememberMe);
 
-        dispatch(setAuth())
+        dispatch(setAuth());
     } catch(err) {
 
     }
@@ -30,7 +30,7 @@ export const logout = () => async dispatch => {
     try {
         await authAPI.logout();
 
-        dispatch({type: LOGOUT})
+        dispatch({type: LOGOUT});
     } catch(err) {
 
     }

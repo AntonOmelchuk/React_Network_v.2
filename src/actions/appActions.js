@@ -7,7 +7,7 @@ export const initializeApp = () => async dispatch => {
     try {
         await dispatch(setAuth());
 
-        dispatch(initialized())
+        dispatch(initialized());
     } catch(err) {
 
     }

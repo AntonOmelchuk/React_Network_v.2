@@ -56,10 +56,16 @@ export const authAPI = {
 };
 
 export const dialogsAPI = {
-    getMessages() {
+    getDialogs() {
         return instance.get('dialogs');
     },
     sendMessage(userId, message) {
         return instance.post(`dialogs/${userId}/messages`, {body: message});
+    },
+    getMessages(userId) {
+        return instance.get(`dialogs/${userId}/messages`);
+    },
+    deleteMessage(messageId) {
+        return instance.delete(`dialogs/messages/${messageId}`);
     }
 };

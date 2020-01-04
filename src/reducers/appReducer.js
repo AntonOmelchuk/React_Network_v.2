@@ -12,6 +12,6 @@ export const appReducer = (state = initialState, action) => {
                 isInitialized: true
             };
         default:
-            return state
+            return state;
     }
 };

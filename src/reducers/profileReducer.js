@@ -1,7 +1,7 @@
-import ava1 from '../assets/avatars/ava1.jpg'
-import ava2 from '../assets/avatars/ava2.jpg'
-import ava3 from '../assets/avatars/ava3.jpg'
-import ava4 from '../assets/avatars/ava4.jpg'
+import ava1 from '../assets/avatars/ava1.jpg';
+import ava2 from '../assets/avatars/ava2.jpg';
+import ava3 from '../assets/avatars/ava3.jpg';
+import ava4 from '../assets/avatars/ava4.jpg';
 import {
     ADD_POST,
     DELETE_POST,
@@ -57,13 +57,13 @@ export const profileReducer = (state = initialState, action) => {
                 posts: state.posts.map(post => {
                     if(post.id === action.payload) {
                         if(post.liked === false) {
-                            post.likes++
+                            post.likes++;
                         } else {
-                            post.likes--
+                            post.likes--;
                         }
-                        post.liked = !post.liked
+                        post.liked = !post.liked;
                     }
-                    return post
+                    return post;
                 })
             };
         case TOGGLE_PROFILE_FETCHING:
@@ -75,9 +75,9 @@ export const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 profile: {...state.profile, photos: action.payload}
-            }
+            };
         }
         default:
-            return state
+            return state;
     }
 };

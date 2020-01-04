@@ -24,7 +24,7 @@ describe('DialogItem component', () => {
             setCurrentDialog: mockSetCurrentDialog
         };
 
-        wrapper = shallow(<DialogItem {...mockProps} />)
+        wrapper = shallow(<DialogItem {...mockProps} />);
     });
 
     it('renders DialogItem component', () => {
@@ -34,7 +34,7 @@ describe('DialogItem component', () => {
     it('calls setCurrentDialog on click', () => {
         wrapper.find('A').simulate('click');
         expect(mockSetCurrentDialog).toHaveBeenCalled();
-    })
+    });
 });
 
 describe('CurrentDialog component' ,() => {
@@ -64,7 +64,7 @@ describe('CurrentDialog component' ,() => {
     it('calls sendMessage on click', () => {
         wrapper.find('button').simulate('click');
         expect(mockSendMessage).toHaveBeenCalled();
-    })
+    });
 });
 
 describe('Dialogs component', () => {
@@ -82,5 +82,5 @@ describe('Dialogs component', () => {
 
     it('renders Dialogs component', () => {
         expect(wrapper).toMatchSnapshot();
-    })
+    });
 });

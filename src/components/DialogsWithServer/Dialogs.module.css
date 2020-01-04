@@ -6,6 +6,11 @@
     color: white;
 }
 
+.users {
+    display: flex;
+    flex-direction: column;
+}
+
 .user {
     margin-right: auto;
     display: flex;
@@ -13,8 +18,8 @@
     align-items: center;
 }
 
-img {
-    width: 75px;
-    height: 75px;
+.user img {
+    width: 54px;
+    height: 54px;
     border-radius: 50%;
 }

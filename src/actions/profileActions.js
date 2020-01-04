@@ -23,7 +23,7 @@ export const setProfile = id => async dispatch => {
 export const getStatus = id => async dispatch => {
     try {
         const response = await profileAPI.getStatus(id);
-        dispatch({type: GET_STATUS, payload: response.data})
+        dispatch({type: GET_STATUS, payload: response.data});
     } catch(err) {
 
     }
@@ -32,7 +32,7 @@ export const getStatus = id => async dispatch => {
 export const updateStatus = status => async dispatch => {
     try {
         await profileAPI.updateStatus(status);
-        dispatch({type: UPDATE_STATUS, payload: status})
+        dispatch({type: UPDATE_STATUS, payload: status});
     } catch(err) {
 
     }
@@ -53,7 +53,7 @@ export const updatePhoto = photo => async dispatch => {
         const response = await profileAPI.updatePhoto(photo);
 
         if(response.data.resultCode === 0) {
-            dispatch(setPhoto(response.data.data.photos))
+            dispatch(setPhoto(response.data.data.photos));
         }
     } catch(err) {
 

@@ -19,8 +19,8 @@ describe('App reducer', () => {
 
         expect(appReducer(initialState, action)).toEqual({
             isInitialized: true
-        })
-    })
+        });
+    });
 });
 
 // ============= Auth reducer ===============
@@ -43,7 +43,7 @@ describe('Auth reducer', () => {
             ...initialState,
             ...action.payload,
             isAuth: true
-        })
+        });
     });
     it('LOGOUT', () => {
         const action = {
@@ -56,8 +56,8 @@ describe('Auth reducer', () => {
             email: null,
             login: null,
             isAuth: false
-        })
-    })
+        });
+    });
 });
 
 // ============= Dialogs reducer ===============
@@ -87,7 +87,7 @@ describe('Dialogs reducer', () => {
         expect(dialogsReducer(initialState, action)).toEqual({
             ...initialState,
             current: action.payload
-        })
+        });
     });
     it('SEND_MESSAGE', () => {
         const action = {
@@ -98,8 +98,8 @@ describe('Dialogs reducer', () => {
         expect(dialogsReducer(initialState, action)).toEqual({
             ...initialState,
             current: {...initialState.current, messages: [...initialState.current.messages, action.payload]}
-        })
-    })
+        });
+    });
 });
 
 // ============= Profile reducer ===============
@@ -123,7 +123,7 @@ describe('Profile reducer', () => {
         expect(profileReducer(initialState, action)).toEqual({
             ...initialState,
             profile: action.payload
-        })
+        });
     });
     it('GET_STATUS', () => {
         const action = {
@@ -180,15 +180,15 @@ describe('Profile reducer', () => {
             posts: initialState.posts.map(post => {
                 if(post.id === action.payload) {
                     if(post.liked === false) {
-                        post.likes++
+                        post.likes++;
                     } else {
-                        post.likes--
+                        post.likes--;
                     }
-                    post.liked = !post.liked
+                    post.liked = !post.liked;
                 }
-                return post
+                return post;
             })
-        })
+        });
     });
     it('TOGGLE_PROFILE_FETCHING', () => {
         const action = {
@@ -209,8 +209,8 @@ describe('Profile reducer', () => {
         expect(profileReducer(initialState, action)).toEqual({
             ...initialState,
             profile: {...initialState.profile, photos: action.payload}
-        })
-    })
+        });
+    });
 });
 
 // ============= User reducer ===============
@@ -239,7 +239,7 @@ describe('User reducer', () => {
             users: action.payload.users,
             totalCount: action.payload.totalCount,
             isFetching: false
-        })
+        });
     });
     it('TOGGLE_FETCHING', () => {
         const action = {
@@ -249,7 +249,7 @@ describe('User reducer', () => {
         expect(usersReducer(initialState, action)).toEqual({
             ...initialState,
             isFetching: true
-        })
+        });
     });
     it('SET_CURRENT_PAGE', () => {
         const action = {
@@ -260,7 +260,7 @@ describe('User reducer', () => {
         expect(usersReducer(initialState, action)).toEqual({
             ...initialState,
             currentPage: action.payload
-        })
+        });
     });
     it('TOGGLE_FOLLOWING', () => {
         const action = {
@@ -272,12 +272,12 @@ describe('User reducer', () => {
             ...initialState,
             users: initialState.users.map(user => {
                 if(user.id === action.payload) {
-                    return {...user, followed: !user.followed}
+                    return {...user, followed: !user.followed};
                 } else {
-                    return user
+                    return user;
                 }
             })
-        })
+        });
     });
     it('DISABLE_BUTTON', () => {
         const action = {
@@ -293,6 +293,6 @@ describe('User reducer', () => {
             disabledButton: action.payload.status
                 ? [...initialState.disabledButton, action.payload.id]
                 : [initialState.disabledButton.filter(id => id !== action.payload.id)]
-        })
-    })
+        });
+    });
 });

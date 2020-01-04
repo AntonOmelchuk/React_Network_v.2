@@ -2,18 +2,19 @@ import React, {useEffect, useState} from 'react';
 import style from './Dialogs.module.css';
 
 import {connect} from 'react-redux';
-import {sendMessage, getDialogs} from '../../actions/dialogsServerActions';
+import {sendMessage, getDialogs, getMessages} from '../../actions/dialogsServerActions';
 import Spinner from '../common/Spinner';
 
-const DialogsWithServer = ({dialogs, sendMessage, getDialogs, isLoading}) => {
+const DialogsWithServer = ({dialogs, messages, sendMessage, getDialogs, isLoading, getMessages}) => {
     useEffect(() => {
         getDialogs();
-    }, [getDialogs]);
+        getMessages(2);
+    }, [getDialogs, getMessages]);
 
     const [message, setMessage] = useState('');
 
     const onSendMessage = () => {
-        sendMessage(2, message);
+        sendMessage(11, message);
     };
     
     const users = dialogs.map(d => (
@@ -23,7 +24,9 @@ const DialogsWithServer = ({dialogs, sendMessage, getDialogs, isLoading}) => {
         </div>
     ));
 
-    // const messages =
+    const currentDilaogMessages = messages ? messages.map(m => (
+        <div key={m.id}>{m.body}</div>
+    )) : <h3>No messages</h3>;
 
     console.log(dialogs);
 
@@ -37,9 +40,9 @@ const DialogsWithServer = ({dialogs, sendMessage, getDialogs, isLoading}) => {
         if(!dialogs) return 'No dialogs';
         return (
             <div className={style.container}>
-                <>{users}</>
+                <div className={style.users}>{users}</div>
                 <div>
-                    <div>Messages</div>
+                    <div>{currentDilaogMessages}</div>
                     <input type='text' onChange={e => setMessage(e.target.value)} value={message} />
                     <button onClick={onSendMessage}>Send</button>
                 </div>
@@ -50,7 +53,8 @@ const DialogsWithServer = ({dialogs, sendMessage, getDialogs, isLoading}) => {
 
 const mapStateToProps = state => ({
     dialogs: state.dialogsServer.dialogs,
+    messages: state.dialogsServer.messages,
     isLoading: state.dialogsServer.isLoading
 });
  
-export default connect(mapStateToProps, {sendMessage, getDialogs})(DialogsWithServer);
+export default connect(mapStateToProps, {sendMessage, getDialogs, getMessages})(DialogsWithServer);

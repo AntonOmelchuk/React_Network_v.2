@@ -33,9 +33,9 @@ export const usersReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.map(user => {
                     if(user.id === action.payload) {
-                        return {...user, followed: !user.followed}
+                        return {...user, followed: !user.followed};
                     } else {
-                        return user
+                        return user;
                     }
                 })
             };
@@ -47,6 +47,6 @@ export const usersReducer = (state = initialState, action) => {
                     : [state.disabledButton.filter(id => id !== action.payload.id)]
             };
         default:
-            return state
+            return state;
     }
 };

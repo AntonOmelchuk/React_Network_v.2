@@ -1,9 +1,9 @@
-import uuid from 'uuid'
+import uuid from 'uuid';
 
-import ava1 from '../assets/avatars/ava1.jpg'
-import ava2 from '../assets/avatars/ava2.jpg'
-import ava3 from '../assets/avatars/ava3.jpg'
-import ava4 from '../assets/avatars/ava4.jpg'
+import ava1 from '../assets/avatars/ava1.jpg';
+import ava2 from '../assets/avatars/ava2.jpg';
+import ava3 from '../assets/avatars/ava3.jpg';
+import ava4 from '../assets/avatars/ava4.jpg';
 import {SEND_MESSAGE, SET_CURRENT_DIALOG} from '../actions/types';
 
 const initialState = {
@@ -56,6 +56,6 @@ export const dialogsReducer = (state = initialState, action) => {
                 current: {...state.current, messages: [...state.current.messages, action.payload]}
             };
         default:
-            return state
+            return state;
     }
 };

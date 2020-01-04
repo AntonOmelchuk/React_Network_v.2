@@ -1,4 +1,4 @@
-import {GET_DIALOGS_SUCCESS, TOGGLE_IS_LOADING} from '../actions/types';
+import {GET_DIALOGS_SUCCESS, GET_MESSAGES_SUCCESS, TOGGLE_IS_LOADING} from '../actions/types';
 
 const initialState = {
     dialogs: [],
@@ -12,12 +12,17 @@ export const dialogsServerReducer = (state = initialState, action) => {
         case TOGGLE_IS_LOADING:
             return {
                 ...state,
-                isLoading: !state.isLoading
+                isLoading: action.payload
             };
         case GET_DIALOGS_SUCCESS:
             return {
                 ...state,
                 dialogs: action.payload
+            };
+        case GET_MESSAGES_SUCCESS:
+            return {
+                ...state,
+                messages: action.payload
             };
         default:
             return state;
