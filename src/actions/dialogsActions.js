@@ -45,6 +45,7 @@ export const getMessages = userId => async dispatch => {
         dispatch(toggleIsLoading(true));
         const response = await dialogsAPI.getMessages(userId);
         dispatch(toggleIsLoading(false));
+        dispatch(setCurrentId(userId));
         if(response.status === 200) {
             dispatch(getMessagesSuccess(response.data.items));
         }

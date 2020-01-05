@@ -2,15 +2,13 @@ import React, {useState} from 'react';
 import style from './Dialogs.module.css';
 import TextareaAutosize from 'react-autosize-textarea';
 
-const DialogsMessages = React.memo(({messages, sendMessage, id}) => {
+const DialogsMessages = React.memo(({messages, sendMessage, currentId}) => {
     const [message, setMessage] = useState('');
 
     const onSendMessage = () => {
-        sendMessage(id, message);
+        sendMessage(currentId, message);
         setMessage('');
     };
-
-    // console.log(messages)
 
     const onKeyDownHandler = e => {
         if(e.key === 'Enter') onSendMessage();
