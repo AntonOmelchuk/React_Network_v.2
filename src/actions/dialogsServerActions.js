@@ -39,5 +39,7 @@ export const getMessages = userId => async dispatch => {
 };
 
 export const sendMessage = (userId, message) => async dispatch => {
-    const response = await dialogsAPI.sendMessage(userId, message);
+    console.log(userId);
+    console.log(message);
+    // const response = await dialogsAPI.sendMessage(userId, message);
 };

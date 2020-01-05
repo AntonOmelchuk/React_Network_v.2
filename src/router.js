@@ -15,9 +15,8 @@ const Routes = {
         <Dialogs />
     </React.Suspense>,
     '/dialogs/:id': ({id}) => <CurrentDialog id={id} />,
-    '/dialogsServer': () => <React.Suspense fallback={<Loading />}>
-        <DialogsWithServer />
-    </React.Suspense>,
+    '/dialogsServer': () => <DialogsWithServer />,
+    '/dialogsServer/:id': ({id}) => <DialogsWithServer id={id} />,
     '/users': () => <React.Suspense fallback={<Loading />}>
         <Users />
     </React.Suspense>,

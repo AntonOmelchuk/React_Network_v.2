@@ -9,6 +9,8 @@
 .users {
     display: flex;
     flex-direction: column;
+    padding-right: 30px;
+    border-right: 1px solid grey;
 }
 
 .user {
@@ -29,6 +31,15 @@
     cursor: pointer;
 }
 
+.messages {
+    height: calc(100vh - 300px);
+    margin-left: 30px;
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .senderInfo {
     display: flex;
     justify-content: space-between;
@@ -43,4 +54,36 @@
     font-style: italic;
     margin-left: 9px;
     color: rgba(98, 98, 98, 0.84);
+}
+
+.sendMessageTextarea {
+    width: 300px;
+    height: auto;
+    padding: 6px 12px;
+    border-radius: 3px;
+    resize: none;
+}
+
+.sendMessageTextarea:focus {
+    outline: none;
+}
+
+.sendButtonContainer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.sendButton {
+    width: 48px;
+    padding: 0;
+    margin-top: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: white;
+    background-color: transparent;
+}
+
+.sendButton:hover {
+    opacity: .72;
 }

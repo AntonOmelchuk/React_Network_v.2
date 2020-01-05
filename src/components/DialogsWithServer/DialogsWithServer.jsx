@@ -1,35 +1,42 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
+import TextareaAutosize from 'react-autosize-textarea';
 
 import style from './Dialogs.module.css';
 import defaultAvatar from '../../assets/avatars/common.jpg';
 
 import {sendMessage, getDialogs, getMessages} from '../../actions/dialogsServerActions';
 import Spinner from '../common/Spinner';
+import {A} from 'hookrouter';
 
-const DialogsWithServer = ({dialogs, messages, sendMessage, getDialogs, isLoading, getMessages}) => {
-    const [currentDialog, setCurrentDialog] = useState(0);
+const DialogsWithServer = ({dialogs, messages, sendMessage, getDialogs, isLoading, getMessages, id}) => {
     const [message, setMessage] = useState('');
-
-    console.log(messages);
 
     useEffect(() => {
         getDialogs();
-        getMessages(currentDialog);
-    }, [currentDialog]);
+        getMessages(id);
+    }, [getDialogs, getMessages, id]);
+
 
     const onSendMessage = () => {
-        sendMessage(currentDialog, message);
+        sendMessage(id, message);
+        setMessage('');
+    };
+
+    const onKeyDownHandler = e => {
+        if(e.key === 'Enter') onSendMessage();
     };
     
     const users = dialogs.map(d => (
-        <div className={style.user} key={d.id} onClick={() => setCurrentDialog(d.id)}>
-            <img src={d.photos.small || defaultAvatar} alt='user avatar' />
-            <div>{d.userName}</div>
+        <div key={d.id}>
+            <A className={style.user} href={`/dialogsServer/${d.id}`}>
+                <img src={d.photos.small || defaultAvatar} alt='user avatar' />
+                <div>{d.userName}</div>
+            </A>
         </div>
     ));
 
-    const currentDialogMessages = messages ? messages.map(m => (
+    const currentDialogMessages = messages.length ? messages.map(m => (
         <div key={m.id}>
             <div className={style.senderInfo}>
                 <div className={style.sender}>{m.senderName}</div>
@@ -50,10 +57,16 @@ const DialogsWithServer = ({dialogs, messages, sendMessage, getDialogs, isLoadin
         return (
             <div className={style.container}>
                 <div className={style.users}>{users}</div>
-                <div>
+                <div className={style.messages}>
                     <div>{currentDialogMessages}</div>
-                    <input type='text' onChange={e => setMessage(e.target.value)} value={message} />
-                    <button onClick={onSendMessage}>Send</button>
+                    <div>
+                        <TextareaAutosize className={style.sendMessageTextarea} value={message}
+                            onChange={e => setMessage(e.target.value)} onKeyDown={e => onKeyDownHandler(e)}
+                            maxLength={360} />
+                        <div className={style.sendButtonContainer}>
+                            <button className={style.sendButton} onClick={onSendMessage}>Send</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
