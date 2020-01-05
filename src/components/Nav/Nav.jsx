@@ -13,12 +13,8 @@ const Nav = () => {
                         onClick={() => setActive(1)} href={`/profile`}>Profile</A>
                 </li>
                 <li>
-                    <A className={active === 2 ? style.link + ' ' + style.active : style.link}
-                        onClick={() => setActive(2)} href={'/dialogs'}>Dialogs</A>
-                </li>
-                <li>
                     <A className={active === 3 ? style.link + ' ' + style.active : style.link}
-                        onClick={() => setActive(3)} href={'/dialogsServer'}>DialogsServer</A>
+                        onClick={() => setActive(3)} href={'/dialogs'}>Dialogs</A>
                 </li>
                 <li>
                     <A className={active === 6 ? style.link + ' ' + style.active : style.link}

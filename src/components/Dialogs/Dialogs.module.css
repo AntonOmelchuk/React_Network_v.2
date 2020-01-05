@@ -1,163 +1,119 @@
-a:hover {
-    color: #5b5041;
+.container {
+    width: 450px;
+    display: grid;
+    grid-template-columns: 4fr 8fr;
+
+    color: white;
 }
 
-.wrapper {
-    width: 750px;
-    height: 100vh;
+.users {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    border-right: 1px solid grey;
 }
 
-.dialog {
-    width: 90%;
+.user {
+    margin-right: auto;
+    margin-top: 9px;
+    padding: 9px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
 
-    margin-top: 12px;
-    padding: 9px 12px;
-
-    background-color: rgba(0, 0, 0, 0.91);
-    border-radius: 3px;
-
-    color: antiquewhite;
+    transition: background-color .1s linear;
 }
 
-.dialog:hover {
-    cursor: pointer;
-}
-
-.dialog__inner {
+.userHeader {
     width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
-.avatar {
+.user img {
     width: 54px;
     height: 54px;
-}
-
-.avatar img {
-    width: 100%;
-    height: 100%;
     border-radius: 50%;
 }
 
-.lastMessage__wrapper {
-    width: 80%;
-    margin-left: 54px;
-    padding: 0 12px;
+.userActivityDate {
+    font-weight: 400;
+    font-size: 12px;
+    font-style: italic;
+    color: #a8b2b2;
+}
 
-    background-color: rgba(23, 49, 60, 0.91);
+.user:hover {
+    cursor: pointer;
+    background-color: #a8b2b2;
     border-radius: 3px;
 }
 
-.lastMessage {
+.active {
+    background-color: rgba(52, 113, 137, 0.72);
+    border-radius: 3px;
+}
+
+.messages {
+    height: calc(100vh - 300px);
+    margin-left: 30px;
+    padding-left: 30px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: space-between;
-
-    padding: 9px 12px;
-
-    color: black;
-    font-size: 17px;
 }
 
-.unread {
-    background-color: rgba(51, 117, 139, 0.88);
-    color: #0f2027;
-    font-weight: 600;
+.senderInfo {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 9px;
 }
 
-.profile__avatar {
-    width: 27px;
-    height: 27px;
+.sender {
+    font-weight: 700;
+    color: #a8b2b2;
+    padding-bottom: 9px;
+}
 
+.time {
+    font-weight: 400;
+    font-style: italic;
     margin-left: 9px;
+    color: rgba(98, 98, 98, 0.84);
 }
 
-.profile__avatar img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-}
-
-/* === Current Dialog === */
-
-.current__dialog {
-
-    width: 540px;
-    padding: 21px 18px;
+.sendMessageTextarea {
+    width: 300px;
+    height: auto;
+    padding: 6px 12px;
     border-radius: 3px;
-
-    font-size: 15px;
-    color: #958775;
-    font-family: 'Poppins', sans-serif;
+    resize: none;
 }
 
-.message,
-.profile__message {
-    width: 531px;
-    height: 21px;
-    padding: 9px 12px;
-    margin-top: 12px;
-
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+.sendMessageTextarea:focus {
+    outline: none;
 }
 
-.profile__message {
-    flex-direction: row-reverse;
-}
-
-.current__avatar {
-    width: 30px;
-    height: 30px;
-
-    margin: 0 12px;
-}
-
-.current__avatar img {
+.sendButtonContainer {
     width: 100%;
-    height: 100%;
-    border-radius: 50%;
-}
-
-.current__dialog__message {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
-.add__message {
-    width: 540px;
-    margin-top: 90px;
-    display: flex;
-
-    border-radius: 3px;
-    border: 2px solid #2c5364;
-    background-color: rgba(196, 203, 189, 0.12);
-}
-
-.add__message input {
-    display: block;
-    width: 75%;
-    height: 21px;
-    padding: 3px 9px;
-
-    background-color: rgba(25, 26, 24, 0.5);
-
-    font-size: 15px;
-    color: #958775;
-    font-family: 'Poppins', sans-serif;
-}
-
-.add__message button {
-    width: 25%;
-    background-color: rgba(41, 44, 38, 0.12);
-
-    font-weight: 600;
-    color: #958775;
+.sendButton {
+    width: 48px;
+    padding: 0;
+    margin-top: 9px;
+    font-weight: 700;
     text-transform: uppercase;
+    color: white;
+    background-color: transparent;
+}
+
+.sendButton:hover {
+    opacity: .72;
+}
+
+.sendButton:disabled {
+    opacity: .45;
+    cursor: auto;
 }
