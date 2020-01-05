@@ -1,10 +1,17 @@
-import {GET_DIALOGS_SUCCESS, GET_MESSAGES_SUCCESS, TOGGLE_IS_LOADING} from '../actions/types';
+import {
+    GET_DIALOGS_SUCCESS,
+    GET_MESSAGES_SUCCESS,
+    SEND_MESSAGE_SUCCESS,
+    SET_CURRENT_ID,
+    TOGGLE_IS_LOADING
+} from '../actions/types';
 
 const initialState = {
     dialogs: [],
     messages: [],
     selectedDialogId: null,
-    isLoading: null
+    isLoading: null,
+    currentId: null
 };
 
 export const dialogsServerReducer = (state = initialState, action) => {
@@ -24,6 +31,17 @@ export const dialogsServerReducer = (state = initialState, action) => {
                 ...state,
                 messages: action.payload
             };
+        case SEND_MESSAGE_SUCCESS:
+            return {
+                ...state,
+                messages: [...state.messages, action.payload]
+            };
+        case SET_CURRENT_ID: {
+            return {
+                ...state,
+                currentId: action.payload
+            };
+        }
         default:
             return state;
     }

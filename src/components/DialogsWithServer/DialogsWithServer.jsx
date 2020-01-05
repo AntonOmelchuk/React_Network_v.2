@@ -5,18 +5,17 @@ import TextareaAutosize from 'react-autosize-textarea';
 import style from './Dialogs.module.css';
 import defaultAvatar from '../../assets/avatars/common.jpg';
 
-import {sendMessage, getDialogs, getMessages} from '../../actions/dialogsServerActions';
+import {sendMessage, getInitDialogs} from '../../actions/dialogsServerActions';
 import Spinner from '../common/Spinner';
 import {A} from 'hookrouter';
 
-const DialogsWithServer = ({dialogs, messages, sendMessage, getDialogs, isLoading, getMessages, id}) => {
+const DialogsWithServer = ({getInitDialogs, dialogs, messages, sendMessage, isLoading, id, currentId}) => {
     const [message, setMessage] = useState('');
+    const [active, setActive] = useState(id);
 
     useEffect(() => {
-        getDialogs();
-        getMessages(id);
-    }, [getDialogs, getMessages, id]);
-
+        getInitDialogs(id);
+    }, [getInitDialogs, id]);
 
     const onSendMessage = () => {
         sendMessage(id, message);
@@ -26,10 +25,13 @@ const DialogsWithServer = ({dialogs, messages, sendMessage, getDialogs, isLoadin
     const onKeyDownHandler = e => {
         if(e.key === 'Enter') onSendMessage();
     };
-    
+
+    console.log(currentId)
+
     const users = dialogs.map(d => (
         <div key={d.id}>
-            <A className={style.user} href={`/dialogsServer/${d.id}`}>
+            <A className={currentId == d.id ? style.user + ' ' + style.active : style.user}
+                href={`/dialogsServer/${d.id}`} onClick={() => setActive(d.id)}>
                 <img src={d.photos.small || defaultAvatar} alt='user avatar' />
                 <div>{d.userName}</div>
             </A>
@@ -64,7 +66,9 @@ const DialogsWithServer = ({dialogs, messages, sendMessage, getDialogs, isLoadin
                             onChange={e => setMessage(e.target.value)} onKeyDown={e => onKeyDownHandler(e)}
                             maxLength={360} />
                         <div className={style.sendButtonContainer}>
-                            <button className={style.sendButton} onClick={onSendMessage}>Send</button>
+                            <button disabled={!message.length} className={style.sendButton} onClick={onSendMessage}>
+                                Send
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -74,9 +78,11 @@ const DialogsWithServer = ({dialogs, messages, sendMessage, getDialogs, isLoadin
 };
 
 const mapStateToProps = state => ({
+
     dialogs: state.dialogsServer.dialogs,
     messages: state.dialogsServer.messages,
-    isLoading: state.dialogsServer.isLoading
+    isLoading: state.dialogsServer.isLoading,
+    currentId: state.dialogsServer.currentId
 });
  
-export default connect(mapStateToProps, {sendMessage, getDialogs, getMessages})(DialogsWithServer);
+export default connect(mapStateToProps, {sendMessage, getInitDialogs})(DialogsWithServer);
