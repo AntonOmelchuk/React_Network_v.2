@@ -75,7 +75,6 @@ export const getInitDialogs = id => async (dispatch, getState) => {
         await dispatch(getDialogs());
         const state = await getState();
         const currentId = id || state.dialogsServer.dialogs[0].id;
-        console.log('action: ' + currentId);
         dispatch(setCurrentId(currentId));
         dispatch(getMessages(currentId));
     } catch(err) {

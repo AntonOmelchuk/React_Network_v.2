@@ -8,10 +8,11 @@ import defaultAvatar from '../../assets/avatars/common.jpg';
 import {sendMessage, getInitDialogs} from '../../actions/dialogsServerActions';
 import Spinner from '../common/Spinner';
 import {A} from 'hookrouter';
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
 const DialogsWithServer = ({getInitDialogs, dialogs, messages, sendMessage, isLoading, id, currentId}) => {
     const [message, setMessage] = useState('');
-    const [active, setActive] = useState(id);
+    
 
     useEffect(() => {
         getInitDialogs(id);
@@ -26,13 +27,20 @@ const DialogsWithServer = ({getInitDialogs, dialogs, messages, sendMessage, isLo
         if(e.key === 'Enter') onSendMessage();
     };
 
-    console.log(currentId)
+    console.log(dialogs)
 
     const users = dialogs.map(d => (
         <div key={d.id}>
             <A className={currentId == d.id ? style.user + ' ' + style.active : style.user}
-                href={`/dialogsServer/${d.id}`} onClick={() => setActive(d.id)}>
-                <img src={d.photos.small || defaultAvatar} alt='user avatar' />
+                href={`/dialogsServer/${d.id}`}>
+                <div className={style.userHeader}>
+                    <div>
+                        <img src={d.photos.small || defaultAvatar} alt='user avatar' />
+                    </div>
+                    <div className={style.userActivityDate}>{formatDistanceToNow(new Date(d.lastUserActivityDate),
+                        {addSuffix: true})}
+                    </div>
+                </div>
                 <div>{d.userName}</div>
             </A>
         </div>

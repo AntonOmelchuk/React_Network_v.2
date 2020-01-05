@@ -7,7 +7,7 @@ export const PostItem = ({post, deletePost, toggleLiked}) => {
     const {id, ava, text, likes, date, liked} = post;
 
     const handleToggle = () => {
-        toggleLiked(id)
+        toggleLiked(id);
     };
 
     const handleDelete = () => deletePost(id);
@@ -28,11 +28,11 @@ export const PostItem = ({post, deletePost, toggleLiked}) => {
                         <i className='fab fa-react' onClick={handleToggle} />
                     </span>
                 </div>
-                <div>{formatDistanceToNow(new Date(date), { addSuffix: true })}</div>
+                <div>{formatDistanceToNow(new Date(date), {addSuffix: true})}</div>
             </div>
             <span className={style.delete__icon} onClick={handleDelete}>&times;</span>
         </div>
-    )
+    );
 };
 
 export default PostItem;
