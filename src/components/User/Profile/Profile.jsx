@@ -96,12 +96,9 @@ const Profile = ({
                                 <a className={style.link} href={github} target='_blank' rel='noopener noreferrer'>
                                     <i className='fab fa-github' />
                                 </a>
-                                <a
-                                    className={style.link}
+                                <a className={style.link}
                                     href='https://www.facebook.com/profile.php?id=100008345618380&ref=bookmarks'
-                                    target='_blank'
-                                    rel='noopener noreferrer'
-                                >
+                                    target='_blank' rel='noopener noreferrer'>
                                     <i className='fab fa-facebook-f' />
                                 </a>
                                 <a className={style.link} href={instagram} target='_blank' rel='noopener noreferrer'> 

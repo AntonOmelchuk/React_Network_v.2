@@ -53,6 +53,10 @@
     color: bisque;
 }
 
+.link:hover {
+    opacity: .72;
+}
+
 /* === Input file ===*/
 
 .loadAvatarInput {

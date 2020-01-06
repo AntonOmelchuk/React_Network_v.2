@@ -11,18 +11,18 @@ import {
     updatePhoto,
     updateStatus
 } from '../../actions/profileActions';
-import Login from '../Login/Login';
 import {
-    getAuth,
     getId,
     getIsFetching,
     getPosts,
     getProfile,
     getStateStatus
 } from '../../selectors/profileSelectors';
+import {compose} from 'redux';
+import {withRouter} from 'react-router-dom';
 
 const User = ({
-    id,
+    match,
     posts,
     profile,
     addPost,
@@ -38,11 +38,10 @@ const User = ({
     updatePhoto
 }) => {
     useEffect(() => {
-        setProfile(id || authId);
-        getStatus(id || authId);
-    }, [auth, authId, getStatus, id, setProfile]);
-
-    if (!auth) return <Login />;
+        document.title = 'Developers Network';
+        setProfile(match.params.id || authId);
+        getStatus(match.params.id || authId);
+    }, [auth, authId, getStatus, match.params.id, setProfile]);
 
     return (
         <div>
@@ -68,16 +67,17 @@ const mapStateToProps = state => ({
     profile: getProfile(state),
     isFetching: getIsFetching(state),
     status: getStateStatus(state),
-    auth: getAuth(state),
     authId: getId(state)
 });
 
-export default connect(mapStateToProps, {
-    addPost,
-    deletePost,
-    toggleLiked,
-    setProfile,
-    updateStatus,
-    getStatus,
-    updatePhoto
-})(User);
+export default compose(
+    connect(mapStateToProps, {
+        addPost,
+        deletePost,
+        toggleLiked,
+        setProfile,
+        updateStatus,
+        getStatus,
+        updatePhoto
+    }),
+    withRouter)(User);

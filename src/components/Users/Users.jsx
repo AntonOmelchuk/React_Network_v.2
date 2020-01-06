@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import style from './Users.module.css';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import UserItem from './UserItem';
 import ReactPaginate from 'react-paginate';
 import {
@@ -28,15 +28,15 @@ const Users = props => {
     } = props;
 
     useEffect(() => {
+        document.title = 'Users';
         toggleFetching();
         getUsers(currentPage);
     }, [currentPage, getUsers, toggleFetching]);
 
-    useEffect(
-        () => () => {
-            setCurrentPage(1);
-        },
-        [setCurrentPage]
+    useEffect(() => () => {
+        setCurrentPage(1);
+    },
+    [setCurrentPage]
     );
 
     const pagesCount = Math.ceil(totalCount / pageSize);

@@ -22,7 +22,7 @@ export const PostItem = ({post, deletePost, toggleLiked}) => {
             </div>
             <div className={style.post__footer}>
                 <div className={liked ?  style.liked : null}>
-                    <span>Likes: {likes}</span>
+                    <span>{likes}</span>
                     <span>
                         {' '}
                         <i className='fab fa-react' onClick={handleToggle} />

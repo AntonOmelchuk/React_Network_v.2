@@ -3,8 +3,6 @@ import {dialogsTypes} from '../actions/types';
 const initialState = {
     dialogs: [],
     messages: [],
-    selectedDialogId: null,
-    isLoading: null,
     currentId: null
 };
 

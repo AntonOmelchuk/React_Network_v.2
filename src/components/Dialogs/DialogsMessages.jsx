@@ -10,6 +10,8 @@ const DialogsMessages = React.memo(({messages, sendMessage, currentId}) => {
         setMessage('');
     };
 
+    console.log(messages)
+
     const onKeyDownHandler = e => {
         if(e.key === 'Enter') onSendMessage();
     };

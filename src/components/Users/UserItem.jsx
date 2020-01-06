@@ -1,10 +1,10 @@
 import React from 'react';
-import { A } from 'hookrouter';
 import commonAvatar from '../../assets/avatars/common.jpg';
 import style from './Users.module.css';
+import {NavLink} from 'react-router-dom';
 
-export const UserItem = ({ user, followUser, unFollowUser, disabledButton }) => {
-    const { id, photos, name, status, followed } = user;
+export const UserItem = ({user, followUser, unFollowUser, disabledButton}) => {
+    const {id, photos, name, status, followed} = user;
 
     const handleFollow = () => followUser(id);
 
@@ -14,9 +14,9 @@ export const UserItem = ({ user, followUser, unFollowUser, disabledButton }) => 
         <div className={style.user}>
             <div className={style.info}>
                 <div className={style.avatar}>
-                    <A href={`/profile/${id}`}>
+                    <NavLink to={`/profile/${id}`}>
                         <img src={photos.large || commonAvatar} alt='user avatar' />
-                    </A>
+                    </NavLink>
                 </div>
                 <div>
                     <div className={style.status}>{status || 'Incubator student'}</div>
