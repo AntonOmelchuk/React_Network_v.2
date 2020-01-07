@@ -10,10 +10,13 @@ const DialogsMessages = React.memo(({messages, sendMessage, currentId}) => {
         setMessage('');
     };
 
-    console.log(messages)
-
     const onKeyDownHandler = e => {
-        if(e.key === 'Enter') onSendMessage();
+        if(e.key === 'Enter') {
+            e.preventDefault();
+            if(message.length > 0) {
+                onSendMessage();
+            }
+        }
     };
 
     const currentDialogMessages = messages.length ? messages.map(m => (
