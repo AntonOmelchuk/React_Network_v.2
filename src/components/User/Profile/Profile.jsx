@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
+
 import style from './Profile.module.css';
 import defaultAvatar from '../../../assets/avatars/anonymous.jpg';
+
 import Spinner from '../../common/Spinner';
 
 const Profile = ({
@@ -32,7 +34,7 @@ const Profile = ({
     if (!profile) return <Spinner />;
 
     const {photos, fullName, lookingForAJob} = profile;
-    const {github, instagram, vk} = profile.contacts;
+    const {github, instagram} = profile.contacts;
 
     const uploadPhoto = e => {
         if (e.target.files.length) updatePhoto(e.target.files[0]);
@@ -104,8 +106,8 @@ const Profile = ({
                                 <a className={style.link} href={instagram} target='_blank' rel='noopener noreferrer'> 
                                     <i className='fab fa-instagram' />
                                 </a>
-                                <a className={style.link} href={vk} target='_blank' rel='noopener noreferrer'>
-                                    <i className='fab fa-vk' />
+                                <a className={style.link} href='https://www.linkedin.com/in/AntonOmelchuk/' target='_blank' rel='noopener noreferrer'>
+                                    <i className='fab fa-linkedin-in' />
                                 </a>
                             </>
                         )}

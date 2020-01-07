@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import {A} from 'hookrouter';
 
 import style from './Users.module.css';
 
@@ -16,9 +16,9 @@ export const UserItem = ({user, followUser, unFollowUser, disabledButton, startN
         <div className={style.user}>
             <div className={style.info}>
                 <div className={style.avatar}>
-                    <NavLink to={`/profile/${id}`}>
+                    <A href={`/profile/${id}`}>
                         <img src={photos.large || commonAvatar} alt='user avatar' />
-                    </NavLink>
+                    </A>
                 </div>
                 <div>
                     <div className={style.status}>{status || 'Incubator student'}</div>

@@ -60,14 +60,14 @@ export const getMessages = userId => async dispatch => {
 };
 
 export const sendMessage = (userId, message) => async dispatch => {
-    // try {
-    //     const response = await dialogsAPI.sendMessage(userId, message);
-    //     if(response.status === 200) {
-    //         dispatch(sendMessageSuccess(response.data.data.message));
-    //     }
-    // } catch(err) {
-    //     console.log(err);
-    // }
+    try {
+        const response = await dialogsAPI.sendMessage(userId, message);
+        if(response.status === 200) {
+            dispatch(sendMessageSuccess(response.data.data.message));
+        }
+    } catch(err) {
+        console.log(err);
+    }
 };
 
 export const getInitDialogs = id => async (dispatch, getState) => {

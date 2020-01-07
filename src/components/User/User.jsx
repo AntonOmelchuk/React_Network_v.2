@@ -22,7 +22,7 @@ import {compose} from 'redux';
 import {withRouter} from 'react-router-dom';
 
 const User = ({
-    match,
+    id,
     posts,
     profile,
     addPost,
@@ -39,9 +39,9 @@ const User = ({
 }) => {
     useEffect(() => {
         document.title = 'Developers Network';
-        setProfile(match.params.id || authId);
-        getStatus(match.params.id || authId);
-    }, [auth, authId, getStatus, match.params.id, setProfile]);
+        setProfile(id || authId);
+        getStatus(id || authId);
+    }, [auth, authId, getStatus, id, setProfile]);
 
     return (
         <div>
