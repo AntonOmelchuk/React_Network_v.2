@@ -1,7 +1,7 @@
-import {INITIALIZED_SUCCESS} from '../actions/types';
+import {appTypes} from '../actions/types';
 import {setAuth} from './authActions';
 
-export const initialized = () => ({type: INITIALIZED_SUCCESS});
+export const initialized = () => ({type: appTypes.INITIALIZED_SUCCESS});
 
 export const initializeApp = () => async dispatch => {
     try {

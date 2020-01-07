@@ -1,4 +1,4 @@
-import {DISABLE_BUTTON, GET_USERS, SET_CURRENT_PAGE, TOGGLE_FETCHING, TOGGLE_FOLLOWING} from '../actions/types';
+import {usersTypes} from '../actions/types';
 
 const initialState = {
     users: [],
@@ -11,24 +11,24 @@ const initialState = {
 
 export const usersReducer = (state = initialState, action) => {
     switch(action.type) {
-        case GET_USERS:
+        case usersTypes.GET_USERS:
             return {
                 ...state,
                 users: action.payload.users,
                 totalCount: action.payload.totalCount,
                 isFetching: false
             };
-        case TOGGLE_FETCHING:
+        case usersTypes.TOGGLE_FETCHING:
             return {
                 ...state,
                 isFetching: true
             };
-        case SET_CURRENT_PAGE:
+        case usersTypes.SET_CURRENT_PAGE:
             return {
                 ...state,
                 currentPage: action.payload
             };
-        case TOGGLE_FOLLOWING:
+        case usersTypes.TOGGLE_FOLLOWING:
             return {
                 ...state,
                 users: state.users.map(user => {
@@ -39,7 +39,7 @@ export const usersReducer = (state = initialState, action) => {
                     }
                 })
             };
-        case DISABLE_BUTTON:
+        case usersTypes.DISABLE_BUTTON:
             return {
                 ...state,
                 disabledButton: action.payload.status

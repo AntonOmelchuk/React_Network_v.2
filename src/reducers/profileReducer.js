@@ -1,16 +1,9 @@
+import {profileTypes} from '../actions/types';
+
 import ava1 from '../assets/avatars/ava1.jpg';
 import ava2 from '../assets/avatars/ava2.jpg';
 import ava3 from '../assets/avatars/ava3.jpg';
 import ava4 from '../assets/avatars/ava4.jpg';
-import {
-    ADD_POST,
-    DELETE_POST,
-    SET_PROFILE,
-    TOGGLE_LIKED,
-    GET_STATUS,
-    UPDATE_STATUS,
-    TOGGLE_PROFILE_FETCHING, SET_PHOTO
-} from '../actions/types';
 
 const initialState = {
     profile: null,
@@ -26,32 +19,32 @@ const initialState = {
 
 export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_PROFILE:
+        case profileTypes.SET_PROFILE:
             return {
                 ...state,
                 profile: action.payload
             };
-        case GET_STATUS:
+        case profileTypes.GET_STATUS:
             return {
                 ...state,
                 status: action.payload
             };
-        case UPDATE_STATUS:
+        case profileTypes.UPDATE_STATUS:
             return {
                 ...state,
                 status: action.payload
             };
-        case ADD_POST:
+        case profileTypes.ADD_POST:
             return {
                 ...state,
                 posts: [...state.posts, action.payload]
             };
-        case DELETE_POST:
+        case profileTypes.DELETE_POST:
             return {
                 ...state,
                 posts: state.posts.filter(post => post.id !== action.payload)
             };
-        case TOGGLE_LIKED:
+        case profileTypes.TOGGLE_LIKED:
             return {
                 ...state,
                 posts: state.posts.map(post => {
@@ -66,12 +59,12 @@ export const profileReducer = (state = initialState, action) => {
                     return post;
                 })
             };
-        case TOGGLE_PROFILE_FETCHING:
+        case profileTypes.TOGGLE_PROFILE_FETCHING:
             return {
                 ...state,
                 isFetching: !state.isFetching
             };
-        case SET_PHOTO: {
+        case profileTypes.SET_PHOTO: {
             return {
                 ...state,
                 profile: {...state.profile, photos: action.payload}

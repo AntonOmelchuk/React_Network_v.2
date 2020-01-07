@@ -1,4 +1,4 @@
-import {LOGOUT, SET_AUTH} from './types';
+import {authTypes} from './types';
 import {authAPI} from '../api/api';
 
 export const setAuth = () => async dispatch => {
@@ -7,12 +7,12 @@ export const setAuth = () => async dispatch => {
 
         if(response.data.resultCode === 0) {
             dispatch({
-                type: SET_AUTH,
+                type: authTypes.SET_AUTH,
                 payload: response.data.data
             });
         }
     } catch(err) {
-
+        console.log(err);
     }
 };
 
@@ -30,8 +30,8 @@ export const logout = () => async dispatch => {
     try {
         await authAPI.logout();
 
-        dispatch({type: LOGOUT});
+        dispatch({type: authTypes.LOGOUT});
     } catch(err) {
-
+        console.log(err);
     }
 };

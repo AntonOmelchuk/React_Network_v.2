@@ -42,9 +42,7 @@ export const getDialogs = () => async dispatch => {
 
 export const getMessages = userId => async dispatch => {
     try {
-        // dispatch(toggleIsLoading(true));
         const response = await dialogsAPI.getMessages(userId);
-        // dispatch(toggleIsLoading(false));
         dispatch(setCurrentId(userId));
         if(response.status === 200) {
             dispatch(getMessagesSuccess(response.data.items));
