@@ -8,10 +8,13 @@ import {Field, reduxForm} from 'redux-form';
 const Posts = React.memo(({posts, addPost, deletePost, toggleLiked}) => {
 
     const handleKeyDown = e => {
-        if(e.key === 'Enter') onAddPost ()
+        if(e.key === 'Enter') {
+            onAddPost()
+        }
     };
 
     const onAddPost = data => {
+        if(!data.message) return false;
         const post = {
             id: uuid.v4(),
             ava: ava1,
@@ -42,7 +45,7 @@ const AddPostForm = ({handleSubmit, handleKeyDown, reset}) => {
 
     return (
         <form className={style.add__form} onSubmit={onSubmit}>
-            <Field type='text' name='message' component='input' onChange={handleKeyDown} maxLength='45'/>
+            <Field type='text' name='message' component='input' minLength='1' onChange={handleKeyDown} maxLength='45'/>
             <button>Add</button>
         </form>
     )

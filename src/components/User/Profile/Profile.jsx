@@ -34,7 +34,7 @@ const Profile = ({
     if (!profile) return <Spinner />;
 
     const {photos, fullName, lookingForAJob} = profile;
-    const {github, instagram} = profile.contacts;
+    const {github, instagram, vk} = profile.contacts;
 
     const uploadPhoto = e => {
         if (e.target.files.length) updatePhoto(e.target.files[0]);
@@ -108,6 +108,9 @@ const Profile = ({
                                 </a>
                                 <a className={style.link} href='https://www.linkedin.com/in/AntonOmelchuk/' target='_blank' rel='noopener noreferrer'>
                                     <i className='fab fa-linkedin-in' />
+                                </a>
+                                <a className={style.link} href={vk} target='_blank' rel='noopener noreferrer'>
+                                    <i className='fab fa-vk' />
                                 </a>
                             </>
                         )}

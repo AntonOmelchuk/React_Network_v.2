@@ -130,5 +130,6 @@ export const SendButton = styled.button`
       
       &:disabled {
         opacity: .45;
+        cursor: default;
       }
 `;
