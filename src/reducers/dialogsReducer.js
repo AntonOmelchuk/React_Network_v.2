@@ -3,7 +3,9 @@ import {dialogsTypes} from '../actions/types';
 const initialState = {
     dialogs: [],
     messages: [],
-    currentId: null
+    currentId: null,
+    showModal: false,
+    currentUser: []
 };
 
 export const dialogsReducer = (state = initialState, action) => {
@@ -34,6 +36,16 @@ export const dialogsReducer = (state = initialState, action) => {
                 currentId: action.payload
             };
         }
+        case dialogsTypes.TOGGLE_SHOW_MODAL:
+            return {
+                ...state,
+                showModal: !state.showModal
+            };
+        case dialogsTypes.SET_CURRENT_USER:
+            return {
+                ...state,
+                currentUser: action.payload
+            };
         default:
             return state;
     }

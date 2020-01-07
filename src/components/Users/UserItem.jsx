@@ -1,9 +1,11 @@
 import React from 'react';
-import commonAvatar from '../../assets/avatars/common.jpg';
-import style from './Users.module.css';
 import {NavLink} from 'react-router-dom';
 
-export const UserItem = ({user, followUser, unFollowUser, disabledButton}) => {
+import style from './Users.module.css';
+
+import commonAvatar from '../../assets/avatars/common.jpg';
+
+export const UserItem = ({user, followUser, unFollowUser, disabledButton, startNewDialog}) => {
     const {id, photos, name, status, followed} = user;
 
     const handleFollow = () => followUser(id);
@@ -21,6 +23,9 @@ export const UserItem = ({user, followUser, unFollowUser, disabledButton}) => {
                 <div>
                     <div className={style.status}>{status || 'Incubator student'}</div>
                     <div className={style.name}>{name}</div>
+                    <div className={style.writeMessageButton} onClick={() => startNewDialog({status, name, id, photos})}>
+                        Write message
+                    </div>
                 </div>
             </div>
             {followed ? (

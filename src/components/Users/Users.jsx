@@ -1,8 +1,12 @@
 import React, {useEffect} from 'react';
-import style from './Users.module.css';
 import {connect} from 'react-redux';
-import UserItem from './UserItem';
 import ReactPaginate from 'react-paginate';
+
+import style from './Users.module.css';
+
+import UserItem from './UserItem';
+import Spinner from '../common/Spinner'
+
 import {
     followUser,
     getUsers,
@@ -10,7 +14,7 @@ import {
     toggleFetching,
     unFollowUser
 } from '../../actions/usersActions';
-import Spinner from '../common/Spinner';
+import {startNewDialog} from '../../actions/dialogsActions';
 
 const Users = props => {
     const {
@@ -24,7 +28,8 @@ const Users = props => {
         isFetching,
         followUser,
         unFollowUser,
-        disabledButton
+        disabledButton,
+        startNewDialog
     } = props;
 
     useEffect(() => {
@@ -77,6 +82,7 @@ const Users = props => {
                         followUser={followUser}
                         unFollowUser={unFollowUser}
                         disabledButton={disabledButton}
+                        startNewDialog={startNewDialog}
                     />
                 ))
             )}
@@ -99,5 +105,6 @@ export default connect(mapStateToProps, {
     setCurrentPage,
     toggleFetching,
     followUser,
-    unFollowUser
+    unFollowUser,
+    startNewDialog
 })(Users);

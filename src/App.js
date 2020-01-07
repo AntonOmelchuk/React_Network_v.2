@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {connect, Provider} from 'react-redux';
+import {BrowserRouter} from 'react-router-dom';
 import {useRoutes} from 'hookrouter';
 
 import style from './index.module.css';
@@ -14,9 +15,9 @@ import Navbar from './components/Navbar/Navbar';
 import Nav from './components/Nav/Nav';
 import User from './components/User/User';
 import Login from './components/Login/Login';
-import {BrowserRouter} from 'react-router-dom';
+import DialogModal from './components/DialogModal/DialogModal';
 
-const App = ({initialized, initializeApp, auth}) => {
+const App = ({initialized, initializeApp, auth, showModal}) => {
 
     useEffect(() => {
         initializeApp();
@@ -31,6 +32,7 @@ const App = ({initialized, initializeApp, auth}) => {
         <div className={style.page}>
             <Navbar />
             <Nav />
+            {showModal && <DialogModal />}
             <div className={style.content}>
                 {routeResult || <User />}
             </div>
@@ -41,7 +43,8 @@ const App = ({initialized, initializeApp, auth}) => {
 
 const mapStateToProps = state => ({
     initialized: state.app.isInitialized,
-    auth: getAuth(state)
+    auth: getAuth(state),
+    showModal: state.dialogs.showModal
 });
 
 const AppContainer = connect(mapStateToProps, {initializeApp})(App);
