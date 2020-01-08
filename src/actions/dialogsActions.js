@@ -63,19 +63,18 @@ export const getMessages = userId => async dispatch => {
 };
 
 export const sendMessage = (userId, message, fromModal = false) => async dispatch => {
-    // try {
-    //         const response = await dialogsAPI.sendMessage(userId, message);
-    //         if(response.status === 200) {
-    if(fromModal) {
-        console.log(userId, message, fromModal);
-        dispatch(showSendMessageSuccessModal());
-        setTimeout(() => dispatch(hideSendMessageSuccessModal()), 5400);
+    try {
+        const response = await dialogsAPI.sendMessage(userId, message);
+        if(response.status === 200) {
+            if(fromModal) {
+                dispatch(showSendMessageSuccessModal());
+                setTimeout(() => dispatch(hideSendMessageSuccessModal()), 5400);
+            }
+            dispatch(sendMessageSuccess(response.data.data.message));
+        }
+    } catch(err) {
+        console.log(err);
     }
-    //         dispatch(sendMessageSuccess(response.data.data.message));
-    //     }
-    // } catch(err) {
-    //     console.log(err);
-    // }
 };
 
 export const getInitDialogs = id => async (dispatch, getState) => {
@@ -93,4 +92,14 @@ export const getInitDialogs = id => async (dispatch, getState) => {
 export const startNewDialog = user => async dispatch => {
     dispatch(toggleShowModal());
     dispatch(setCurrentUser(user));
+};
+
+export const deleteMessages = (messages, userId) => async dispatch => {
+    try {
+        await messages.map(id => dialogsAPI.deleteMessage(id));
+
+        dispatch(getMessages(userId));
+    } catch(err) {
+        console.log(err);
+    }
 };

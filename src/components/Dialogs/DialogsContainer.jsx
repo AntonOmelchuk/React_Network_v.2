@@ -3,13 +3,14 @@ import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 
 import {selectCurrentId, selectDialogs, selectIsLoading, selectMessages} from '../../selectors/dialogsSelectors';
-import {getInitDialogs, getMessages, sendMessage} from '../../actions/dialogsActions';
+import {deleteMessages, getInitDialogs, getMessages, sendMessage} from '../../actions/dialogsActions';
 
 import Dialogs from './Dialogs';
 
 const DialogsContainer = ({
     getInitDialogs,
     getMessages,
+    deleteMessages,
     dialogs,
     messages,
     sendMessage,
@@ -24,7 +25,7 @@ const DialogsContainer = ({
 
     return (
         <Dialogs dialogs={dialogs} isLoading={isLoading} currentId={currentId} sendMessage={sendMessage}
-            messages={messages} getMessages={getMessages} />
+            messages={messages} getMessages={getMessages} deleteMessages={deleteMessages} />
     );
 };
 
@@ -35,4 +36,4 @@ const mapStateToProps = createStructuredSelector({
     currentId: selectCurrentId
 });
 
-export default connect(mapStateToProps, {sendMessage, getInitDialogs, getMessages})(DialogsContainer);
+export default connect(mapStateToProps, {sendMessage, getInitDialogs, getMessages, deleteMessages})(DialogsContainer);

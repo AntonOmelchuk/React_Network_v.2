@@ -54,12 +54,21 @@
 }
 
 .messages {
+    position: fixed;
+    top: 90px;
+    left: 522px;
+    z-index: 10;
     height: calc(100vh - 300px);
-    margin-left: 30px;
     padding-left: 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    cursor: pointer;
+}
+
+.message {
+    padding: 9px;
 }
 
 .senderInfo {
@@ -81,6 +90,11 @@
     color: rgba(98, 98, 98, 0.84);
 }
 
+.deleteMessages {
+    background-color: rgba(44, 83, 100, 0.84);
+    border-radius: 3px;
+}
+
 .sendMessageTextarea {
     width: 400px;
     height: auto;
@@ -93,13 +107,13 @@
     outline: none;
 }
 
-.sendButtonContainer {
+.buttonsContainer {
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
-.sendButton {
+.dialogButton {
     width: 48px;
     padding: 0;
     margin-top: 9px;
@@ -109,11 +123,15 @@
     background-color: transparent;
 }
 
-.sendButton:hover {
+.dialogButton:hover {
     opacity: .72;
 }
 
-.sendButton:disabled {
+.dialogButton:disabled {
     opacity: .45;
     cursor: auto;
+}
+
+.deleteMessagesButton {
+    margin-right: 21px;
 }

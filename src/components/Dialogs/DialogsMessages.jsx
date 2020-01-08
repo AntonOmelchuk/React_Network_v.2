@@ -2,8 +2,25 @@ import React, {useState} from 'react';
 import style from './Dialogs.module.css';
 import TextareaAutosize from 'react-autosize-textarea';
 
-const DialogsMessages = React.memo(({messages, sendMessage, currentId}) => {
+const DialogsMessages = React.memo(({messages, sendMessage, currentId, deleteMessages}) => {
     const [message, setMessage] = useState('');
+    const [deleteMessagesId, setDeleteMessagesId] = useState([]);
+
+    const addDeleteMessagesId = id => {
+        if(deleteMessagesId.includes(id)) {
+            const newDeleteMessages = deleteMessagesId.filter(mId => {
+                return mId !== id
+            });
+
+            return setDeleteMessagesId(newDeleteMessages);
+        }
+
+        setDeleteMessagesId([...deleteMessagesId, id]);
+    };
+
+    const cancelDeleteMessages = () => setDeleteMessagesId([]);
+
+    const onDeleteMessage = () => deleteMessages(deleteMessagesId, currentId);
 
     const onSendMessage = () => {
         sendMessage(currentId, message);
@@ -20,7 +37,8 @@ const DialogsMessages = React.memo(({messages, sendMessage, currentId}) => {
     };
 
     const currentDialogMessages = messages.length ? messages.map(m => (
-        <div key={m.id}>
+        <div key={m.id} onClick={() => addDeleteMessagesId(m.id)}
+             className={deleteMessagesId.includes(m.id) ? style.deleteMessages + ' ' + style.message : style.message}>
             <div className={style.senderInfo}>
                 <div className={style.sender}>{m.senderName}</div>
                 <div className={style.time}>{m.addedAt.slice(11, 16)}</div>
@@ -36,8 +54,14 @@ const DialogsMessages = React.memo(({messages, sendMessage, currentId}) => {
                 <TextareaAutosize className={style.sendMessageTextarea} value={message}
                     onChange={e => setMessage(e.target.value)} onKeyDown={e => onKeyDownHandler(e)}
                     maxLength={360} />
-                <div className={style.sendButtonContainer}>
-                    <button disabled={!message.length} className={style.sendButton} onClick={onSendMessage}>
+                <div className={style.buttonsContainer}>
+                    <div>
+                        {
+                            deleteMessagesId.length > 0 &&
+                            <DeleteMessagesButtons cancelDeleteMessages={cancelDeleteMessages}
+                                                   onDeleteMessage={onDeleteMessage} />}
+                    </div>
+                    <button disabled={!message.length} className={style.dialogButton} onClick={onSendMessage}>
                         Send
                     </button>
                 </div>
@@ -45,5 +69,12 @@ const DialogsMessages = React.memo(({messages, sendMessage, currentId}) => {
         </div>
     );
 });
+
+const DeleteMessagesButtons = ({cancelDeleteMessages, onDeleteMessage}) => (
+    <>
+        <button onClick={cancelDeleteMessages} className={style.dialogButton + ' ' + style.deleteMessagesButton}>cancel</button>
+        <button onClick={onDeleteMessage} className={style.dialogButton + ' ' + style.deleteMessagesButton}>delete</button>
+    </>
+);
 
 export default DialogsMessages;
