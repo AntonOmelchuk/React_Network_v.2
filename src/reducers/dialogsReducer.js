@@ -5,7 +5,8 @@ const initialState = {
     messages: [],
     currentId: null,
     showModal: false,
-    currentUser: []
+    currentUser: [],
+    showSendMessageSuccessModal: false
 };
 
 export const dialogsReducer = (state = initialState, action) => {
@@ -45,6 +46,16 @@ export const dialogsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 currentUser: action.payload
+            };
+        case dialogsTypes.SHOW_SENT_MESSAGE_SUCCESS_MODAL:
+            return {
+                ...state,
+                showSendMessageSuccessModal: true
+            };
+        case dialogsTypes.HIDE_SENT_MESSAGE_SUCCESS_MODAL:
+            return {
+                ...state,
+                showSendMessageSuccessModal: false
             };
         default:
             return state;

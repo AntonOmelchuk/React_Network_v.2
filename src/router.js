@@ -1,7 +1,7 @@
 import React from 'react';
 import User from './components/User/User';
 import Login from './components/Login/Login';
-import Loading from './components/common/Loading';
+import Loading from './components/common/waitingComponents/Loading';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 

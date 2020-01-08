@@ -20,7 +20,7 @@ const DialogsContainer = ({
     useEffect(() => {
         getInitDialogs(id);
         document.title = 'Dialogs';
-    }, []);
+    }, [getInitDialogs, id]);
 
     return (
         <Dialogs dialogs={dialogs} isLoading={isLoading} currentId={currentId} sendMessage={sendMessage}

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
 
-import defaultAvatar from '../../assets/avatars/common.jpg';
+import defaultAvatar from '../../../../assets/avatars/common.jpg';
 
 import {
     CloseButtonContainer,
@@ -19,7 +19,7 @@ import {
     UserStatus
 } from './dialogModal.style';
 
-import {sendMessage, toggleShowModal} from '../../actions/dialogsActions';
+import {sendMessage, toggleShowModal} from '../../../../actions/dialogsActions';
 
 const DialogModal = ({toggleShowModal, user, sendMessage}) => {
     const {id, status, name, photos} = user;
@@ -27,7 +27,7 @@ const DialogModal = ({toggleShowModal, user, sendMessage}) => {
     const [message, setMessage] = useState('');
 
     const onSendMessage = () => {
-        sendMessage(id, message);
+        sendMessage(id, message, true);
         setMessage('');
         toggleShowModal();
     };

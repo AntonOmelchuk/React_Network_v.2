@@ -34,6 +34,9 @@ export const setCurrentUser = user => ({
     payload: user
 });
 
+export const showSendMessageSuccessModal = () => ({type: dialogsTypes.SHOW_SENT_MESSAGE_SUCCESS_MODAL});
+export const hideSendMessageSuccessModal = () => ({type: dialogsTypes.HIDE_SENT_MESSAGE_SUCCESS_MODAL});
+
 export const getDialogs = () => async dispatch => {
     try {
         dispatch(toggleIsLoading(true));
@@ -59,15 +62,20 @@ export const getMessages = userId => async dispatch => {
     }
 };
 
-export const sendMessage = (userId, message) => async dispatch => {
-    try {
-        const response = await dialogsAPI.sendMessage(userId, message);
-        if(response.status === 200) {
-            dispatch(sendMessageSuccess(response.data.data.message));
-        }
-    } catch(err) {
-        console.log(err);
+export const sendMessage = (userId, message, fromModal = false) => async dispatch => {
+    // try {
+    //         const response = await dialogsAPI.sendMessage(userId, message);
+    //         if(response.status === 200) {
+    if(fromModal) {
+        console.log(userId, message, fromModal);
+        dispatch(showSendMessageSuccessModal());
+        setTimeout(() => dispatch(hideSendMessageSuccessModal()), 5400);
     }
+    //         dispatch(sendMessageSuccess(response.data.data.message));
+    //     }
+    // } catch(err) {
+    //     console.log(err);
+    // }
 };
 
 export const getInitDialogs = id => async (dispatch, getState) => {

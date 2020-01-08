@@ -5,7 +5,7 @@ import ReactPaginate from 'react-paginate';
 import style from './Users.module.css';
 
 import UserItem from './UserItem';
-import Spinner from '../common/Spinner'
+import Spinner from '../common/waitingComponents/Spinner';
 
 import {
     followUser,

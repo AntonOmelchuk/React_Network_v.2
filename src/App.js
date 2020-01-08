@@ -10,14 +10,15 @@ import {initializeApp} from './actions/appActions';
 import {store} from './store/store';
 import Routes from './router';
 
-import Spinner from './components/common/Spinner';
+import Spinner from './components/common/waitingComponents/Spinner';
 import Navbar from './components/Navbar/Navbar';
 import Nav from './components/Nav/Nav';
 import User from './components/User/User';
 import Login from './components/Login/Login';
-import DialogModal from './components/DialogModal/DialogModal';
+import DialogModal from './components/common/modalWindows/DialogModal/DialogModal';
+import SendMessageSuccessModal from './components/common/modalWindows/sendMessageSuccess/SendMessageSuccessModal';
 
-const App = ({initialized, initializeApp, auth, showModal}) => {
+const App = ({initialized, initializeApp, auth, showModal, sendMessageModal}) => {
 
     useEffect(() => {
         initializeApp();
@@ -33,6 +34,7 @@ const App = ({initialized, initializeApp, auth, showModal}) => {
             <Navbar />
             <Nav />
             {showModal && <DialogModal />}
+            {sendMessageModal && <SendMessageSuccessModal />}
             <div className={style.content}>
                 {routeResult || <User />}
             </div>
@@ -44,7 +46,8 @@ const App = ({initialized, initializeApp, auth, showModal}) => {
 const mapStateToProps = state => ({
     initialized: state.app.isInitialized,
     auth: getAuth(state),
-    showModal: state.dialogs.showModal
+    showModal: state.dialogs.showModal,
+    sendMessageModal: state.dialogs.showSendMessageSuccessModal
 });
 
 const AppContainer = connect(mapStateToProps, {initializeApp})(App);

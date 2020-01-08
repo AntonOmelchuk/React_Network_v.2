@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import style from './Profile.module.css';
 import defaultAvatar from '../../../assets/avatars/anonymous.jpg';
 
-import Spinner from '../../common/Spinner';
+import Spinner from '../../common/waitingComponents/Spinner';
 
 const Profile = ({
     profile,

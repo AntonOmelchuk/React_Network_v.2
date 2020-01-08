@@ -2,7 +2,7 @@ import React from 'react';
 import style from './Login.module.css';
 import {Field, reduxForm} from 'redux-form';
 import {maxLength, required} from '../../utils/validators/validators';
-import {Email, Password} from '../common/FormControl';
+import {Email, Password} from '../common/FormControl/FormControl';
 import {connect} from 'react-redux';
 import {login} from '../../actions/authActions';
 
