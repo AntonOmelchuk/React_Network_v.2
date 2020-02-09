@@ -8,9 +8,7 @@ const DialogsMessages = React.memo(({messages, sendMessage, currentId, deleteMes
 
     const addDeleteMessagesId = id => {
         if(deleteMessagesId.includes(id)) {
-            const newDeleteMessages = deleteMessagesId.filter(mId => {
-                return mId !== id
-            });
+            const newDeleteMessages = deleteMessagesId.filter(mId => mId !== id);
 
             return setDeleteMessagesId(newDeleteMessages);
         }
@@ -38,7 +36,7 @@ const DialogsMessages = React.memo(({messages, sendMessage, currentId, deleteMes
 
     const currentDialogMessages = messages.length ? messages.map(m => (
         <div key={m.id} onClick={() => addDeleteMessagesId(m.id)}
-             className={deleteMessagesId.includes(m.id) ? style.deleteMessages + ' ' + style.message : style.message}>
+            className={deleteMessagesId.includes(m.id) ? style.deleteMessages + ' ' + style.message : style.message}>
             <div className={style.senderInfo}>
                 <div className={style.sender}>{m.senderName}</div>
                 <div className={style.time}>{m.addedAt.slice(11, 16)}</div>
@@ -59,7 +57,7 @@ const DialogsMessages = React.memo(({messages, sendMessage, currentId, deleteMes
                         {
                             deleteMessagesId.length > 0 &&
                             <DeleteMessagesButtons cancelDeleteMessages={cancelDeleteMessages}
-                                                   onDeleteMessage={onDeleteMessage} />}
+                                onDeleteMessage={onDeleteMessage} />}
                     </div>
                     <button disabled={!message.length} className={style.dialogButton} onClick={onSendMessage}>
                         Send
@@ -72,8 +70,12 @@ const DialogsMessages = React.memo(({messages, sendMessage, currentId, deleteMes
 
 const DeleteMessagesButtons = ({cancelDeleteMessages, onDeleteMessage}) => (
     <>
-        <button onClick={cancelDeleteMessages} className={style.dialogButton + ' ' + style.deleteMessagesButton}>cancel</button>
-        <button onClick={onDeleteMessage} className={style.dialogButton + ' ' + style.deleteMessagesButton}>delete</button>
+        <button onClick={cancelDeleteMessages} className={style.dialogButton + ' ' + style.deleteMessagesButton}>
+            cancel
+        </button>
+        <button onClick={onDeleteMessage} className={style.dialogButton + ' ' + style.deleteMessagesButton}>
+            delete
+        </button>
     </>
 );
 
