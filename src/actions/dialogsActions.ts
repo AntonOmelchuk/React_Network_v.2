@@ -1,47 +1,11 @@
 import {dialogsAPI} from '../api/api';
 import {dialogsTypes} from './types';
-
-type ToggleIsLoadingType = {
-    type: typeof dialogsTypes.TOGGLE_IS_LOADING,
-    payload: boolean
-};
-
-type SetCurrentIdType = {
-    type: typeof dialogsTypes.SET_CURRENT_ID,
-    payload: number
-};
-
-type GetDialogsSuccessType = {
-    type: typeof dialogsTypes.GET_DIALOGS_SUCCESS,
-    payload: object
-};
-
-type GetMessagesSuccessType = {
-    type: typeof dialogsTypes.GET_MESSAGES_SUCCESS,
-    payload: object
-};
-
-type SendMessageSuccessType = {
-    type: typeof dialogsTypes.SEND_MESSAGE_SUCCESS,
-    payload: string
-};
-
-type ToggleShowModal = {
-    type: typeof dialogsTypes.TOGGLE_SHOW_MODAL
-};
-
-type SetCurrentUser = {
-    type: typeof dialogsTypes.SET_CURRENT_USER,
-    payload: object
-};
-
-type ShowSendMessageSuccessModal = {
-    type: typeof dialogsTypes.SHOW_SENT_MESSAGE_SUCCESS_MODAL
-};
-
-type HideSendMessageSuccessModal = {
-    type: typeof dialogsTypes.HIDE_SENT_MESSAGE_SUCCESS_MODAL
-};
+import {
+    GetDialogsSuccessType,
+    GetMessagesSuccessType, HideSendMessageSuccessModal, SendMessageSuccessType,
+    SetCurrentIdType, SetCurrentUser, ShowSendMessageSuccessModal,
+    ToggleIsLoadingType, ToggleShowModal,
+} from './actionCreatorTypes'
 
 export const toggleIsLoading = (value: boolean): ToggleIsLoadingType => ({
     type: dialogsTypes.TOGGLE_IS_LOADING,

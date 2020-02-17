@@ -1,10 +1,6 @@
 // App types
 export const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 
-export interface InitializedSuccessAction {
-    type: typeof INITIALIZED_SUCCESS
-}
-
 // Profile types
 export const profileTypes = {
     SET_PROFILE: 'SET_PROFILE',
@@ -46,9 +42,3 @@ export const authTypes = {
     LOGOUT: 'LOGOUT'
 };
 
-export interface SetAuthAction {
-    type: typeof authTypes.SET_AUTH,
-    payload: any
-}
-
-export type AppActionTypes = InitializedSuccessAction | SetAuthAction

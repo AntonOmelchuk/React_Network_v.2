@@ -1,7 +1,8 @@
 import {usersTypes} from './types';
 import {usersAPI} from '../api/api';
+import {SetCurrentPageType, UserToggleFetchingType} from './actionCreatorTypes'
 
-export const getUsers = page => async dispatch => {
+export const getUsers = page => async (dispatch: any) => {
     try {
         const response = await usersAPI.getUser(page);
 
@@ -10,15 +11,15 @@ export const getUsers = page => async dispatch => {
             totalCount: response.data.totalCount
         }});
     } catch(err) {
-        console.log(err);
+        console.log(err)
     }
-};
+}
 
-export const toggleFetching = value => ({type: usersTypes.TOGGLE_FETCHING, payload: value});
+export const toggleFetching = (value: boolean): UserToggleFetchingType => ({type: usersTypes.TOGGLE_FETCHING, payload: value})
 
-export const setCurrentPage = page => ({type: usersTypes.SET_CURRENT_PAGE, payload: page});
+export const setCurrentPage = (page: number): SetCurrentPageType => ({type: usersTypes.SET_CURRENT_PAGE, payload: page})
 
-export const followUser = id => async dispatch => {
+export const followUser = (id: number) => async (dispatch: any) => {
     try {
         dispatch({type: usersTypes.DISABLE_BUTTON, payload: {
             id,
@@ -36,14 +37,14 @@ export const followUser = id => async dispatch => {
     } catch(err) {
         console.log(err);
     }
-};
+}
 
-export const unFollowUser = id => async dispatch => {
+export const unFollowUser = (id: number) => async (dispatch: any) => {
     try {
         dispatch({type: usersTypes.DISABLE_BUTTON, payload: {
             id,
             status: true
-        }});
+        }})
         const response = await usersAPI.unFollowUser(id);
 
         if(response.data.resultCode === 0) {
@@ -51,9 +52,9 @@ export const unFollowUser = id => async dispatch => {
             dispatch({type: usersTypes.DISABLE_BUTTON, payload: {
                 id,
                 status: false
-            }});
+            }})
         }
     } catch(err) {
-
+        console.log(err)
     }
 };
