@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import ReactPaginate from 'react-paginate';
 
-import style from './Users.module.css';
+import style from './User.module.css';
 
 import UserItem from './UserItem';
 import Spinner from '../common/waitingComponents/Spinner';
@@ -15,8 +15,24 @@ import {
     unFollowUser
 } from '../../actions/usersActions';
 import {startNewDialog} from '../../actions/dialogsActions';
+import {User} from '../../../types'
 
-const Users = props => {
+type UsersProps = {
+    users: Array<User>,
+    totalCount: number,
+    pageSize: number,
+    getUsers: (arg0: number) => void,
+    currentPage: number,
+    setCurrentPage: (arg0: number) => void,
+    toggleFetching: () => void,
+    isFetching: boolean,
+    followUser: () => void,
+    unFollowUser: () => void,
+    disabledButton: Array<number>,
+    startNewDialog: () => void
+}
+
+const Users: React.FC<UsersProps> = props => {
     const {
         users,
         totalCount,
@@ -51,7 +67,7 @@ const Users = props => {
         pages.push(i);
     }
 
-    const handleCurrentPage = e => {
+    const handleCurrentPage = (e: any) => {
         setCurrentPage(e.selected + 1);
     };
 
@@ -90,7 +106,7 @@ const Users = props => {
     );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: any) => ({
     users: state.users.users,
     totalCount: state.users.totalCount,
     pageSize: state.users.pageSize,
