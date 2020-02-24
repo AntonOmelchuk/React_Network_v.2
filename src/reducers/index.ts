@@ -3,14 +3,18 @@ import {profileReducer} from './profileReducer';
 import {dialogsReducer} from './dialogsReducer';
 import {usersReducer} from './usersReducer';
 import {authReducer} from './authReducer';
-import {reducer as formReducer} from 'redux-form';
 import {appReducer} from './appReducer';
+import {reducer as formReducer} from 'redux-form';
 
-export const reducers = combineReducers({
+export const rootReducer = combineReducers({
     profile: profileReducer,
     dialogs: dialogsReducer,
+    // @ts-ignore
     users: usersReducer,
     auth: authReducer,
     app: appReducer,
     form: formReducer
 });
+
+type RootReducerType = typeof rootReducer
+export type AppStateType = ReturnType<RootReducerType>

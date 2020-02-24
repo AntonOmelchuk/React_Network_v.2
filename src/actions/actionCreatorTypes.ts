@@ -79,8 +79,7 @@ export type HideSendMessageSuccessModal = {
 // Users types
 
 export type UserToggleFetchingType = {
-  type: typeof usersTypes.TOGGLE_FETCHING,
-  payload: boolean
+  type: typeof usersTypes.TOGGLE_FETCHING
 }
 
 export type SetCurrentPageType = {

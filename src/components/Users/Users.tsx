@@ -15,24 +15,31 @@ import {
     unFollowUser
 } from '../../actions/usersActions';
 import {startNewDialog} from '../../actions/dialogsActions';
-import {User} from '../../../types'
+import {User, UserPhotos} from '../../../types'
+import { AppStateType } from '../../reducers';
 
-type UsersProps = {
+type MapStatePropsType = {
     users: Array<User>,
     totalCount: number,
     pageSize: number,
-    getUsers: (arg0: number) => void,
     currentPage: number,
-    setCurrentPage: (arg0: number) => void,
-    toggleFetching: () => void,
     isFetching: boolean,
-    followUser: () => void,
-    unFollowUser: () => void,
     disabledButton: Array<number>,
-    startNewDialog: () => void
+    auth: boolean
 }
 
-const Users: React.FC<UsersProps> = props => {
+type MapDispatchPropsType = {
+    getUsers: (currentPage: number) => void,
+    setCurrentPage: (arg0: number) => void,
+    toggleFetching: () => void,
+    followUser: (id: number) => void,
+    unFollowUser: (id: number) => void,
+    startNewDialog: (status: string, name: string, id: number, photos: UserPhotos) => void
+}
+
+type PropsType = MapStatePropsType & MapDispatchPropsType
+
+const Users: React.FC<PropsType> = props => {
     const {
         users,
         totalCount,
@@ -67,7 +74,7 @@ const Users: React.FC<UsersProps> = props => {
         pages.push(i);
     }
 
-    const handleCurrentPage = (e: any) => {
+    const handleCurrentPage = (e: {selected: number}) => {
         setCurrentPage(e.selected + 1);
     };
 
@@ -84,6 +91,7 @@ const Users: React.FC<UsersProps> = props => {
                     pageRangeDisplayed={10}
                     onPageChange={e => handleCurrentPage(e)}
                     containerClassName={style.pagination}
+                  // @ts-ignore
                     subContainerClassName={style.pages__pagination}
                     activeClassName={style.current}
                 />
@@ -106,7 +114,7 @@ const Users: React.FC<UsersProps> = props => {
     );
 };
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     users: state.users.users,
     totalCount: state.users.totalCount,
     pageSize: state.users.pageSize,
@@ -116,7 +124,8 @@ const mapStateToProps = (state: any) => ({
     auth: state.auth.isAuth
 });
 
-export default connect(mapStateToProps, {
+export default connect<MapStatePropsType, AppStateType>
+(mapStateToProps, {
     getUsers,
     setCurrentPage,
     toggleFetching,

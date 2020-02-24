@@ -2,7 +2,7 @@ import {usersTypes} from './types';
 import {usersAPI} from '../api/api';
 import {SetCurrentPageType, UserToggleFetchingType} from './actionCreatorTypes'
 
-export const getUsers = page => async (dispatch: any) => {
+export const getUsers = (page: number) => async (dispatch: any) => {
     try {
         const response = await usersAPI.getUser(page);
 
@@ -15,7 +15,7 @@ export const getUsers = page => async (dispatch: any) => {
     }
 }
 
-export const toggleFetching = (value: boolean): UserToggleFetchingType => ({type: usersTypes.TOGGLE_FETCHING, payload: value})
+export const toggleFetching = (): UserToggleFetchingType => ({type: usersTypes.TOGGLE_FETCHING})
 
 export const setCurrentPage = (page: number): SetCurrentPageType => ({type: usersTypes.SET_CURRENT_PAGE, payload: page})
 
