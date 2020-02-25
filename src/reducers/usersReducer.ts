@@ -1,15 +1,26 @@
 import {usersTypes} from '../actions/types';
+import {UserType} from '../../types'
+import {UsersActionsType} from '../actions/actionCreatorTypes'
 
-const initialState = {
+type InitialStateType = {
+    users: Array<UserType>,
+    totalCount: number,
+    currentPage: number,
+    pageSize: number,
+    isFetching: boolean,
+    disabledButton: []
+}
+
+const initialState: InitialStateType = {
     users: [],
-    totalCount: null,
+    totalCount: 0,
     currentPage: 1,
     pageSize: 10,
     isFetching: false,
     disabledButton: []
 };
 
-export const usersReducer = (state = initialState, action) => {
+export const usersReducer = (state= initialState, action: UsersActionsType): InitialStateType => {
     switch(action.type) {
         case usersTypes.GET_USERS:
             return {
@@ -40,11 +51,11 @@ export const usersReducer = (state = initialState, action) => {
                 })
             };
         case usersTypes.DISABLE_BUTTON:
-            return {
+            return <InitialStateType>{
                 ...state,
                 disabledButton: action.payload.status
-                    ? [...state.disabledButton, action.payload.id]
-                    : [state.disabledButton.filter(id => id !== action.payload.id)]
+                  ? [...state.disabledButton, action.payload.id]
+                  : [state.disabledButton.filter(id => id !== action.payload.id)]
             };
         default:
             return state;

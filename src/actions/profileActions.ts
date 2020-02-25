@@ -42,7 +42,7 @@ export const toggleFetching = (): ToggleFetchingType => ({type: profileTypes.TOG
 
 export const setPhoto = (photo: any): SetPhotoType => ({type: profileTypes.SET_PHOTO, payload: photo})
 
-export const updatePhoto = (photo: HTMLImageElement) => async (dispatch: any) => {
+export const updatePhoto = (photo: File) => async (dispatch: any) => {
     try {
         const response = await profileAPI.updatePhoto(photo)
 

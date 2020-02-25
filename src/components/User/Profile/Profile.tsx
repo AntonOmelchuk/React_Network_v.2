@@ -1,10 +1,8 @@
 import React, {useState, useEffect, ChangeEvent} from 'react'
-
-import style from './Profile.module.css';
-import defaultAvatar from '../../../assets/avatars/anonymous.jpg';
-
 import Spinner from '../../common/waitingComponents/Spinner';
 import { ProfileType } from '../../../../types';
+import style from './Profile.module.css';
+import defaultAvatar from '../../../assets/avatars/anonymous.jpg';
 
 type OwnPropsType = {
   profile: ProfileType,

@@ -1,11 +1,9 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import ReactPaginate from 'react-paginate';
-
-import style from './User.module.css';
-
 import UserItem from './UserItem';
 import Spinner from '../common/waitingComponents/Spinner';
+import style from './Users.module.css';
 
 import {
     followUser,
@@ -124,12 +122,5 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     auth: state.auth.isAuth
 });
 
-export default connect<MapStatePropsType, AppStateType>
-(mapStateToProps, {
-    getUsers,
-    setCurrentPage,
-    toggleFetching,
-    followUser,
-    unFollowUser,
-    startNewDialog
-})(Users);
+export default connect(mapStateToProps, {getUsers, setCurrentPage,
+    toggleFetching, followUser, unFollowUser, startNewDialog})(Users);

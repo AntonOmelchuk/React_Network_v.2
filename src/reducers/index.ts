@@ -9,7 +9,6 @@ import {reducer as formReducer} from 'redux-form';
 export const rootReducer = combineReducers({
     profile: profileReducer,
     dialogs: dialogsReducer,
-    // @ts-ignore
     users: usersReducer,
     auth: authReducer,
     app: appReducer,

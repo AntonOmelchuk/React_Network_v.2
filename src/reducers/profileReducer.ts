@@ -1,11 +1,21 @@
 import {profileTypes} from '../actions/types';
+import {PostType, ProfileType} from '../../types'
+import {ProfileActionsType} from '../actions/actionCreatorTypes';
 
 import ava1 from '../assets/avatars/ava1.jpg';
 import ava2 from '../assets/avatars/ava2.jpg';
 import ava3 from '../assets/avatars/ava3.jpg';
 import ava4 from '../assets/avatars/ava4.jpg';
 
-const initialState = {
+
+type InitialStateType = {
+    profile: null | ProfileType,
+    status: null | string,
+    posts: Array<PostType>,
+    isFetching: boolean
+}
+
+const initialState: InitialStateType = {
     profile: null,
     status: null,
     posts: [
@@ -17,7 +27,7 @@ const initialState = {
     isFetching: false
 };
 
-export const profileReducer = (state = initialState, action) => {
+export const profileReducer = (state = initialState, action: ProfileActionsType): InitialStateType => {
     switch (action.type) {
         case profileTypes.SET_PROFILE:
             return {
@@ -49,7 +59,7 @@ export const profileReducer = (state = initialState, action) => {
                 ...state,
                 posts: state.posts.map(post => {
                     if(post.id === action.payload) {
-                        if(post.liked === false) {
+                        if(!post.liked) {
                             post.likes++;
                         } else {
                             post.likes--;
@@ -67,6 +77,7 @@ export const profileReducer = (state = initialState, action) => {
         case profileTypes.SET_PHOTO: {
             return {
                 ...state,
+                // @ts-ignore
                 profile: {...state.profile, photos: action.payload}
             };
         }

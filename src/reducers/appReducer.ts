@@ -1,7 +1,7 @@
-// @ts-ignore
-import { AppActionTypes, INITIALIZED_SUCCESS } from "../actions/types";
+import { INITIALIZED_SUCCESS } from '../actions/types';
+import {AppActionsType} from '../actions/actionCreatorTypes'
 
-export type InitialStateType = {
+type InitialStateType = {
     isInitialized: boolean
 }
 
@@ -9,7 +9,7 @@ const initialState: InitialStateType = {
     isInitialized: false
 };
 
-export const appReducer = (state = initialState, action: AppActionTypes) => {
+export const appReducer = (state = initialState, action: AppActionsType): InitialStateType => {
     switch(action.type) {
         case INITIALIZED_SUCCESS:
             return {

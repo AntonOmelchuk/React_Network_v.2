@@ -2,7 +2,6 @@
   "compilerOptions": {
     "module": "esnext",
     "noImplicitAny": true,
-    "esModuleInterop": true,
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
@@ -14,6 +13,7 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -23,6 +23,13 @@
     "noEmit": true,
     "jsx": "react"
   },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ],
   "files": [
     "core.ts",
     "sys.ts",
@@ -37,8 +44,5 @@
     "commandLineParser.ts",
     "tsc.ts",
     "diagnosticInformationMap.generated.ts"
-  ],
-  "include": [
-    "src"
   ]
 }

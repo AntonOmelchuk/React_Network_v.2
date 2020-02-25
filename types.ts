@@ -15,13 +15,14 @@ export type PostType = {
   ava: string,
   text: string,
   likes: number,
-  date: Date,
+  date: Date | string,
   liked: boolean
 }
 
 export type ProfileType = {
   userId: number,
   photos: UserPhotosType,
+  aboutMe: string,
   fullName: string,
   lookingForAJob: boolean,
   lookingForAJobDescription?: string,

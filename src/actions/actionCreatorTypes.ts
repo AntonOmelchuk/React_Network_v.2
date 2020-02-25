@@ -1,6 +1,37 @@
-import {dialogsTypes, INITIALIZED_SUCCESS, profileTypes, usersTypes} from './types'
+import {authTypes, dialogsTypes, INITIALIZED_SUCCESS, profileTypes, usersTypes} from './types'
+import {UserType} from '../../types'
 
-// Profile types
+export type SetAuthType = {
+  type: typeof authTypes.SET_AUTH,
+  payload: {
+    id: number,
+    email: string,
+    login: string
+  }
+}
+
+export type LogoutType = {
+  type: typeof authTypes.LOGOUT
+}
+
+export type AuthActionsType = SetAuthType & LogoutType
+
+// === Profile types === //
+
+export type SetProfileType = {
+  type: typeof profileTypes.SET_PROFILE,
+  payload: UserType
+}
+
+export type GetStatusType = {
+  type: typeof profileTypes.GET_STATUS,
+  payload: string
+}
+
+export type UpdateStatusType = {
+  type: typeof profileTypes.UPDATE_STATUS,
+  payload: string
+}
 
 export type AddPostType = {
   type: typeof profileTypes.ADD_POST,
@@ -26,13 +57,19 @@ export type SetPhotoType = {
   payload: any
 }
 
-// App types
+export type ProfileActionsType = SetProfileType & GetStatusType & UpdateStatusType
+                                  & AddPostType & DeletePostType & ToggleLikedType
+                                  & ToggleFetchingType & SetPhotoType
+
+// === App types === //
 
 export type InitializedType = {
   type: typeof INITIALIZED_SUCCESS
 }
 
-// Dialogs types
+export type AppActionsType = InitializedType
+
+// === Dialogs types === //
 
 export type ToggleIsLoadingType = {
   type: typeof dialogsTypes.TOGGLE_IS_LOADING,
@@ -76,7 +113,24 @@ export type HideSendMessageSuccessModal = {
   type: typeof dialogsTypes.HIDE_SENT_MESSAGE_SUCCESS_MODAL
 }
 
-// Users types
+// === Users types === //
+
+export type GetUsersType = {
+  type: typeof usersTypes.GET_USERS,
+  payload: {
+    users: Array<UserType>,
+    totalCount: number
+  }
+}
+
+export type FollowUnfollowUserType = {
+  type: typeof usersTypes.TOGGLE_FETCHING |
+        typeof usersTypes.DISABLE_BUTTON,
+  payload: {
+    id: number,
+    status?: boolean
+  }
+}
 
 export type UserToggleFetchingType = {
   type: typeof usersTypes.TOGGLE_FETCHING
@@ -86,3 +140,5 @@ export type SetCurrentPageType = {
   type: typeof usersTypes.SET_CURRENT_PAGE,
   payload: number
 }
+
+export type UsersActionsType = GetUsersType & FollowUnfollowUserType & UserToggleFetchingType & SetCurrentPageType
