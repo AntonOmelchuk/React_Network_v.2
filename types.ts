@@ -35,3 +35,17 @@ export type ProfileType = {
     mainLink?: string
   }
 }
+
+export type DialogType = {
+  id: number,
+  photos: UserPhotosType,
+  lastUserActivityDate: Date,
+  userName: string
+}
+
+export type MessageType = {
+  id: number,
+  senderName: string,
+  addedAt: string,
+  body: string
+}

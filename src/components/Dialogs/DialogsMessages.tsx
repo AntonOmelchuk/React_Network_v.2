@@ -1,12 +1,20 @@
 import React, {useState} from 'react';
 import style from './Dialogs.module.css';
 import TextareaAutosize from 'react-autosize-textarea';
+import {MessageType} from '../../../types'
 
-const DialogsMessages = React.memo(({messages, sendMessage, currentId, deleteMessages}) => {
+type PropsType = {
+    messages: Array<MessageType>,
+    currentId: number,
+    sendMessage: (userId: number, message: string, fromModal?: boolean) => void,
+    deleteMessages: (messages: Array<number>, userId: number) => void
+}
+
+const DialogsMessages: React.FC<PropsType> = React.memo(({messages, sendMessage, currentId, deleteMessages}) => {
     const [message, setMessage] = useState('');
-    const [deleteMessagesId, setDeleteMessagesId] = useState([]);
+    const [deleteMessagesId, setDeleteMessagesId] = useState<Array<number>>([]);
 
-    const addDeleteMessagesId = id => {
+    const addDeleteMessagesId = (id: number) => {
         if(deleteMessagesId.includes(id)) {
             const newDeleteMessages = deleteMessagesId.filter(mId => mId !== id);
 
@@ -16,9 +24,9 @@ const DialogsMessages = React.memo(({messages, sendMessage, currentId, deleteMes
         setDeleteMessagesId([...deleteMessagesId, id]);
     };
 
-    const cancelDeleteMessages = () => setDeleteMessagesId([]);
+    const cancelDeleteMessages = (): void => setDeleteMessagesId([]);
 
-    const onDeleteMessage = () => deleteMessages(deleteMessagesId, currentId);
+    const onDeleteMessage = (): void => deleteMessages(deleteMessagesId, currentId);
 
     const onSendMessage = () => {
         sendMessage(currentId, message);
@@ -56,8 +64,10 @@ const DialogsMessages = React.memo(({messages, sendMessage, currentId, deleteMes
                     <div>
                         {
                             deleteMessagesId.length > 0 &&
-                            <DeleteMessagesButtons cancelDeleteMessages={cancelDeleteMessages}
-                                onDeleteMessage={onDeleteMessage} />}
+                            <DeleteMessagesButtons
+                              cancelDeleteMessages={cancelDeleteMessages}
+                              onDeleteMessage={onDeleteMessage}
+                            />}
                     </div>
                     <button disabled={!message.length} className={style.dialogButton} onClick={onSendMessage}>
                         Send

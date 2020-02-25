@@ -40,9 +40,9 @@ type MapDispatchPropsType = {
   deletePost: (id: string) => void,
   toggleLiked: (id: string) => void,
   setProfile: (id: number) => void,
-  updateStatus: (status: string) => void,
+  updateStatus: (status?: string) => void,
   getStatus: (id: number) => void,
-  updatePhoto: (photo: HTMLImageElement) => void
+  updatePhoto: (photo: File) => void
 }
 
 type PropsType = OwnPropsType & MapStatePropsType & MapDispatchPropsType

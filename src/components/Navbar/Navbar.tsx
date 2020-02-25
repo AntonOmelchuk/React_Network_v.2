@@ -1,9 +1,22 @@
 import React from 'react';
-import style from './Navbar.module.css';
 import {connect} from 'react-redux';
 import {logout, setAuth} from '../../actions/authActions';
+import {AppStateType} from '../../reducers'
+import style from './Navbar.module.css';
 
-const Navbar = ({auth, login, logout}) => (
+type MapStatePropsType = {
+  auth: boolean,
+  login: number | null
+}
+
+type MapDispatchPropsType = {
+  setAuth: () => void,
+  logout: () => void
+}
+
+type PropsType = MapStatePropsType & MapDispatchPropsType
+
+const Navbar: React.FC<PropsType> = ({auth, login, logout}) => (
     <div className={style.navbar}>
         <div className={style.container}>
             <h3 className={style.title}>Developers Network</h3>
@@ -18,7 +31,7 @@ const Navbar = ({auth, login, logout}) => (
     </div>
 );
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     auth: state.auth.isAuth,
     login: state.auth.login
 });

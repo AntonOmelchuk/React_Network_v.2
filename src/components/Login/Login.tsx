@@ -1,18 +1,29 @@
-import React from 'react';
-import style from './Login.module.css';
+import React, {FormEvent} from 'react'
 import {Field, reduxForm} from 'redux-form';
+import {connect} from 'react-redux';
 import {maxLength, required} from '../../utils/validators/validators';
 import {Email, Password} from '../common/FormControl/FormControl';
-import {connect} from 'react-redux';
 import {login} from '../../actions/authActions';
+import style from './Login.module.css';
 
 const requiredEmail = required('Email');
 const requiredPassword = required('password');
 const passwordMaxLength = maxLength(18);
 const emailMaxLength = maxLength(30);
 
-const LoginForm = ({handleSubmit, reset}) => {
-    const onSubmit = e => {
+type OwnPropsType = {
+  handleSubmit: () => void,
+  reset: () => void
+}
+
+type MapDispatchPropsType = {
+  login: (email: string, password: number, rememberMe: boolean) => void
+}
+
+type PropsType = MapDispatchPropsType & OwnPropsType
+
+const LoginForm: React.FC<PropsType> = ({handleSubmit, reset}) => {
+    const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         handleSubmit();
         reset();
@@ -63,10 +74,11 @@ const LoginForm = ({handleSubmit, reset}) => {
     );
 };
 
+// @ts-ignore
 const LoginFormRedux = reduxForm({form: 'login'})(LoginForm);
 
-const Login = ({login}) => {
-    const onSubmit = formData => {
+const Login: React.FC<MapDispatchPropsType> = ({login}) => {
+    const onSubmit = (formData: any) => {
         const {email, password, rememberMe} = formData;
 
         login(email, password, rememberMe);

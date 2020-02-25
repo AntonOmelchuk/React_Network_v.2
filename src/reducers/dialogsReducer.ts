@@ -2,7 +2,7 @@ import {dialogsTypes} from '../actions/types';
 
 type InitialStateType = {
     dialogs: [],
-    messages: [],
+    messages: any,
     currentId: null | number,
     showModal: boolean,
     currentUser: [],

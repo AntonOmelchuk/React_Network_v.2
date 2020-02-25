@@ -4,8 +4,18 @@ import style from './Dialogs.module.css';
 
 import DialogsUsers from './DialogsUsers';
 import DialogsMessages from './DialogsMessages';
+import {DialogType, MessageType} from '../../../types'
 
-const Dialogs = ({dialogs, currentId, sendMessage, getMessages, messages, deleteMessages}) => {
+type PropsType = {
+  dialogs: Array<DialogType>,
+  messages: Array<MessageType>,
+  currentId: number,
+  sendMessage: (userId: number, message: string, fromModal:boolean) => void,
+  getMessages: (userId: number) => void,
+  deleteMessages: (messages: Array<number>, userId: number) => void
+}
+
+const Dialogs: React.FC<PropsType> = ({dialogs, currentId, sendMessage, getMessages, messages, deleteMessages}) => {
    
     if(!dialogs) return 'No dialogs';
     return (

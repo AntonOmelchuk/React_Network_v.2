@@ -1,13 +1,32 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
+import Dialogs from './Dialogs';
 
 import {selectCurrentId, selectDialogs, selectIsLoading, selectMessages} from '../../selectors/dialogsSelectors';
 import {deleteMessages, getInitDialogs, getMessages, sendMessage} from '../../actions/dialogsActions';
 
-import Dialogs from './Dialogs';
+type OwnPropsType = {
+    id: number
+}
 
-const DialogsContainer = ({
+type MapStatePropsType = {
+    dialogs: [],
+    messages: [],
+    isLoading: boolean,
+    currentId: number
+}
+
+type MapDispatchPropsType = {
+    sendMessage: (userId: number, message: string, fromModal:boolean) => void,
+    getInitDialogs: (id: number) => void,
+    getMessages: (userId: number) => void,
+    deleteMessages: (messages: Array<number>, userId: number) => void
+}
+
+type PropsType = OwnPropsType & MapStatePropsType & MapDispatchPropsType
+
+const DialogsContainer: React.FC<PropsType> = ({
     getInitDialogs,
     getMessages,
     deleteMessages,
@@ -23,9 +42,14 @@ const DialogsContainer = ({
         document.title = 'Dialogs';
     }, [getInitDialogs, id]);
 
+
     return (
-        <Dialogs dialogs={dialogs} isLoading={isLoading} currentId={currentId} sendMessage={sendMessage}
-            messages={messages} getMessages={getMessages} deleteMessages={deleteMessages} />
+        <Dialogs dialogs={dialogs}
+                 // @ts-ignore
+                 isLoading={isLoading}
+                 currentId={currentId}
+                 sendMessage={sendMessage} messages={messages}
+                 getMessages={getMessages} deleteMessages={deleteMessages} />
     );
 };
 
