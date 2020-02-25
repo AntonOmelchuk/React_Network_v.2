@@ -15,11 +15,11 @@ import {
     unFollowUser
 } from '../../actions/usersActions';
 import {startNewDialog} from '../../actions/dialogsActions';
-import {User, UserPhotos} from '../../../types'
+import {UserType, UserPhotosType} from '../../../types'
 import { AppStateType } from '../../reducers';
 
 type MapStatePropsType = {
-    users: Array<User>,
+    users: Array<UserType>,
     totalCount: number,
     pageSize: number,
     currentPage: number,
@@ -34,7 +34,7 @@ type MapDispatchPropsType = {
     toggleFetching: () => void,
     followUser: (id: number) => void,
     unFollowUser: (id: number) => void,
-    startNewDialog: (status: string, name: string, id: number, photos: UserPhotos) => void
+    startNewDialog: (arg0: {status: string | undefined, name: string, id: number, photos: UserPhotosType}) => void
 }
 
 type PropsType = MapStatePropsType & MapDispatchPropsType

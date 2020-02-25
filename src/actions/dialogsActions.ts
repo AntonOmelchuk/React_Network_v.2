@@ -6,6 +6,7 @@ import {
     SetCurrentIdType, SetCurrentUser, ShowSendMessageSuccessModal,
     ToggleIsLoadingType, ToggleShowModal,
 } from './actionCreatorTypes'
+import {UserPhotos} from '../../types'
 
 export const toggleIsLoading = (value: boolean): ToggleIsLoadingType => ({
     type: dialogsTypes.TOGGLE_IS_LOADING,
@@ -94,7 +95,7 @@ export const getInitDialogs = (id: number) => async (dispatch: any, getState: Fu
     }
 };
 
-export const startNewDialog = (user: object) => async (dispatch: any) => {
+export const startNewDialog = (user: {status: string | undefined, name: string, id: number, photos: UserPhotos}) => async (dispatch: any) => {
     dispatch(toggleShowModal());
     dispatch(setCurrentUser(user));
 };

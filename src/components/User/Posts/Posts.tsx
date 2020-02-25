@@ -1,21 +1,31 @@
-import React from 'react';
+import React, {FormEvent} from 'react'
 import uuid from 'uuid'
 import ava1 from '../../../assets/avatars/ava1.jpg'
 import style from './Post.module.css';
 import PostItem from './PostItem';
 import {Field, reduxForm} from 'redux-form';
+import { PostType } from '../../../../types';
 
-const Posts = React.memo(({posts, addPost, deletePost, toggleLiked}) => {
+type OwnPropsType = {
+    posts: Array<PostType>,
+    addPost: (post: PostType) => void,
+    deletePost: (id: string) => void,
+    toggleLiked: (id: string) => void
+}
 
-    const handleKeyDown = e => {
+type PropsType = OwnPropsType
+
+const Posts: React.FC<PropsType> = React.memo(({posts, addPost, deletePost, toggleLiked}) => {
+
+    const handleKeyDown = (e: HTMLFormElement) => {
         if(e.key === 'Enter') {
             onAddPost()
         }
     };
 
-    const onAddPost = data => {
+    const onAddPost = (data?: any) => {
         if(!data.message) return false;
-        const post = {
+        const post: PostType = {
             id: uuid.v4(),
             ava: ava1,
             text: data.message,
@@ -30,14 +40,15 @@ const Posts = React.memo(({posts, addPost, deletePost, toggleLiked}) => {
         <div className={style.wrapper}>
             <AddPost onAddPost={onAddPost} handleKeyDown={handleKeyDown} />
             {posts.map(post => <PostItem key={post.id} post={post} toggleLiked={toggleLiked}
-                deletePost={deletePost}/>)}
+                deletePost={deletePost} />)}
         </div>
     )
 });
 
+// @ts-ignore
 const AddPostForm = ({handleSubmit, handleKeyDown, reset}) => {
 
-    const onSubmit = e => {
+    const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         handleSubmit();
         reset()
@@ -51,9 +62,12 @@ const AddPostForm = ({handleSubmit, handleKeyDown, reset}) => {
     )
 };
 
+// @ts-ignore
 const ReduxAddPostForm = reduxForm({form: 'addPost'})(AddPostForm);
 
+// @ts-ignore
 const AddPost = ({onAddPost, handleKeyDown}) =>  (
+  // @ts-ignore
     <ReduxAddPostForm onSubmit={onAddPost} handleKeyDown={handleKeyDown} />
 );
 

@@ -9,10 +9,10 @@ const initialState = {
     profile: null,
     status: null,
     posts: [
-        {id: 1, ava: ava1, text: `Just do it`, likes: 12, date: 'Mon Nov 04 2019 11:42:46', liked: false},
-        {id: 2, ava: ava2, text: 'What about Node?', likes: 1, date: 'Mon Nov 04 2019 11:42:46', liked: false},
-        {id: 3, ava: ava3, text: `Did you watch React conf?`, likes: 4, date: 'Mon Nov 04 2019 11:42:46', liked: false},
-        {id: 4, ava: ava4, text: `I watch 'Silicon Valley'`, likes: 3, date: 'Mon Nov 04 2019 11:42:46', liked: false}
+        {id: '1', ava: ava1, text: `Just do it`, likes: 12, date: 'Mon Nov 04 2019 11:42:46', liked: false},
+        {id: '2', ava: ava2, text: 'What about Node?', likes: 1, date: 'Mon Nov 04 2019 11:42:46', liked: false},
+        {id: '3', ava: ava3, text: `Did you watch React conf?`, likes: 4, date: 'Mon Nov 04 2019 11:42:46', liked: false},
+        {id: '4', ava: ava4, text: `I watch 'Silicon Valley'`, likes: 3, date: 'Mon Nov 04 2019 11:42:46', liked: false}
     ],
     isFetching: false
 };

@@ -1,5 +1,7 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
+import {compose} from 'redux';
+import {withRouter} from 'react-router-dom';
 import Profile from './Profile/Profile';
 import Posts from './Posts/Posts';
 import {
@@ -18,10 +20,34 @@ import {
     getProfile,
     getStateStatus
 } from '../../selectors/profileSelectors';
-import {compose} from 'redux';
-import {withRouter} from 'react-router-dom';
+import {AppStateType} from '../../reducers'
+import {PostType, ProfileType} from '../../../types'
 
-const User = ({
+type OwnPropsType = {
+  id?: number
+}
+
+type MapStatePropsType = {
+  posts: any,
+  profile: ProfileType,
+  isFetching: boolean,
+  status: string,
+  authId: number
+}
+
+type MapDispatchPropsType = {
+  addPost: (post: PostType) => void,
+  deletePost: (id: string) => void,
+  toggleLiked: (id: string) => void,
+  setProfile: (id: number) => void,
+  updateStatus: (status: string) => void,
+  getStatus: (id: number) => void,
+  updatePhoto: (photo: HTMLImageElement) => void
+}
+
+type PropsType = OwnPropsType & MapStatePropsType & MapDispatchPropsType
+
+const User: React.FC<PropsType> = ({
     id,
     posts,
     profile,
@@ -33,7 +59,6 @@ const User = ({
     isFetching,
     updateStatus,
     getStatus,
-    auth,
     authId,
     updatePhoto
 }) => {
@@ -41,9 +66,9 @@ const User = ({
         document.title = 'Developers Network';
         setProfile(id || authId);
         getStatus(id || authId);
-    }, [auth, authId, getStatus, id, setProfile]);
+    }, [authId, getStatus, id, setProfile]);
 
-    return (
+  return (
         <div>
             <Profile
                 profile={profile}
@@ -62,7 +87,7 @@ const User = ({
     );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     posts: getPosts(state),
     profile: getProfile(state),
     isFetching: getIsFetching(state),

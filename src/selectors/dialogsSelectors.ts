@@ -1,6 +1,7 @@
 import {createSelector} from 'reselect';
+import {AppStateType} from '../reducers'
 
-const dialogsState = state => state.dialogs;
+const dialogsState = (state: AppStateType) => state.dialogs;
 
 export const selectDialogs = createSelector(
     [dialogsState],

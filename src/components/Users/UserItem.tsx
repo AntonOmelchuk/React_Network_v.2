@@ -4,14 +4,14 @@ import {A} from 'hookrouter';
 import style from './Users.module.css';
 
 import commonAvatar from '../../assets/avatars/common.jpg';
-import {User, UserPhotos} from '../../../types'
+import {UserType, UserPhotosType} from '../../../types'
 
 type PropsType = {
-    user: User,
+    user: UserType,
     followUser: (id: number) => void,
     unFollowUser: (id: number) => void,
     disabledButton: Array<number>,
-    startNewDialog: (object: {status: string | undefined, name: string, id: number, photos: UserPhotos}) => void
+    startNewDialog: (object: {status: string | undefined, name: string, id: number, photos: UserPhotosType}) => void
 }
 
 export const UserItem: React.FC<PropsType> = ({

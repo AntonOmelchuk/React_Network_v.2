@@ -1,6 +1,7 @@
 import {profileTypes} from './types';
 import {profileAPI} from '../api/api';
 import {AddPostType, DeletePostType, SetPhotoType, ToggleFetchingType, ToggleLikedType} from './actionCreatorTypes'
+import {PostType} from '../../types'
 
 export const setProfile = (id: any) => async (dispatch: any) => {
     try {
@@ -13,7 +14,7 @@ export const setProfile = (id: any) => async (dispatch: any) => {
     }
 }
 
-export const getStatus = (id: any) => async (dispatch: any) => {
+export const getStatus = (id: number) => async (dispatch: any) => {
     try {
         const response = await profileAPI.getStatus(id)
         dispatch({type: profileTypes.GET_STATUS, payload: response.data})
@@ -31,7 +32,7 @@ export const updateStatus = (status: string) => async (dispatch: any) => {
     }
 }
 
-export const addPost = (post: string): AddPostType => ({type: profileTypes.ADD_POST, payload: post})
+export const addPost = (post: PostType): AddPostType => ({type: profileTypes.ADD_POST, payload: post})
 
 export const deletePost = (id: number): DeletePostType => ({type: profileTypes.DELETE_POST, payload: id})
 
@@ -41,7 +42,7 @@ export const toggleFetching = (): ToggleFetchingType => ({type: profileTypes.TOG
 
 export const setPhoto = (photo: any): SetPhotoType => ({type: profileTypes.SET_PHOTO, payload: photo})
 
-export const updatePhoto = (photo: any) => async (dispatch: any) => {
+export const updatePhoto = (photo: HTMLImageElement) => async (dispatch: any) => {
     try {
         const response = await profileAPI.updatePhoto(photo)
 
