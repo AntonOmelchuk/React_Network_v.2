@@ -20,8 +20,18 @@ export type PostType = {
 }
 
 export type ProfileType = {
+  userId: number,
   photos: UserPhotosType,
   fullName: string,
   lookingForAJob: boolean,
-  contacts: Array<string>
+  lookingForAJobDescription?: string,
+  contacts: {
+    github?: string,
+    instagram?: string,
+    vk?: string,
+    twitter?: string,
+    website?: string,
+    youtube?: string,
+    mainLink?: string
+  }
 }
