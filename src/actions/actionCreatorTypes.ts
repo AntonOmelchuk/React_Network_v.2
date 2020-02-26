@@ -1,5 +1,7 @@
 import {authTypes, dialogsTypes, INITIALIZED_SUCCESS, profileTypes, usersTypes} from './types'
 import {UserType} from '../../types'
+import {ThunkAction} from 'redux-thunk'
+import {AppStateType} from '../reducers'
 
 export type SetAuthType = {
   type: typeof authTypes.SET_AUTH,
@@ -14,8 +16,8 @@ export type LogoutType = {
   type: typeof authTypes.LOGOUT
 }
 
-export type AuthActionsType = SetAuthType & LogoutType
-
+export type AuthActionsType = SetAuthType | LogoutType
+export type AuthThunkActionsType = ThunkAction<Promise<void>, AppStateType, unknown, AuthActionsType>
 // === Profile types === //
 
 export type SetProfileType = {
@@ -57,9 +59,9 @@ export type SetPhotoType = {
   payload: any
 }
 
-export type ProfileActionsType = SetProfileType & GetStatusType & UpdateStatusType
-                                  & AddPostType & DeletePostType & ToggleLikedType
-                                  & ToggleFetchingType & SetPhotoType
+export type ProfileActionsType = SetProfileType | GetStatusType | UpdateStatusType
+                                  | AddPostType | DeletePostType | ToggleLikedType
+                                  | ToggleFetchingType | SetPhotoType
 
 // === App types === //
 
@@ -141,4 +143,4 @@ export type SetCurrentPageType = {
   payload: number
 }
 
-export type UsersActionsType = GetUsersType & FollowUnfollowUserType & UserToggleFetchingType & SetCurrentPageType
+export type UsersActionsType = GetUsersType | FollowUnfollowUserType | UserToggleFetchingType | SetCurrentPageType
