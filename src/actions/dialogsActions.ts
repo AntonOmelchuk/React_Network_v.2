@@ -4,7 +4,7 @@ import {
     GetDialogsSuccessType,
     GetMessagesSuccessType, HideSendMessageSuccessModal, SendMessageSuccessType,
     SetCurrentIdType, SetCurrentUser, ShowSendMessageSuccessModal,
-    ToggleIsLoadingType, ToggleShowModal,
+    ToggleIsLoadingType, ToggleShowModal, DialogsThunkActionsType,
 } from './actionCreatorTypes'
 import {UserPhotosType} from '../../types'
 
@@ -43,7 +43,7 @@ export const setCurrentUser = (user: object): SetCurrentUser => ({
 export const showSendMessageSuccessModal = (): ShowSendMessageSuccessModal => ({type: dialogsTypes.SHOW_SENT_MESSAGE_SUCCESS_MODAL});
 export const hideSendMessageSuccessModal = (): HideSendMessageSuccessModal => ({type: dialogsTypes.HIDE_SENT_MESSAGE_SUCCESS_MODAL});
 
-export const getDialogs = () => async (dispatch: any) => {
+export const getDialogs = (): DialogsThunkActionsType => async dispatch => {
     try {
         dispatch(toggleIsLoading(true));
         const response = await dialogsAPI.getDialogs();
@@ -56,7 +56,7 @@ export const getDialogs = () => async (dispatch: any) => {
     }
 };
 
-export const getMessages = (userId: number) => async (dispatch: any) => {
+export const getMessages = (userId: number): DialogsThunkActionsType => async dispatch => {
     try {
         const response = await dialogsAPI.getMessages(userId);
         dispatch(setCurrentId(userId));
@@ -68,28 +68,31 @@ export const getMessages = (userId: number) => async (dispatch: any) => {
     }
 };
 
-export const sendMessage = (userId: number, message: string, fromModal = false) => async (dispatch: any) => {
-    try {
-        const response = await dialogsAPI.sendMessage(userId, message);
-        if(response.status === 200) {
-            if(fromModal) {
-                dispatch(showSendMessageSuccessModal());
-                setTimeout(() => dispatch(hideSendMessageSuccessModal()), 5400);
+export const sendMessage = (userId: number, message: string, fromModal = false): DialogsThunkActionsType => {
+    return async dispatch => {
+        try {
+            const response = await dialogsAPI.sendMessage(userId, message);
+            if(response.status === 200) {
+                if(fromModal) {
+                    dispatch(showSendMessageSuccessModal());
+                    setTimeout(() => dispatch(hideSendMessageSuccessModal()), 5400);
+                }
+                dispatch(sendMessageSuccess(response.data.data.message));
             }
-            dispatch(sendMessageSuccess(response.data.data.message));
+        } catch(err) {
+            console.log(err);
         }
-    } catch(err) {
-        console.log(err);
-    }
-};
+    };
+}
 
-export const getInitDialogs = (id: number) => async (dispatch: any, getState: Function) => {
+export const getInitDialogs = (id: number): DialogsThunkActionsType => async (dispatch, getState) => {
     try {
         await dispatch(getDialogs());
         const state = await getState();
+        // @ts-ignore
         const currentId = id || state.dialogs.dialogs[0].id;
         dispatch(setCurrentId(currentId));
-        dispatch(getMessages(currentId));
+        await dispatch(getMessages(currentId));
     } catch(err) {
         console.log(err);
     }
@@ -100,11 +103,11 @@ export const startNewDialog = (user: {status: string | undefined, name: string, 
     dispatch(setCurrentUser(user));
 };
 
-export const deleteMessages = (messages: Array<number>, userId: number) => async (dispatch: any) => {
+export const deleteMessages = (messages: Array<number>, userId: number): DialogsThunkActionsType => async dispatch => {
     try {
         await messages.map((id: number) => dialogsAPI.deleteMessage(id));
 
-        dispatch(getMessages(userId));
+        await dispatch(getMessages(userId));
     } catch(err) {
         console.log(err);
     }

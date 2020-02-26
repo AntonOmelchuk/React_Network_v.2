@@ -1,11 +1,11 @@
 import {INITIALIZED_SUCCESS} from './types';
 import {setAuth} from './authActions';
-import {InitializedType} from './actionCreatorTypes'
+import {InitializedType, AppThunkActionsType} from './actionCreatorTypes'
 
 export const initialized = (): InitializedType => ({type: INITIALIZED_SUCCESS});
 
 
-export const initializeApp = () => async (dispatch: any) => {
+export const initializeApp = (): AppThunkActionsType => async dispatch => {
     try {
         await dispatch(setAuth());
 

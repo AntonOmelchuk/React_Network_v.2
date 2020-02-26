@@ -3,6 +3,8 @@ import {UserType} from '../../types'
 import {ThunkAction} from 'redux-thunk'
 import {AppStateType} from '../reducers'
 
+// === Auth types === //
+
 export type SetAuthType = {
   type: typeof authTypes.SET_AUTH,
   payload: {
@@ -18,6 +20,7 @@ export type LogoutType = {
 
 export type AuthActionsType = SetAuthType | LogoutType
 export type AuthThunkActionsType = ThunkAction<Promise<void>, AppStateType, unknown, AuthActionsType>
+
 // === Profile types === //
 
 export type SetProfileType = {
@@ -70,6 +73,7 @@ export type InitializedType = {
 }
 
 export type AppActionsType = InitializedType
+export type AppThunkActionsType = ThunkAction<Promise<void>, AppStateType, unknown, AppActionsType>
 
 // === Dialogs types === //
 
@@ -99,7 +103,8 @@ export type SendMessageSuccessType = {
 }
 
 export type ToggleShowModal = {
-  type: typeof dialogsTypes.TOGGLE_SHOW_MODAL
+  type: typeof dialogsTypes.TOGGLE_SHOW_MODAL,
+  payload?: any
 }
 
 export type SetCurrentUser = {
@@ -108,12 +113,21 @@ export type SetCurrentUser = {
 }
 
 export type ShowSendMessageSuccessModal = {
-  type: typeof dialogsTypes.SHOW_SENT_MESSAGE_SUCCESS_MODAL
+  type: typeof dialogsTypes.SHOW_SENT_MESSAGE_SUCCESS_MODAL,
+  payload?: any
 }
 
 export type HideSendMessageSuccessModal = {
-  type: typeof dialogsTypes.HIDE_SENT_MESSAGE_SUCCESS_MODAL
+  type: typeof dialogsTypes.HIDE_SENT_MESSAGE_SUCCESS_MODAL,
+  payload?: any
 }
+
+export type DialogsActionsType = ToggleIsLoadingType | SetCurrentIdType |
+  GetDialogsSuccessType | GetMessagesSuccessType | SendMessageSuccessType |
+  ToggleShowModal | SetCurrentUser | ShowSendMessageSuccessModal |
+  HideSendMessageSuccessModal
+
+export type DialogsThunkActionsType = ThunkAction<Promise<void>, AppStateType, unknown, DialogsActionsType>
 
 // === Users types === //
 
@@ -143,4 +157,4 @@ export type SetCurrentPageType = {
   payload: number
 }
 
-export type UsersActionsType = GetUsersType | FollowUnfollowUserType | UserToggleFetchingType | SetCurrentPageType
+export type UsersActionsType = GetUsersType & FollowUnfollowUserType & UserToggleFetchingType & SetCurrentPageType

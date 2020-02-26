@@ -20,7 +20,7 @@ export const setAuth = (): AuthThunkActionsType => {
 }
 
 export const login = (email: string, password: number, rememberMe: boolean): AuthThunkActionsType => {
-    return async (dispatch) => {
+    return async dispatch => {
         try {
             await authAPI.login(email, password, rememberMe);
 
@@ -31,7 +31,7 @@ export const login = (email: string, password: number, rememberMe: boolean): Aut
     }
 }
 
-export const logout = (): AuthThunkActionsType => async (dispatch) => {
+export const logout = (): AuthThunkActionsType => async dispatch => {
     try {
         await authAPI.logout()
 
