@@ -9,16 +9,16 @@ const instance = axios.create({
 });
 
 export const profileAPI = {
-    serProfile(id) {
+    serProfile(id: number) {
         return instance.get(`profile/${id}`);
     },
-    getStatus(id) {
+    getStatus(id: number) {
         return instance.get(`profile/status/${id}`);
     },
-    updateStatus(status) {
+    updateStatus(status: string) {
         return instance.put(`profile/status`, {status});
     },
-    updatePhoto(photo) {
+    updatePhoto(photo: File) {
         const formData = new FormData();
         formData.append('image', photo);
 
@@ -32,22 +32,37 @@ export const profileAPI = {
 };
 
 export const usersAPI = {
-    getUser(page) {
+    getUser(page: number) {
         return instance.get(`users?page=${page}`);
     },
-    followUser(id) {
+    followUser(id: number) {
         return instance.post(`follow/${id}`);
     },
-    unFollowUser(id) {
+    unFollowUser(id: number) {
         return instance.delete(`follow/${id}`);
     }
 };
 
+export enum ResultCodeEnum  {
+    Success,
+    Error = 1
+}
+
+type SetAuthType = {
+    data: {
+        id: number,
+        email: string,
+        login: string
+    }
+    resultCode: ResultCodeEnum,
+    messages:Array<string>
+}
+
 export const authAPI = {
     setAuth() {
-        return instance.get('auth/me');
+        return instance.get<SetAuthType>('auth/me').then(res => res.data);
     },
-    login(email, password, rememberMe) {
+    login(email: string, password: string, rememberMe: boolean) {
         return instance.post('auth/login', {email, password, rememberMe});
     },
     logout() {
@@ -59,13 +74,13 @@ export const dialogsAPI = {
     getDialogs() {
         return instance.get('dialogs');
     },
-    sendMessage(userId, message) {
+    sendMessage(userId: number, message: string) {
         return instance.post(`dialogs/${userId}/messages`, {body: message});
     },
-    getMessages(userId) {
+    getMessages(userId: number) {
         return instance.get(`dialogs/${userId}/messages`);
     },
-    deleteMessage(messageId) {
+    deleteMessage(messageId: number) {
         return instance.delete(`dialogs/messages/${messageId}`)
             .then(res => res.data);
     }

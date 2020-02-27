@@ -15,7 +15,8 @@ export type SetAuthType = {
 }
 
 export type LogoutType = {
-  type: typeof authTypes.LOGOUT
+  type: typeof authTypes.LOGOUT,
+  payload?: any                 // should fix
 }
 
 export type AuthActionsType = SetAuthType | LogoutType

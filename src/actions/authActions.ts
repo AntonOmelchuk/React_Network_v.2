@@ -1,16 +1,16 @@
 import {authTypes} from './types';
-import {authAPI} from '../api/api';
+import {authAPI, ResultCodeEnum} from '../api/api'
 import {AuthThunkActionsType} from './actionCreatorTypes'
 
 export const setAuth = (): AuthThunkActionsType => {
     return async (dispatch) => {
         try {
-            const response = await authAPI.setAuth()
+            const responseData = await authAPI.setAuth()
 
-            if(response.data.resultCode === 0) {
+            if(responseData.resultCode === ResultCodeEnum.Success) {
                 dispatch({
                     type: authTypes.SET_AUTH,
-                    payload: response.data.data
+                    payload: responseData.data
                 })
             }
         } catch(err) {
@@ -19,12 +19,12 @@ export const setAuth = (): AuthThunkActionsType => {
     }
 }
 
-export const login = (email: string, password: number, rememberMe: boolean): AuthThunkActionsType => {
+export const login = (email: string, password: string, rememberMe: boolean): AuthThunkActionsType => {
     return async dispatch => {
         try {
             await authAPI.login(email, password, rememberMe);
 
-            dispatch(setAuth());
+            await dispatch(setAuth());
         } catch (err) {
             console.log(err)
         }
