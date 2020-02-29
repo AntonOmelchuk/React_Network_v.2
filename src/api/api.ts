@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {DialogType} from '../../types'
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -58,21 +59,40 @@ type SetAuthType = {
     messages:Array<string>
 }
 
+type LoginType = {
+    data: {
+        userId: number
+    },
+    resultCode: ResultCodeEnum
+    messages: Array<string>
+}
+
+type LogoutType = {
+    data: object,
+    resultCode: ResultCodeEnum,
+    messages: Array<string>
+}
+
 export const authAPI = {
     setAuth() {
         return instance.get<SetAuthType>('auth/me').then(res => res.data);
     },
     login(email: string, password: string, rememberMe: boolean) {
-        return instance.post('auth/login', {email, password, rememberMe});
+        return instance.post<LoginType>('auth/login', {email, password, rememberMe});
     },
     logout() {
-        return instance.delete('auth/login');
+        return instance.delete<LogoutType>('auth/login');
     }
 };
 
+type GetDialogsType = {
+    status: number,
+    data: Array<DialogType>
+}
+
 export const dialogsAPI = {
     getDialogs() {
-        return instance.get('dialogs');
+        return instance.get<GetDialogsType>('dialogs');
     },
     sendMessage(userId: number, message: string) {
         return instance.post(`dialogs/${userId}/messages`, {body: message});
