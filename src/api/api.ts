@@ -90,15 +90,25 @@ type GetDialogsType = {
     data: Array<DialogType>
 }
 
+type SendMessageType = {
+    status: number,
+    data: object
+}
+
+type GetMessagesType = {
+    status: number,
+    data: Array<any>
+}
+
 export const dialogsAPI = {
     getDialogs() {
         return instance.get<GetDialogsType>('dialogs');
     },
     sendMessage(userId: number, message: string) {
-        return instance.post(`dialogs/${userId}/messages`, {body: message});
+        return instance.post<SendMessageType>(`dialogs/${userId}/messages`, {body: message});
     },
     getMessages(userId: number) {
-        return instance.get(`dialogs/${userId}/messages`);
+        return instance.get<GetMessagesType>(`dialogs/${userId}/messages`);
     },
     deleteMessage(messageId: number) {
         return instance.delete(`dialogs/messages/${messageId}`)
