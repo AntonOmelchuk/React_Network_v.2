@@ -60,12 +60,13 @@ export type ToggleFetchingType = {
 
 export type SetPhotoType = {
   type: typeof profileTypes.SET_PHOTO,
-  payload: any
+  payload: File
 }
 
 export type ProfileActionsType = SetProfileType | GetStatusType | UpdateStatusType
                                   | AddPostType | DeletePostType | ToggleLikedType
                                   | ToggleFetchingType | SetPhotoType
+export type ProfileThunkAction = ThunkAction<Promise<void>, AppStateType, unknown, ProfileActionsType>
 
 // === App types === //
 

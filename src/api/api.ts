@@ -92,12 +92,14 @@ type GetDialogsType = {
 
 type SendMessageType = {
     status: number,
-    data: object
+    data: {
+        message: string
+    }
 }
 
 type GetMessagesType = {
     status: number,
-    data: Array<any>
+    items: Array<any>
 }
 
 export const dialogsAPI = {

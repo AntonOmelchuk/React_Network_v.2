@@ -42,7 +42,7 @@ export const profileReducer = (state = initialState, action: ProfileActionsType)
         case profileTypes.UPDATE_STATUS:
             return {
                 ...state,
-                status: action.payload
+                status: action.status
             };
         case profileTypes.ADD_POST:
             return {
