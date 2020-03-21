@@ -1,7 +1,10 @@
+// === Profile types === //
+
 type PhotosType = {
     small: string | null
     large: string | null
 }
+
 type ContactsType = {
     github?: string
     vk?: string
@@ -29,4 +32,33 @@ type PostType = {
     likes: number
     date: string | Date
     liked: boolean
+}
+
+// === Dialogs type === //
+
+type DialogType = {
+    id: number
+    userName: string
+    hasNewMessages: boolean
+    lastDialogActivityDate: string
+    lastUserActivityDate: string
+    photos: PhotosType
+}
+
+type MessageType = {
+    id: string
+    body: string
+    translateBody: null | string
+    addedAt: string
+    senderId: number
+    senderName: string
+    recipientId: number
+    viewed: boolean
+}
+
+type UserType = {
+    status: string
+    name: string
+    id: number
+    photos: PhotosType
 }

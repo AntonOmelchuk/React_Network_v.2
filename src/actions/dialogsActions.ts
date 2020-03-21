@@ -1,43 +1,53 @@
 import {dialogsAPI} from '../api/api';
-import {dialogsTypes} from './types';
+import {
+    dialogsTypes,
+    GetDialogsSuccessActionType,
+    GetMessageSuccessActionType,
+    HideSendMessageSuccessModalActionType,
+    SendMessageSuccessActionType,
+    SetCurrentIdActionType,
+    SetCurrentUserActionType,
+    ShowSendMessageSuccessModalActionType,
+    ToggleIsLoadingActionType,
+    ToggleShowModalActionType
+} from './types';
 
-
-export const toggleIsLoading = value => ({
+export const toggleIsLoading = (value: boolean): ToggleIsLoadingActionType => ({
     type: dialogsTypes.TOGGLE_IS_LOADING,
     payload: value
 });
 
-export const setCurrentId = id => ({
+export const setCurrentId = (id: number): SetCurrentIdActionType => ({
     type: dialogsTypes.SET_CURRENT_ID,
     payload: id
 });
 
-export const getDialogsSuccess = data => ({
+export const getDialogsSuccess = (data: Array<DialogType>): GetDialogsSuccessActionType => ({
     type: dialogsTypes.GET_DIALOGS_SUCCESS,
     payload: data
 });
 
-export const getMessagesSuccess = data => ({
+export const getMessagesSuccess = (data: Array<MessageType>): GetMessageSuccessActionType => ({
     type: dialogsTypes.GET_MESSAGES_SUCCESS,
     payload: data
 });
 
-export const sendMessageSuccess = message => ({
+export const sendMessageSuccess = (message: MessageType): SendMessageSuccessActionType => ({
     type: dialogsTypes.SEND_MESSAGE_SUCCESS,
     payload: message
 });
 
-export const toggleShowModal = () => ({type: dialogsTypes.TOGGLE_SHOW_MODAL});
+export const toggleShowModal = (): ToggleShowModalActionType => ({type: dialogsTypes.TOGGLE_SHOW_MODAL});
 
-export const setCurrentUser = user => ({
+export const setCurrentUser = (user: UserType): SetCurrentUserActionType => ({
     type: dialogsTypes.SET_CURRENT_USER,
     payload: user
 });
 
-export const showSendMessageSuccessModal = () => ({type: dialogsTypes.SHOW_SENT_MESSAGE_SUCCESS_MODAL});
-export const hideSendMessageSuccessModal = () => ({type: dialogsTypes.HIDE_SENT_MESSAGE_SUCCESS_MODAL});
+export const showSendMessageSuccessModal = (): ShowSendMessageSuccessModalActionType => ({type: dialogsTypes.SHOW_SENT_MESSAGE_SUCCESS_MODAL});
+export const hideSendMessageSuccessModal = (): HideSendMessageSuccessModalActionType => ({type: dialogsTypes.HIDE_SENT_MESSAGE_SUCCESS_MODAL});
 
-export const getDialogs = () => async dispatch => {
+export const getDialogs = () => async (dispatch: any) => {
     try {
         dispatch(toggleIsLoading(true));
         const response = await dialogsAPI.getDialogs();
@@ -50,7 +60,7 @@ export const getDialogs = () => async dispatch => {
     }
 };
 
-export const getMessages = userId => async dispatch => {
+export const getMessages = (userId: number) => async (dispatch: any) => {
     try {
         const response = await dialogsAPI.getMessages(userId);
         dispatch(setCurrentId(userId));
@@ -62,7 +72,7 @@ export const getMessages = userId => async dispatch => {
     }
 };
 
-export const sendMessage = (userId, message, fromModal = false) => async dispatch => {
+export const sendMessage = (userId: number, message: string, fromModal = false) => async (dispatch: any) => {
     try {
         const response = await dialogsAPI.sendMessage(userId, message);
         if(response.status === 200) {
@@ -77,7 +87,7 @@ export const sendMessage = (userId, message, fromModal = false) => async dispatc
     }
 };
 
-export const getInitDialogs = id => async (dispatch, getState) => {
+export const getInitDialogs = (id: number) => async (dispatch: any, getState: any) => {
     try {
         await dispatch(getDialogs());
         const state = await getState();
@@ -89,12 +99,12 @@ export const getInitDialogs = id => async (dispatch, getState) => {
     }
 };
 
-export const startNewDialog = user => async dispatch => {
+export const startNewDialog = (user: UserType) => async (dispatch: any) => {
     dispatch(toggleShowModal());
     dispatch(setCurrentUser(user));
 };
 
-export const deleteMessages = (messages, userId) => async dispatch => {
+export const deleteMessages = (messages: Array<string>, userId: number) => async (dispatch: any) => {
     try {
         await messages.map(id => dialogsAPI.deleteMessage(id));
 

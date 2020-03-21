@@ -85,7 +85,7 @@ const Profile = ({
                         {fullName === 'Pirate Roberts' ? 'Anton Omelchuk' : fullName}
                     </div>
                     <div className={style.info__field}>
-                        <span>Specialization: </span>React Developer
+                        <span>Role: </span>React Developer
                     </div>
                     <div className={style.info__field}>
                         <span>Hireable: </span>

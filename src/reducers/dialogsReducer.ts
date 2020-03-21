@@ -1,15 +1,26 @@
 import {dialogsTypes} from '../actions/types';
 
-const initialState = {
+type InitialStateType = {
+    dialogs: Array<DialogType>
+    messages: Array<MessageType>
+    currentId: null | number
+    showModal: boolean
+    currentUser: null | UserType
+    isLoading: boolean
+    showSendMessageSuccessModal: boolean
+}
+
+const initialState: InitialStateType = {
     dialogs: [],
     messages: [],
     currentId: null,
     showModal: false,
-    currentUser: [],
+    currentUser: null,
+    isLoading: false,
     showSendMessageSuccessModal: false
 };
 
-export const dialogsReducer = (state = initialState, action) => {
+export const dialogsReducer = (state = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case dialogsTypes.TOGGLE_IS_LOADING:
             return {

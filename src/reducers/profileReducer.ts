@@ -74,7 +74,7 @@ export const profileReducer = (state = initialState, action: any): InitialStateT
         case profileTypes.SET_PHOTO: {
             return {
                 ...state,
-                profile: {...state.profile, photos: action.payload}
+                profile: {...state.profile, photos: action.payload} as ProfileType
             };
         }
         default:

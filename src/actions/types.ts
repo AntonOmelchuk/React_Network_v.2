@@ -1,11 +1,13 @@
-// App types
+// === App types === //
+
 export const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 
 export interface InitializedSuccessActionType {
     type: typeof INITIALIZED_SUCCESS
 }
 
-// Profile types
+// === Profile types === //
+
 export const profileTypes = {
     SET_PROFILE: 'SET_PROFILE',
     ADD_POST: 'ADD_POST',
@@ -41,7 +43,8 @@ export type SetPhotoActionType = {
     payload: PhotosType
 }
 
-// Dialogs types
+// === Dialogs types === //
+
 export const dialogsTypes = {
     SEND_MESSAGE_SUCCESS: 'SEND_MESSAGE_SUCCESS',
     GET_DIALOGS_SUCCESS: 'GET_DIALOGS_SUCCESS',
@@ -55,7 +58,50 @@ export const dialogsTypes = {
     DELETE_MESSAGES: 'DELETE_MESSAGES'
 };
 
-// Users types
+export type ToggleIsLoadingActionType = {
+    type: typeof dialogsTypes.TOGGLE_IS_LOADING
+    payload: boolean
+}
+
+export type SetCurrentIdActionType = {
+    type: typeof dialogsTypes.SET_CURRENT_ID
+    payload: number
+}
+
+export type GetDialogsSuccessActionType = {
+    type: typeof dialogsTypes.GET_DIALOGS_SUCCESS
+    payload: Array<DialogType>
+}
+
+export type SendMessageSuccessActionType = {
+    type: typeof dialogsTypes.SEND_MESSAGE_SUCCESS
+    payload: MessageType
+}
+
+export type GetMessageSuccessActionType = {
+    type: typeof dialogsTypes.GET_MESSAGES_SUCCESS
+    payload: Array<MessageType>
+}
+
+export type ToggleShowModalActionType = {
+    type: typeof dialogsTypes.TOGGLE_SHOW_MODAL
+}
+
+export type SetCurrentUserActionType = {
+    type: typeof dialogsTypes.SET_CURRENT_USER
+    payload: UserType
+}
+
+export type ShowSendMessageSuccessModalActionType = {
+    type: typeof dialogsTypes.SHOW_SENT_MESSAGE_SUCCESS_MODAL
+}
+
+export type HideSendMessageSuccessModalActionType = {
+    type: typeof dialogsTypes.HIDE_SENT_MESSAGE_SUCCESS_MODAL
+}
+
+// === Users types === //
+
 export const usersTypes = {
     GET_USERS: 'GET_USERS',
     TOGGLE_FOLLOWING: 'TOGGLE_FOLLOWING',
@@ -64,7 +110,8 @@ export const usersTypes = {
     DISABLE_BUTTON: 'DISABLE_BUTTON'
 };
 
-// Auth types
+// === Auth types === //
+
 export const authTypes = {
     SET_AUTH: 'SET_AUTH',
     LOGOUT: 'LOGOUT'
@@ -75,4 +122,3 @@ export type SetAuthActionType = {
     payload: any
 }
 
-export type AppActionTypes = InitializedSuccessActionType | SetAuthActionType
