@@ -5,9 +5,26 @@ import {createStructuredSelector} from 'reselect';
 import {selectCurrentId, selectDialogs, selectIsLoading, selectMessages} from '../../selectors/dialogsSelectors';
 import {deleteMessages, getInitDialogs, getMessages, sendMessage} from '../../actions/dialogsActions';
 
-import Dialogs from './Dialogs';
+import {Dialogs} from './Dialogs';
 
-const DialogsContainer = ({
+type OwnPropsType = {
+    id: number
+    getInitDialogs: (id: number) => void
+    getMessages: () => void
+    deleteMessages: () => void
+    sendMessage: () => void
+}
+
+type MapStateToPropsType = {
+    dialogs: Array<DialogType>
+    messages: Array<MessageType>
+    isLoading: boolean
+    currentId: number
+}
+
+type PropsType = OwnPropsType & MapStateToPropsType
+
+const DialogsContainer: React.FC<PropsType> = ({
     getInitDialogs,
     getMessages,
     deleteMessages,
@@ -36,4 +53,4 @@ const mapStateToProps = createStructuredSelector({
     currentId: selectCurrentId
 });
 
-export default connect(mapStateToProps, {sendMessage, getInitDialogs, getMessages, deleteMessages})(DialogsContainer);
+export default connect<MapStateToPropsType>(mapStateToProps, {sendMessage, getInitDialogs, getMessages, deleteMessages})(DialogsContainer);

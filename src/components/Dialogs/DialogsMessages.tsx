@@ -2,11 +2,18 @@ import React, {useState} from 'react';
 import style from './Dialogs.module.css';
 import TextareaAutosize from 'react-autosize-textarea';
 
-const DialogsMessages = React.memo(({messages, sendMessage, currentId, deleteMessages}) => {
-    const [message, setMessage] = useState('');
-    const [deleteMessagesId, setDeleteMessagesId] = useState([]);
+type PropsType = {
+    messages: Array<MessageType>
+    currentId: number
+    sendMessage: (currentId: number, message: string) => void
+    deleteMessages: (deleteMessagesId: Array<string>, currentId: number) => void
+}
 
-    const addDeleteMessagesId = id => {
+export const DialogsMessages: React.FC<PropsType> = React.memo(({messages, sendMessage, currentId, deleteMessages}): any => {
+    const [message, setMessage] = useState<string>('');
+    const [deleteMessagesId, setDeleteMessagesId] = useState<Array<string>>([]);
+
+    const addDeleteMessagesId = (id: string) => {
         if(deleteMessagesId.includes(id)) {
             const newDeleteMessages = deleteMessagesId.filter(mId => mId !== id);
 
@@ -25,7 +32,7 @@ const DialogsMessages = React.memo(({messages, sendMessage, currentId, deleteMes
         setMessage('');
     };
 
-    const onKeyDownHandler = e => {
+    const onKeyDownHandler = (e: React.KeyboardEvent) => {
         if(e.key === 'Enter') {
             e.preventDefault();
             if(message.length > 0) {
@@ -50,7 +57,8 @@ const DialogsMessages = React.memo(({messages, sendMessage, currentId, deleteMes
             <div>{currentDialogMessages}</div>
             <div>
                 <TextareaAutosize className={style.sendMessageTextarea} value={message}
-                    onChange={e => setMessage(e.target.value)} onKeyDown={e => onKeyDownHandler(e)}
+                    onChange={(e: any): void => setMessage(e.target.value)}
+                    onKeyDown={(e: React.KeyboardEvent) => onKeyDownHandler(e)}
                     maxLength={360} />
                 <div className={style.buttonsContainer}>
                     <div>
@@ -68,7 +76,12 @@ const DialogsMessages = React.memo(({messages, sendMessage, currentId, deleteMes
     );
 });
 
-const DeleteMessagesButtons = ({cancelDeleteMessages, onDeleteMessage}) => (
+type DeleteMessagesButtonsPropsType = {
+    cancelDeleteMessages: () => void
+    onDeleteMessage: () => void
+}
+
+const DeleteMessagesButtons: React.FC<DeleteMessagesButtonsPropsType> = ({cancelDeleteMessages, onDeleteMessage}) => (
     <>
         <button onClick={cancelDeleteMessages} className={style.dialogButton + ' ' + style.deleteMessagesButton}>
             cancel
@@ -78,5 +91,3 @@ const DeleteMessagesButtons = ({cancelDeleteMessages, onDeleteMessage}) => (
         </button>
     </>
 );
-
-export default DialogsMessages;

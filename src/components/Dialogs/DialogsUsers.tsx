@@ -5,8 +5,14 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import defaultAvatar from '../../assets/avatars/common.jpg';
 import style from './Dialogs.module.css';
 
-const DialogsUsers = React.memo(({dialogs, getMessages, currentId}) => {
-    const onClickHandler = id => {
+type PropsType = {
+    dialogs: Array<DialogType>
+    currentId: number
+    getMessages: (id: number) => void
+}
+
+const DialogsUsers: React.FC<PropsType> = React.memo(({dialogs, getMessages, currentId}) => {
+    const onClickHandler = (id: number) => {
         getMessages(id);
     };
 
