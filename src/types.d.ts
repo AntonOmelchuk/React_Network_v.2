@@ -56,9 +56,19 @@ type MessageType = {
     viewed: boolean
 }
 
-type UserType = {
+type NewDialogUserType = {
     status: string
     name: string
     id: number
     photos: PhotosType
+}
+
+// === Users type === //
+
+type UserType = {
+    id: number
+    name: string
+    status?: string
+    photos: PhotosType
+    followed: boolean
 }

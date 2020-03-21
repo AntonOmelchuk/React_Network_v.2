@@ -1,6 +1,15 @@
 import {usersTypes} from '../actions/types';
 
-const initialState = {
+type InitialStateType = {
+    users: Array<UserType>
+    totalCount: null | number
+    currentPage: number
+    pageSize: number
+    isFetching: boolean
+    disabledButton: Array<number>
+}
+
+const initialState: InitialStateType = {
     users: [],
     totalCount: null,
     currentPage: 1,
@@ -9,7 +18,7 @@ const initialState = {
     disabledButton: []
 };
 
-export const usersReducer = (state = initialState, action) => {
+export const usersReducer = (state = initialState, action: any): InitialStateType => {
     switch(action.type) {
         case usersTypes.GET_USERS:
             return {

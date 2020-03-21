@@ -89,7 +89,7 @@ export type ToggleShowModalActionType = {
 
 export type SetCurrentUserActionType = {
     type: typeof dialogsTypes.SET_CURRENT_USER
-    payload: UserType
+    payload: NewDialogUserType
 }
 
 export type ShowSendMessageSuccessModalActionType = {
@@ -109,6 +109,16 @@ export const usersTypes = {
     TOGGLE_FETCHING: 'TOGGLE_FETCHING',
     DISABLE_BUTTON: 'DISABLE_BUTTON'
 };
+
+export type UsersToggleFetchingActionType = {
+    type: typeof usersTypes.TOGGLE_FETCHING
+    payload: boolean
+}
+
+export type SetCurrentPageActionType = {
+    type: typeof usersTypes.SET_CURRENT_PAGE
+    payload: number
+}
 
 // === Auth types === //
 

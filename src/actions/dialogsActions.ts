@@ -39,7 +39,7 @@ export const sendMessageSuccess = (message: MessageType): SendMessageSuccessActi
 
 export const toggleShowModal = (): ToggleShowModalActionType => ({type: dialogsTypes.TOGGLE_SHOW_MODAL});
 
-export const setCurrentUser = (user: UserType): SetCurrentUserActionType => ({
+export const setCurrentUser = (user: NewDialogUserType): SetCurrentUserActionType => ({
     type: dialogsTypes.SET_CURRENT_USER,
     payload: user
 });
@@ -99,7 +99,7 @@ export const getInitDialogs = (id: number) => async (dispatch: any, getState: an
     }
 };
 
-export const startNewDialog = (user: UserType) => async (dispatch: any) => {
+export const startNewDialog = (user: NewDialogUserType) => async (dispatch: any) => {
     dispatch(toggleShowModal());
     dispatch(setCurrentUser(user));
 };
