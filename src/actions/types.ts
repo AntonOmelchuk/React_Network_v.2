@@ -17,6 +17,30 @@ export const profileTypes = {
     SET_PHOTO: 'SET_PHOTO'
 };
 
+export type AddPostActionType = {
+    type: typeof profileTypes.ADD_POST,
+    payload: PostType
+}
+
+export type DeletePostActionType = {
+    type: typeof profileTypes.DELETE_POST,
+    payload: number
+}
+
+export type ToggleLikedActionType = {
+    type: typeof profileTypes.TOGGLE_LIKED,
+    payload: number
+}
+
+export type ToggleFetchingActionType = {
+    type: typeof profileTypes.TOGGLE_PROFILE_FETCHING
+}
+
+export type SetPhotoActionType = {
+    type: typeof profileTypes.SET_PHOTO,
+    payload: PhotosType
+}
+
 // Dialogs types
 export const dialogsTypes = {
     SEND_MESSAGE_SUCCESS: 'SEND_MESSAGE_SUCCESS',
