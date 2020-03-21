@@ -1,13 +1,20 @@
 import {authTypes} from '../actions/types';
 
-const initialState = {
+type InitialStateType = {
+    id: null,
+    email: null,
+    login: null,
+    isAuth: boolean
+};
+
+const initialState: InitialStateType = {
     id: null,
     email: null,
     login: null,
     isAuth: false
 };
 
-export const authReducer = (state = initialState, action) => {
+export const authReducer = (state = initialState, action: any): InitialStateType => {
     switch(action.type) {
         case authTypes.SET_AUTH:
             return {

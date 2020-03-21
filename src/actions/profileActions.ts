@@ -1,7 +1,7 @@
 import {profileTypes} from './types';
 import {profileAPI} from '../api/api';
 
-export const setProfile = id => async dispatch => {
+export const setProfile = (id: number) => async (dispatch: any) => {
     try {
         dispatch(toggleFetching());
         const response = await profileAPI.serProfile(id);
@@ -12,7 +12,7 @@ export const setProfile = id => async dispatch => {
     }
 };
 
-export const getStatus = id => async dispatch => {
+export const getStatus = (id: number) => async (dispatch: any) => {
     try {
         const response = await profileAPI.getStatus(id);
         dispatch({type: profileTypes.GET_STATUS, payload: response.data});
@@ -21,7 +21,7 @@ export const getStatus = id => async dispatch => {
     }
 };
 
-export const updateStatus = status => async dispatch => {
+export const updateStatus = (status: string) => async (dispatch: any) => {
     try {
         await profileAPI.updateStatus(status);
         dispatch({type: profileTypes.UPDATE_STATUS, payload: status});
@@ -30,17 +30,17 @@ export const updateStatus = status => async dispatch => {
     }
 };
 
-export const addPost = post => ({type: profileTypes.ADD_POST, payload: post});
+export const addPost = (post: PostType) => ({type: profileTypes.ADD_POST, payload: post});
 
-export const deletePost = id => ({type: profileTypes.DELETE_POST, payload: id});
+export const deletePost = (id: number) => ({type: profileTypes.DELETE_POST, payload: id});
 
-export const toggleLiked = id => ({type: profileTypes.TOGGLE_LIKED, payload: id});
+export const toggleLiked = (id: number) => ({type: profileTypes.TOGGLE_LIKED, payload: id});
 
 export const toggleFetching = () => ({type: profileTypes.TOGGLE_PROFILE_FETCHING});
 
-export const setPhoto = photo => ({type: profileTypes.SET_PHOTO, payload: photo});
+export const setPhoto = (photo: PhotosType) => ({type: profileTypes.SET_PHOTO, payload: photo});
 
-export const updatePhoto = photo => async dispatch => {
+export const updatePhoto = (photo: File) => async (dispatch: any) => {
     try {
         const response = await profileAPI.updatePhoto(photo);
 

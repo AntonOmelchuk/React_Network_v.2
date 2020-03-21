@@ -1,4 +1,3 @@
-// @ts-ignore
 import { AppActionTypes, INITIALIZED_SUCCESS } from "../actions/types";
 
 export type InitialStateType = {
@@ -9,7 +8,7 @@ const initialState: InitialStateType = {
     isInitialized: false
 };
 
-export const appReducer = (state = initialState, action: AppActionTypes) => {
+export const appReducer = (state = initialState, action: AppActionTypes): InitialStateType => {
     switch(action.type) {
         case INITIALIZED_SUCCESS:
             return {

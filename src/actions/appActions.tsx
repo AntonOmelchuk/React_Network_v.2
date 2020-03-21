@@ -1,11 +1,9 @@
-// @ts-ignore
-import {INITIALIZED_SUCCESS, InitializedSuccessAction} from './types';
+import {INITIALIZED_SUCCESS, InitializedSuccessActionType} from './types';
 import {setAuth} from './authActions';
 
-export const initialized = (): InitializedSuccessAction => ({type: INITIALIZED_SUCCESS});
+export const initialized = (): InitializedSuccessActionType => ({type: INITIALIZED_SUCCESS});
 
-// @ts-ignore
-export const initializeApp = (): Promise => async dispatch => {
+export const initializeApp = () => async (dispatch: any) => {
     try {
         await dispatch(setAuth());
 
@@ -13,4 +11,4 @@ export const initializeApp = (): Promise => async dispatch => {
     } catch(err) {
 
     }
-}
+};

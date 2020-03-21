@@ -1,12 +1,7 @@
-// @ts-ignore
 import {authTypes} from './types';
-// @ts-ignore
 import {authAPI} from '../api/api';
-// @ts-ignore
-import {SetAuthAction} from './types';
 
-// @ts-ignore
-export const setAuth = () => async (dispatch: (arg0: { type: any; payload: any; }) => void): Promise<SetAuthAction> => {
+export const setAuth = () => async (dispatch: any) => {
     try {
         const response = await authAPI.setAuth();
 
@@ -21,7 +16,7 @@ export const setAuth = () => async (dispatch: (arg0: { type: any; payload: any; 
     }
 };
 
-export const login = (email: string, password: number, rememberMe: boolean) => async (dispatch: (arg0: (dispatch: (arg0: { type: any; payload: any; }) => void) => any) => void) => {
+export const login = (email: string, password: number, rememberMe: boolean) => async (dispatch: any) => {
     try {
         await authAPI.login(email, password, rememberMe);
 
@@ -31,7 +26,7 @@ export const login = (email: string, password: number, rememberMe: boolean) => a
     }
 };
 
-export const logout = () => async (dispatch: (arg0: { type: any; }) => void) => {
+export const logout = () => async (dispatch: any) => {
     try {
         await authAPI.logout();
 
