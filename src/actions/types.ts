@@ -26,12 +26,12 @@ export type AddPostActionType = {
 
 export type DeletePostActionType = {
     type: typeof profileTypes.DELETE_POST,
-    payload: number
+    payload: number | string
 }
 
 export type ToggleLikedActionType = {
     type: typeof profileTypes.TOGGLE_LIKED,
-    payload: number
+    payload: number | string
 }
 
 export type ToggleFetchingActionType = {

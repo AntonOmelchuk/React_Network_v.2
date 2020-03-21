@@ -1,25 +1,33 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, ChangeEvent} from 'react';
 
 import style from './Profile.module.css';
 import defaultAvatar from '../../../assets/avatars/anonymous.jpg';
 
 import Spinner from '../../common/waitingComponents/Spinner';
 
-const Profile = ({
+type PropsType = {
+    profile: ProfileType
+    status: string
+    isFetching: boolean
+    updateStatus: (currentStatus: string) => void
+    updatePhoto: (file: File) => void
+}
+
+const Profile: React.FC<PropsType> = ({
     profile,
     status,
     isFetching,
     updateStatus,
     updatePhoto
 }) => {
-    const [currentStatus, setStatus] = useState(status);
+    const [currentStatus, setStatus] = useState<string>(status);
     const [editMode, setEditMode] = useState(false);
 
     useEffect(() => {
         setStatus(status);
     }, [editMode, isFetching, profile, status]);
 
-    const onKeyPressToggleEditMode = e => {
+    const onKeyPressToggleEditMode = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter') {
             updateStatus(currentStatus);
             setEditMode(false);
@@ -36,8 +44,8 @@ const Profile = ({
     const {photos, fullName, lookingForAJob} = profile;
     const {github, instagram, vk} = profile.contacts;
 
-    const uploadPhoto = e => {
-        if (e.target.files.length) updatePhoto(e.target.files[0]);
+    const uploadPhoto = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files !== null && e.target.files.length) updatePhoto(e.target.files[0]);
     };
 
     return (

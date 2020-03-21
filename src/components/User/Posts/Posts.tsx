@@ -1,21 +1,28 @@
-import React from 'react';
+import React, {FormEvent} from 'react';
 import uuid from 'uuid'
 import ava1 from '../../../assets/avatars/ava1.jpg'
 import style from './Post.module.css';
 import PostItem from './PostItem';
-import {Field, reduxForm} from 'redux-form';
+import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 
-const Posts = React.memo(({posts, addPost, deletePost, toggleLiked}) => {
+type PropsType = {
+    posts: Array<PostType>
+    addPost: (post: PostType) => void
+    deletePost: () => void
+    toggleLiked: () => void
+}
 
-    const handleKeyDown = e => {
+const Posts: React.FC<PropsType> = React.memo(({posts, addPost, deletePost, toggleLiked}) => {
+
+    const handleKeyDown = (e: React.KeyboardEvent) => {
         if(e.key === 'Enter') {
             onAddPost()
         }
     };
 
-    const onAddPost = data => {
+    const onAddPost = (data?: any) => {
         if(!data.message) return false;
-        const post = {
+        const post: PostType = {
             id: uuid.v4(),
             ava: ava1,
             text: data.message,
@@ -35,10 +42,12 @@ const Posts = React.memo(({posts, addPost, deletePost, toggleLiked}) => {
     )
 });
 
-const AddPostForm = ({handleSubmit, handleKeyDown, reset}) => {
+// @ts-ignore
+const AddPostForm: React.FC<InjectedFormProps> = ({handleSubmit, handleKeyDown, reset}) => {
 
-    const onSubmit = e => {
+    const onSubmit = (e: FormEvent) => {
         e.preventDefault();
+        // @ts-ignore
         handleSubmit();
         reset()
     };
@@ -53,7 +62,10 @@ const AddPostForm = ({handleSubmit, handleKeyDown, reset}) => {
 
 const ReduxAddPostForm = reduxForm({form: 'addPost'})(AddPostForm);
 
+// @ts-ignore
+
 const AddPost = ({onAddPost, handleKeyDown}) =>  (
+    // @ts-ignore
     <ReduxAddPostForm onSubmit={onAddPost} handleKeyDown={handleKeyDown} />
 );
 

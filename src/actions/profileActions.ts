@@ -38,9 +38,9 @@ export const updateStatus = (status: string) => async (dispatch: any) => {
 
 export const addPost = (post: PostType): AddPostActionType => ({type: profileTypes.ADD_POST, payload: post});
 
-export const deletePost = (id: number): DeletePostActionType => ({type: profileTypes.DELETE_POST, payload: id});
+export const deletePost = (id: number| string): DeletePostActionType => ({type: profileTypes.DELETE_POST, payload: id});
 
-export const toggleLiked = (id: number): ToggleLikedActionType => ({type: profileTypes.TOGGLE_LIKED, payload: id});
+export const toggleLiked = (id: number | string): ToggleLikedActionType => ({type: profileTypes.TOGGLE_LIKED, payload: id});
 
 export const toggleFetching = (): ToggleFetchingActionType => ({type: profileTypes.TOGGLE_PROFILE_FETCHING});
 

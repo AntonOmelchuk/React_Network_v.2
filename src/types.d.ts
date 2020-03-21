@@ -26,8 +26,8 @@ type ProfileType = {
 }
 
 type PostType = {
-    id: number
-    ava: string
+    id: string | number
+    ava: string | any
     text: string
     likes: number
     date: string | Date

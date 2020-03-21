@@ -2,9 +2,15 @@ import React from 'react';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import style from './Post.module.css';
 
-export const PostItem = ({post, deletePost, toggleLiked}) => {
+type PropsType = {
+    post: PostType
+    deletePost: (id: number | string) => void
+    toggleLiked: (id: number | string) => void
+}
 
-    const {id, ava, text, likes, date, liked} = post;
+export const PostItem: React.FC<PropsType> = ({post, deletePost, toggleLiked}) => {
+
+    const {id, ava, text, likes, date, liked}  = post;
 
     const handleToggle = () => {
         toggleLiked(id);
@@ -21,7 +27,7 @@ export const PostItem = ({post, deletePost, toggleLiked}) => {
                 <div className={style.text}>{text}</div>
             </div>
             <div className={style.post__footer}>
-                <div className={liked ?  style.liked : null}>
+                <div className={liked ?  style.liked : ''}>
                     <span>{likes}</span>
                     <span>
                         {' '}

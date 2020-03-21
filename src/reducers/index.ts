@@ -14,3 +14,7 @@ export const reducers = combineReducers({
     app: appReducer,
     form: formReducer
 });
+
+type RootReducerType = typeof reducers;
+
+export type AppStateType = ReturnType<RootReducerType>
