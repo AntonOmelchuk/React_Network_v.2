@@ -65,10 +65,10 @@ export const toggleShowSendMessageSuccessModal = (isShow: boolean): ToggleShowSe
 export const getDialogs = (): DialogsThunksTypes => async dispatch => {
   try {
     dispatch(toggleIsLoading(true));
-    const response = await dialogsAPI.getDialogs();
+    const {data, status} = await dialogsAPI.getDialogs();
     dispatch(toggleIsLoading(false));
-    if (response.status === 200) {
-      dispatch(getDialogsSuccess(response.data));
+    if (status === 200) {
+      dispatch(getDialogsSuccess(data));
     }
   } catch (err) {
     console.log(err);
@@ -94,7 +94,6 @@ export const sendMessage = (
   message: string,
   fromModal = false
 ): DialogsThunksTypes => async dispatch => {
-  debugger;
   try {
     const response = await dialogsAPI.sendMessage(userId, message);
     if (response.status === 200) {

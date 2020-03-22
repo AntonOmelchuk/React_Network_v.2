@@ -32,9 +32,9 @@ const toggleDisableButton = (
 
 export const getUsers = (page: number): UsersThunksTypes => async dispatch => {
   try {
-    const response = await usersAPI.getUser(page);
-
-    dispatch(getUsersSuccess(response.data));
+    const response = await usersAPI.getUsers(page);
+    console.log(response);
+    dispatch(getUsersSuccess(response));
   } catch (err) {
     console.log(err);
   }
@@ -57,7 +57,7 @@ export const followUser = (id: number): UsersThunksTypes => async dispatch => {
     dispatch(toggleDisableButton(id, true));
     const response = await usersAPI.followUser(id);
 
-    if (response.data.resultCode === 0) {
+    if (response.resultCode === 0) {
       dispatch({ type: usersTypes.TOGGLE_FOLLOWING, payload: id });
       dispatch(toggleDisableButton(id, false));
     }
@@ -73,7 +73,7 @@ export const unFollowUser = (
     dispatch(toggleDisableButton(id, true));
     const response = await usersAPI.unFollowUser(id);
 
-    if (response.data.resultCode === 0) {
+    if (response.resultCode === 0) {
       dispatch({ type: usersTypes.TOGGLE_FOLLOWING, payload: id });
       dispatch(toggleDisableButton(id, false));
     }

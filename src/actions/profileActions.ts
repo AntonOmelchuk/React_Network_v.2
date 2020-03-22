@@ -1,35 +1,45 @@
 import {
-  profileTypes,
   AddPostActionType,
   DeletePostActionType,
   ProfileThunksType,
+  profileTypes,
   SetPhotoActionType,
   ToggleFetchingActionType,
-  ToggleLikedActionType,
-} from './types';
-import { profileAPI } from '../api/api';
+  ToggleLikedActionType
+} from "./types";
+import { profileAPI } from "../api/api";
+import { ResultCodeEnum } from "../api/types";
 
 export const setProfile = (id: number): ProfileThunksType => async dispatch => {
   try {
     dispatch(toggleFetching());
     const response = await profileAPI.serProfile(id);
-    dispatch({ type: profileTypes.SET_PROFILE, payload: response.data });
+    dispatch({ type: profileTypes.SET_PROFILE, payload: response });
     dispatch(toggleFetching());
-  } catch (err) {}
+  } catch (err) {
+    console.log(err)
+  }
 };
 
 export const getStatus = (id: number): ProfileThunksType => async dispatch => {
   try {
     const response = await profileAPI.getStatus(id);
-    dispatch({ type: profileTypes.GET_STATUS, payload: response.data });
-  } catch (err) {}
+    dispatch({ type: profileTypes.GET_STATUS, payload: response });
+  } catch (err) {
+    console.log(err)
+  }
 };
 
 export const updateStatus = (status: string): ProfileThunksType => async dispatch => {
   try {
-    await profileAPI.updateStatus(status);
-    dispatch({ type: profileTypes.UPDATE_STATUS, payload: status });
-  } catch (err) {}
+    const response = await profileAPI.updateStatus(status);
+
+    if(response.resultCode === ResultCodeEnum.Success) {
+      dispatch({ type: profileTypes.UPDATE_STATUS, payload: status })
+    }
+  } catch (err) {
+    console.log(err)
+  }
 };
 
 export const addPost = (post: PostType): AddPostActionType => ({
@@ -60,8 +70,10 @@ export const updatePhoto = (photo: File): ProfileThunksType => async dispatch =>
   try {
     const response = await profileAPI.updatePhoto(photo);
 
-    if (response.data.resultCode === 0) {
-      dispatch(setPhoto(response.data.data.photos));
+    if (response.resultCode === ResultCodeEnum.Success) {
+      dispatch(setPhoto(response.data.photos));
     }
-  } catch (err) {}
+  } catch (err) {
+    console.log(err)
+  }
 };
