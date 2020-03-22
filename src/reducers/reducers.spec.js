@@ -1,9 +1,9 @@
 import * as types from '../actions/types';
-import {appReducer} from './appReducer';
-import {authReducer} from './authReducer';
-import {dialogsReducer} from './dialogsReducer';
-import {profileReducer} from './profileReducer';
-import {usersReducer} from './usersReducer';
+import { appReducer } from './appReducer';
+import { authReducer } from './authReducer';
+import { dialogsReducer } from './dialogsReducer';
+import { profileReducer } from './profileReducer';
+import { usersReducer } from './usersReducer';
 
 // ============= App reducer ===============
 
@@ -67,13 +67,13 @@ describe('Dialogs reducer', () => {
         dialogs: [
             {
                 id: 3, user: test, lastMessage: 'test', yourLast: false, isRead: true, messages: [
-                    {id: 3, isYour: false, text: 'test'}
+                    { id: 3, isYour: false, text: 'test' }
                 ]
             },
         ],
         current:  {
             id: 3, user: test, lastMessage: 'test', yourLast: false, isRead: true, messages: [
-                {id: 3, isYour: false, text: 'test'}
+                { id: 3, isYour: false, text: 'test' }
             ]
         },
     };
@@ -97,7 +97,7 @@ describe('Dialogs reducer', () => {
 
         expect(dialogsReducer(initialState, action)).toEqual({
             ...initialState,
-            current: {...initialState.current, messages: [...initialState.current.messages, action.payload]}
+            current: { ...initialState.current, messages: [...initialState.current.messages, action.payload] }
         });
     });
 });
@@ -109,7 +109,7 @@ describe('Profile reducer', () => {
         profile: null,
         status: null,
         posts: [
-            {id: 3, ava: 'test', text: 'test', likes: 12, date: 'Mon Nov 04 2019 11:42:46', liked: false}
+            { id: 3, ava: 'test', text: 'test', likes: 12, date: 'Mon Nov 04 2019 11:42:46', liked: false }
         ],
         isFetching: false
     };
@@ -208,7 +208,7 @@ describe('Profile reducer', () => {
 
         expect(profileReducer(initialState, action)).toEqual({
             ...initialState,
-            profile: {...initialState.profile, photos: action.payload}
+            profile: { ...initialState.profile, photos: action.payload }
         });
     });
 });
@@ -272,7 +272,7 @@ describe('User reducer', () => {
             ...initialState,
             users: initialState.users.map(user => {
                 if(user.id === action.payload) {
-                    return {...user, followed: !user.followed};
+                    return { ...user, followed: !user.followed };
                 } else {
                     return user;
                 }

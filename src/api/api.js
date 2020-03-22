@@ -16,7 +16,7 @@ export const profileAPI = {
         return instance.get(`profile/status/${id}`);
     },
     updateStatus(status) {
-        return instance.put(`profile/status`, {status});
+        return instance.put(`profile/status`, { status });
     },
     updatePhoto(photo) {
         const formData = new FormData();
@@ -48,7 +48,7 @@ export const authAPI = {
         return instance.get('auth/me');
     },
     login(email, password, rememberMe) {
-        return instance.post('auth/login', {email, password, rememberMe});
+        return instance.post('auth/login', { email, password, rememberMe });
     },
     logout() {
         return instance.delete('auth/login');
@@ -60,7 +60,7 @@ export const dialogsAPI = {
         return instance.get('dialogs');
     },
     sendMessage(userId, message) {
-        return instance.post(`dialogs/${userId}/messages`, {body: message});
+        return instance.post(`dialogs/${userId}/messages`, { body: message });
     },
     getMessages(userId) {
         return instance.get(`dialogs/${userId}/messages`);

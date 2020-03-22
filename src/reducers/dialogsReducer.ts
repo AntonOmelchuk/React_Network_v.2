@@ -5,7 +5,7 @@ type InitialStateType = {
   messages: Array<MessageType>;
   currentId: null | number;
   showModal: boolean;
-  currentUser: null | UserType;
+  currentUser: NewDialogUserType | null,
   isLoading: boolean;
   showSendMessageSuccessModal: boolean;
 };

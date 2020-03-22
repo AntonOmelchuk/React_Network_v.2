@@ -1,18 +1,26 @@
 import React from 'react';
-import {A} from 'hookrouter';
-
-import style from './Users.module.css';
+import { A } from 'hookrouter';
 
 import commonAvatar from '../../assets/avatars/common.jpg';
 
-export const UserItem = ({
+import style from './Users.module.css';
+
+type PropsType = {
+  user: UserType,
+  followUser: (id: number) => void,
+  unFollowUser: (id: number) => void,
+  disabledButton: Array<number>,
+  startNewDialog: (newDialogUser: NewDialogUserType) => void
+}
+
+export const UserItem: React.FC<PropsType> = ({
   user,
   followUser,
   unFollowUser,
   disabledButton,
   startNewDialog,
 }) => {
-  const {id, photos, name, status, followed} = user;
+  const { id, photos, name, status, followed } = user;
 
   const handleFollow = () => followUser(id);
 
@@ -31,7 +39,7 @@ export const UserItem = ({
           <div className={style.name}>{name}</div>
           <div
             className={style.writeMessageButton}
-            onClick={() => startNewDialog({status, name, id, photos})}
+            onClick={() => startNewDialog({ status, name, id, photos })}
           >
             Write message
           </div>

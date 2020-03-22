@@ -2,12 +2,6 @@ import React, { useEffect } from 'react';
 import { connect, Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { useRoutes } from 'hookrouter';
-
-import style from './index.module.css';
-
-import { getAuth } from './selectors/profileSelectors';
-import { initializeApp } from './actions/appActions';
-import { store } from './store/store';
 import Routes from './router';
 
 import Spinner from './components/common/waitingComponents/Spinner';
@@ -17,17 +11,27 @@ import User from './components/User/User';
 import Login from './components/Login/Login';
 import DialogModal from './components/common/modalWindows/DialogModal/DialogModal';
 import SendMessageSuccessModal from './components/common/modalWindows/sendMessageSuccess/SendMessageSuccessModal';
+
+import { store } from './store/store';
 import { AppStateType } from './reducers';
+import { sendMessage, toggleShowModal } from './actions/dialogsActions';
+import { getAuth } from './selectors/profileSelectors';
+import { initializeApp } from './actions/appActions';
+
+import style from './index.module.css';
 
 type MapStateToPropsType = {
-  initialized: boolean;
-  auth: boolean;
-  showModal: boolean;
-  sendMessageModal: boolean;
+  initialized: boolean,
+  auth: boolean,
+  showModal: boolean,
+  sendMessageModal: boolean,
+  user: NewDialogUserType
 };
 
 type MapDispatchToPropsType = {
-  initializeApp: () => void;
+  initializeApp: () => void,
+  sendMessage: (userId: number, message: string, fromModal: boolean) => void,
+  toggleShowModal: () => void
 };
 
 type PropsType = MapStateToPropsType & MapDispatchToPropsType;
@@ -36,6 +40,7 @@ const App: React.FC<PropsType> = ({
   initialized,
   initializeApp,
   auth,
+  user,
   showModal,
   sendMessageModal,
 }) => {
@@ -53,7 +58,13 @@ const App: React.FC<PropsType> = ({
     <div className={style.page}>
       <Navbar />
       <Nav />
-      {showModal && <DialogModal />}
+      {showModal && (
+        <DialogModal
+          toggleShowModal={toggleShowModal}
+          sendMessage={sendMessage}
+          user={user}
+        />
+      )}
       {sendMessageModal && <SendMessageSuccessModal />}
       <div className={style.content}>
         {routeResult || (
@@ -65,14 +76,19 @@ const App: React.FC<PropsType> = ({
   );
 };
 
-const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
+const mapStateToProps = (state: AppStateType) => ({
   initialized: state.app.isInitialized,
   auth: getAuth(state),
+  user: state.dialogs.currentUser,
   showModal: state.dialogs.showModal,
   sendMessageModal: state.dialogs.showSendMessageSuccessModal,
-});
+}) as MapStateToPropsType;
 
-const AppContainer = connect(mapStateToProps, { initializeApp })(App);
+const AppContainer = connect(mapStateToProps, {
+  initializeApp,
+  toggleShowModal,
+  sendMessage,
+})(App);
 
 export const AppMain = () => (
   <BrowserRouter>

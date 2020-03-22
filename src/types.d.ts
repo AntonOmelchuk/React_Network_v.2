@@ -57,7 +57,7 @@ type MessageType = {
 };
 
 type NewDialogUserType = {
-  status: string;
+  status?: string;
   name: string;
   id: number;
   photos: PhotosType;
