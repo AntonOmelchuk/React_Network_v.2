@@ -1,26 +1,21 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, InjectedFormProps, reduxForm } from "redux-form";
 import { connect } from 'react-redux';
 import style from './Login.module.css';
 import { maxLength, required } from '../../utils/validators/validators';
 import { Email, Password } from '../common/FormControl/FormControl';
 import { login } from '../../actions/authActions';
-import { AppStateType } from "../../reducers";
+import { AppStateType } from '../../reducers';
 
 const requiredEmail = required('Email');
 const requiredPassword = required('password');
 const passwordMaxLength = maxLength(18);
 const emailMaxLength = maxLength(30);
 
-const LoginForm: React.FC<any> = ({ handleSubmit, reset }) => {
-  const onSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    handleSubmit();
-    reset();
-  };
+const LoginForm: React.FC<InjectedFormProps> = ({ handleSubmit }) => {
 
   return (
-    <form onSubmit={onSubmit} className={style.login__form}>
+    <form onSubmit={handleSubmit} className={style.login__form}>
       <div>
         <Field
           className={style.form__input}
@@ -64,23 +59,23 @@ const LoginForm: React.FC<any> = ({ handleSubmit, reset }) => {
   );
 };
 
-const LoginFormRedux = reduxForm({ form: 'login' })(LoginForm);
+const LoginFormRedux = reduxForm<FormDataType>({ form: 'login' })(LoginForm);
 
-type formDataType = {
-  email: string,
-  password: string,
-  rememberMe: boolean
-}
+type FormDataType = {
+  email: string;
+  password: string;
+  rememberMe: boolean;
+};
 
 type MapDispatchToPropsType = {
-  login: (email: string, password: string, rememberMe: boolean) => void
-}
+  login: (email: string, password: string, rememberMe: boolean) => void;
+};
 
-type PropsType = MapDispatchToPropsType
+type PropsType = MapDispatchToPropsType;
 
-const Login: React.FC<PropsType> = ({ login }): any => {
-  const onSubmit = (formData: formDataType): void => {
-    const { email, password, rememberMe } = formData;
+const Login: React.FC<PropsType> = ({ login }) => {
+  const onSubmitHandler = (FormData: FormDataType) => {
+    const { email, password, rememberMe } = FormData;
 
     login(email, password, rememberMe);
   };
@@ -91,16 +86,11 @@ const Login: React.FC<PropsType> = ({ login }): any => {
       <p className={style.credential}>Email: free@samuraijs.com</p>
       <p className={style.credential}>Password: free</p>
       <div className={style.title}>Login</div>
-      <LoginFormRedux
-        // @ts-ignore
-        onSubmit={onSubmit}
-      />
+      <LoginFormRedux onSubmit={onSubmitHandler} />
     </div>
   );
 };
 
-export default connect<null,
-  MapDispatchToPropsType,
-  null,
-  AppStateType>
-(null, { login })(Login);
+export default connect<null, MapDispatchToPropsType, null, AppStateType>(null, {
+  login,
+})(Login);
