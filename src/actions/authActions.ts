@@ -1,7 +1,7 @@
-import { authTypes } from './types';
+import { AuthThunksTypes, authTypes, LogoutSuccessType } from './types';
 import { authAPI } from '../api/api';
 
-export const setAuth = () => async (dispatch: any) => {
+export const setAuth = (): AuthThunksTypes => async dispatch => {
   try {
     const response = await authAPI.setAuth();
 
@@ -18,9 +18,9 @@ export const setAuth = () => async (dispatch: any) => {
 
 export const login = (
   email: string,
-  password: number,
+  password: string,
   rememberMe: boolean
-) => async (dispatch: any) => {
+): AuthThunksTypes => async dispatch => {
   try {
     await authAPI.login(email, password, rememberMe);
 
@@ -28,11 +28,13 @@ export const login = (
   } catch (err) {}
 };
 
-export const logout = () => async (dispatch: any) => {
+const logoutSuccess = (): LogoutSuccessType => ({ type: authTypes.LOGOUT });
+
+export const logout = (): AuthThunksTypes => async dispatch => {
   try {
     await authAPI.logout();
 
-    dispatch({ type: authTypes.LOGOUT });
+    dispatch(logoutSuccess());
   } catch (err) {
     console.log(err);
   }

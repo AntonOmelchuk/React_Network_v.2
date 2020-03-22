@@ -21,7 +21,7 @@ import {
 type PropsType = {
   user: NewDialogUserType,
   sendMessage: (userId: number, message: string, fromModal: boolean) => void,
-  toggleShowModal: () => void
+  toggleShowModal: (isShow: boolean) => void
 };
 
 const DialogModal: React.FC<PropsType> = ({
@@ -36,7 +36,7 @@ const DialogModal: React.FC<PropsType> = ({
   const onSendMessage = () => {
     sendMessage(id, message, true);
     setMessage('');
-    toggleShowModal();
+    toggleShowModal(false);
   };
 
   const onKeyDownHandler = (e: React.KeyboardEvent) => {
@@ -50,11 +50,11 @@ const DialogModal: React.FC<PropsType> = ({
 
   return (
     <>
-      <DialogModalOverlay onClick={toggleShowModal} />
+      <DialogModalOverlay onClick={() => toggleShowModal(false)} />
       <DialogModalContainer>
         <DialogModalHeader>
           <CloseButtonContainer>
-            <i className='fas fa-times' onClick={toggleShowModal} />
+            <i className='fas fa-times' onClick={() => toggleShowModal(false)} />
           </CloseButtonContainer>
         </DialogModalHeader>
         <UserContainer>

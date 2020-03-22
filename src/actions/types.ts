@@ -1,10 +1,22 @@
 // === App types === //
 
+import { ThunkAction } from 'redux-thunk';
+import { AppStateType } from '../reducers';
+
 export const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 
-export interface InitializedSuccessActionType {
+export type InitializedSuccessActionType = {
   type: typeof INITIALIZED_SUCCESS;
-}
+};
+
+export type AppInitializedActionsTypes = InitializedSuccessActionType;
+
+export type AppInitializedThunksTypes = ThunkAction<
+  Promise<void>,
+  AppStateType,
+  unknown,
+  AppInitializedActionsTypes
+>;
 
 // === Profile types === //
 
@@ -43,6 +55,20 @@ export type SetPhotoActionType = {
   payload: PhotosType;
 };
 
+export type ProfileActionsTypes =
+  | AddPostActionType
+  | DeletePostActionType
+  | ToggleLikedActionType
+  | ToggleFetchingActionType
+  | SetPhotoActionType;
+
+export type ProfileThunksType = ThunkAction<
+  Promise<void>,
+  AppStateType,
+  unknown,
+  ProfileActionsTypes
+  >;
+
 // === Dialogs types === //
 
 export const dialogsTypes = {
@@ -53,8 +79,8 @@ export const dialogsTypes = {
   SET_CURRENT_ID: 'SET_CURRENT_ID',
   TOGGLE_SHOW_MODAL: 'TOGGLE_SHOW_MODAL',
   SET_CURRENT_USER: 'SET_CURRENT_USER',
-  SHOW_SENT_MESSAGE_SUCCESS_MODAL: 'SHOW_SENT_MESSAGE_SUCCESS_MODAL',
-  HIDE_SENT_MESSAGE_SUCCESS_MODAL: 'HIDE_SENT_MESSAGE_SUCCESS_MODAL',
+  TOGGLE_SHOW_SENT_MESSAGE_SUCCESS_MODAL:
+    'TOGGLE_SHOW_SENT_MESSAGE_SUCCESS_MODAL',
   DELETE_MESSAGES: 'DELETE_MESSAGES',
 };
 
@@ -85,6 +111,7 @@ export type GetMessageSuccessActionType = {
 
 export type ToggleShowModalActionType = {
   type: typeof dialogsTypes.TOGGLE_SHOW_MODAL;
+  payload: boolean;
 };
 
 export type SetCurrentUserActionType = {
@@ -92,13 +119,27 @@ export type SetCurrentUserActionType = {
   payload: NewDialogUserType;
 };
 
-export type ShowSendMessageSuccessModalActionType = {
-  type: typeof dialogsTypes.SHOW_SENT_MESSAGE_SUCCESS_MODAL;
+export type ToggleShowSendMessageSuccessModalActionType = {
+  type: typeof dialogsTypes.TOGGLE_SHOW_SENT_MESSAGE_SUCCESS_MODAL;
+  payload: boolean;
 };
 
-export type HideSendMessageSuccessModalActionType = {
-  type: typeof dialogsTypes.HIDE_SENT_MESSAGE_SUCCESS_MODAL;
-};
+export type DialogsActionsTypes =
+  | ToggleIsLoadingActionType
+  | SetCurrentIdActionType
+  | GetDialogsSuccessActionType
+  | SendMessageSuccessActionType
+  | GetMessageSuccessActionType
+  | ToggleShowModalActionType
+  | SetCurrentUserActionType
+  | ToggleShowSendMessageSuccessModalActionType;
+
+export type DialogsThunksTypes = ThunkAction<
+  Promise<void>,
+  AppStateType,
+  unknown,
+  DialogsActionsTypes
+>;
 
 // === Users types === //
 
@@ -107,7 +148,23 @@ export const usersTypes = {
   TOGGLE_FOLLOWING: 'TOGGLE_FOLLOWING',
   SET_CURRENT_PAGE: 'SET_CURRENT_PAGE',
   TOGGLE_FETCHING: 'TOGGLE_FETCHING',
-  DISABLE_BUTTON: 'DISABLE_BUTTON',
+  TOGGLE_DISABLE_BUTTON: 'TOGGLE_DISABLE_BUTTON',
+};
+
+export type ToggleDisableButtonType = {
+  type: typeof usersTypes.TOGGLE_DISABLE_BUTTON;
+  payload: {
+    id: number;
+    status: boolean;
+  };
+};
+
+export type GetUsersSuccessType = {
+  type: typeof usersTypes.GET_USERS;
+  payload: {
+    users: Array<UserType>;
+    totalCount: number;
+  };
 };
 
 export type UsersToggleFetchingActionType = {
@@ -120,6 +177,18 @@ export type SetCurrentPageActionType = {
   payload: number;
 };
 
+export type UsersActionTypes =
+  | ToggleDisableButtonType
+  | GetUsersSuccessType
+  | UsersToggleFetchingActionType
+  | SetCurrentPageActionType;
+
+export type UsersThunksTypes = ThunkAction<
+  Promise<void>,
+  AppStateType,
+  unknown,
+  UsersActionTypes
+>;
 // === Auth types === //
 
 export const authTypes = {
@@ -131,3 +200,23 @@ export type SetAuthActionType = {
   type: typeof authTypes.SET_AUTH;
   payload: any;
 };
+
+export type LogoutSuccessType = {
+  type: typeof authTypes.LOGOUT;
+};
+
+export type AuthActionsTypes = SetAuthActionType | LogoutSuccessType;
+
+export type AuthThunksTypes = ThunkAction<
+  Promise<void>,
+  AppStateType,
+  unknown,
+  AuthActionsTypes
+>;
+
+export type ActionsTypes =
+  | AppInitializedActionsTypes
+  | ProfileActionsTypes
+  | DialogsActionsTypes
+  | UsersActionTypes
+  | AuthActionsTypes;

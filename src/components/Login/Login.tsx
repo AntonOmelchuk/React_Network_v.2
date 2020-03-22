@@ -5,14 +5,15 @@ import style from './Login.module.css';
 import { maxLength, required } from '../../utils/validators/validators';
 import { Email, Password } from '../common/FormControl/FormControl';
 import { login } from '../../actions/authActions';
+import { AppStateType } from "../../reducers";
 
 const requiredEmail = required('Email');
 const requiredPassword = required('password');
 const passwordMaxLength = maxLength(18);
 const emailMaxLength = maxLength(30);
 
-const LoginForm = ({ handleSubmit, reset }) => {
-  const onSubmit = (e) => {
+const LoginForm: React.FC<any> = ({ handleSubmit, reset }) => {
+  const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     handleSubmit();
     reset();
@@ -65,8 +66,20 @@ const LoginForm = ({ handleSubmit, reset }) => {
 
 const LoginFormRedux = reduxForm({ form: 'login' })(LoginForm);
 
-const Login = ({ login }) => {
-  const onSubmit = (formData) => {
+type formDataType = {
+  email: string,
+  password: string,
+  rememberMe: boolean
+}
+
+type MapDispatchToPropsType = {
+  login: (email: string, password: string, rememberMe: boolean) => void
+}
+
+type PropsType = MapDispatchToPropsType
+
+const Login: React.FC<PropsType> = ({ login }): any => {
+  const onSubmit = (formData: formDataType): void => {
     const { email, password, rememberMe } = formData;
 
     login(email, password, rememberMe);
@@ -78,9 +91,16 @@ const Login = ({ login }) => {
       <p className={style.credential}>Email: free@samuraijs.com</p>
       <p className={style.credential}>Password: free</p>
       <div className={style.title}>Login</div>
-      <LoginFormRedux onSubmit={onSubmit} />
+      <LoginFormRedux
+        // @ts-ignore
+        onSubmit={onSubmit}
+      />
     </div>
   );
 };
 
-export default connect(null, { login })(Login);
+export default connect<null,
+  MapDispatchToPropsType,
+  null,
+  AppStateType>
+(null, { login })(Login);

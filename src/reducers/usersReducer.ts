@@ -51,7 +51,7 @@ export const usersReducer = (
           }
         }),
       };
-    case usersTypes.DISABLE_BUTTON:
+    case usersTypes.TOGGLE_DISABLE_BUTTON:
       return {
         ...state,
         disabledButton: action.payload.status

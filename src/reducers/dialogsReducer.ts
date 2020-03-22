@@ -61,15 +61,10 @@ export const dialogsReducer = (
         ...state,
         currentUser: action.payload,
       };
-    case dialogsTypes.SHOW_SENT_MESSAGE_SUCCESS_MODAL:
+    case dialogsTypes.TOGGLE_SHOW_SENT_MESSAGE_SUCCESS_MODAL:
       return {
         ...state,
-        showSendMessageSuccessModal: true,
-      };
-    case dialogsTypes.HIDE_SENT_MESSAGE_SUCCESS_MODAL:
-      return {
-        ...state,
-        showSendMessageSuccessModal: false,
+        showSendMessageSuccessModal: action.payload,
       };
     default:
       return state;

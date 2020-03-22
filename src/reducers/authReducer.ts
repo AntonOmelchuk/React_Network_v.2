@@ -1,9 +1,9 @@
 import { authTypes } from '../actions/types';
 
 type InitialStateType = {
-  id: null;
-  email: null;
-  login: null;
+  id: null | number;
+  email: null | string;
+  login: null | string;
   isAuth: boolean;
 };
 

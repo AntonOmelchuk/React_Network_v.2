@@ -20,18 +20,20 @@ import { initializeApp } from './actions/appActions';
 
 import style from './index.module.css';
 
+type OwnPropsType = {};
+
 type MapStateToPropsType = {
-  initialized: boolean,
-  auth: boolean,
-  showModal: boolean,
-  sendMessageModal: boolean,
-  user: NewDialogUserType
+  initialized: boolean;
+  auth: boolean;
+  showModal: boolean;
+  sendMessageModal: boolean;
+  user: NewDialogUserType;
 };
 
 type MapDispatchToPropsType = {
-  initializeApp: () => void,
-  sendMessage: (userId: number, message: string, fromModal: boolean) => void,
-  toggleShowModal: () => void
+  initializeApp: () => void;
+  sendMessage: (userId: number, message: string, fromModal: boolean) => void;
+  toggleShowModal: (isShow: boolean) => void;
 };
 
 type PropsType = MapStateToPropsType & MapDispatchToPropsType;
@@ -42,7 +44,9 @@ const App: React.FC<PropsType> = ({
   auth,
   user,
   showModal,
+  sendMessage,
   sendMessageModal,
+  toggleShowModal,
 }) => {
   useEffect(() => {
     initializeApp();
@@ -52,10 +56,12 @@ const App: React.FC<PropsType> = ({
   const routeResult = useRoutes(Routes);
 
   if (!initialized) return <Spinner />;
+  // @ts-ignore
   if (!auth) return <Login />;
 
   return (
     <div className={style.page}>
+      // @ts-ignore
       <Navbar />
       <Nav />
       {showModal && (
@@ -76,15 +82,21 @@ const App: React.FC<PropsType> = ({
   );
 };
 
-const mapStateToProps = (state: AppStateType) => ({
-  initialized: state.app.isInitialized,
-  auth: getAuth(state),
-  user: state.dialogs.currentUser,
-  showModal: state.dialogs.showModal,
-  sendMessageModal: state.dialogs.showSendMessageSuccessModal,
-}) as MapStateToPropsType;
+const mapStateToProps = (state: AppStateType) =>
+  ({
+    initialized: state.app.isInitialized,
+    auth: getAuth(state),
+    user: state.dialogs.currentUser,
+    showModal: state.dialogs.showModal,
+    sendMessageModal: state.dialogs.showSendMessageSuccessModal,
+  } as MapStateToPropsType);
 
-const AppContainer = connect(mapStateToProps, {
+const AppContainer = connect<
+  MapStateToPropsType,
+  MapDispatchToPropsType,
+  OwnPropsType,
+  AppStateType
+>(mapStateToProps, {
   initializeApp,
   toggleShowModal,
   sendMessage,

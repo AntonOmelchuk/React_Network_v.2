@@ -1,14 +1,15 @@
 import {
+  profileTypes,
   AddPostActionType,
   DeletePostActionType,
-  profileTypes,
+  ProfileThunksType,
   SetPhotoActionType,
   ToggleFetchingActionType,
   ToggleLikedActionType,
 } from './types';
 import { profileAPI } from '../api/api';
 
-export const setProfile = (id: number) => async (dispatch: any) => {
+export const setProfile = (id: number): ProfileThunksType => async dispatch => {
   try {
     dispatch(toggleFetching());
     const response = await profileAPI.serProfile(id);
@@ -17,14 +18,14 @@ export const setProfile = (id: number) => async (dispatch: any) => {
   } catch (err) {}
 };
 
-export const getStatus = (id: number) => async (dispatch: any) => {
+export const getStatus = (id: number): ProfileThunksType => async dispatch => {
   try {
     const response = await profileAPI.getStatus(id);
     dispatch({ type: profileTypes.GET_STATUS, payload: response.data });
   } catch (err) {}
 };
 
-export const updateStatus = (status: string) => async (dispatch: any) => {
+export const updateStatus = (status: string): ProfileThunksType => async dispatch => {
   try {
     await profileAPI.updateStatus(status);
     dispatch({ type: profileTypes.UPDATE_STATUS, payload: status });
@@ -55,7 +56,7 @@ export const setPhoto = (photo: PhotosType): SetPhotoActionType => ({
   payload: photo,
 });
 
-export const updatePhoto = (photo: File) => async (dispatch: any) => {
+export const updatePhoto = (photo: File): ProfileThunksType => async dispatch => {
   try {
     const response = await profileAPI.updatePhoto(photo);
 

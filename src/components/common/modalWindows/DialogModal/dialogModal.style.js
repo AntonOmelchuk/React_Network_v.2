@@ -126,6 +126,8 @@ export const SendButton = styled.button`
   
       &:hover {
       opacity: 1;
+      cursor: pointer;
+      border: 1px solid #b8b7ad;
       }
       
       &:disabled {
